@@ -1,12 +1,14 @@
 {
   "hooks": {
-    "before:init": ["node scripts/clear-git-lock.mjs", "node scripts/check-screenshots.mjs"]
+    "before:init": ["node scripts/clear-git-lock.mjs", "node scripts/check-screenshots.mjs"],
+    "after:git:release": ["git push origin v${version}"]
   },
   "git": {
     "commitMessage": "chore: release v${version}",
     "tagName": "v${version}",
     "requireCleanWorkingDir": true,
-    "commitArgs": ["--no-verify"]
+    "commitArgs": ["--no-verify"],
+    "pushArgs": []
   },
   "github": {
     "release": false
