@@ -1,61 +1,39 @@
 
 
-## [4.25.0-huttbr.1](https://github.com/StarleyDev/gitcito/compare/v4.25.0...v4.25.0-huttbr.1) (2026-11-19)
+## [4.26.0](https://github.com/MyAppDesk/gitcito/compare/v4.25.0...v4.26.0) (2026-11-19)
 
 
 ### Features
 
-* **diff:** wrap long lines in the unified view too ([b9c033f](https://github.com/StarleyDev/gitcito/commit/b9c033f467851e8546bd743bde087ed379a0c8a9))
-* **graph:** offer what GitKraken does when a branch is dropped on another ([813b5cb](https://github.com/StarleyDev/gitcito/commit/813b5cb737a5e95f9a5c9bc6aa4c168418c73aca))
-* **profiles:** choose the profile picture — account, icon or your own image ([a27215b](https://github.com/StarleyDev/gitcito/commit/a27215b42eb75e8a13d0929fd832bbe1c453c5e7))
-* **toolbar:** show a loading signal while a switched-to repository refreshes ([54f1737](https://github.com/StarleyDev/gitcito/commit/54f1737dd9e7c404fbacbc2cc7a70fe70d0903a3))
-* **worktrees:** lock, move, repair and forget worktrees, and show what each one holds ([41eb3e2](https://github.com/StarleyDev/gitcito/commit/41eb3e2cbe981fc3dd04d80f1414a687aff4ae87))
+* **diff:** wrap long lines in the unified view too ([b9c033f](https://github.com/MyAppDesk/gitcito/commit/b9c033f467851e8546bd743bde087ed379a0c8a9))
+* **graph:** offer what GitKraken does when a branch is dropped on another ([813b5cb](https://github.com/MyAppDesk/gitcito/commit/813b5cb737a5e95f9a5c9bc6aa4c168418c73aca))
+* **profiles:** choose the profile picture — account, icon or your own image ([a27215b](https://github.com/MyAppDesk/gitcito/commit/a27215b42eb75e8a13d0929fd832bbe1c453c5e7))
+* **toolbar:** show a loading signal while a switched-to repository refreshes ([54f1737](https://github.com/MyAppDesk/gitcito/commit/54f1737dd9e7c404fbacbc2cc7a70fe70d0903a3))
+* **worktrees:** lock, move, repair and forget worktrees, and show what each one holds ([41eb3e2](https://github.com/MyAppDesk/gitcito/commit/41eb3e2cbe981fc3dd04d80f1414a687aff4ae87))
 
 
 ### Bug Fixes
 
-* **changelog:** show the installed build's notes when GitHub has not published it yet ([687a11f](https://github.com/StarleyDev/gitcito/commit/687a11ffed3004fad67a5070edb9b1fdcb201b39))
-* **drag:** drop a branch across panels, and without a no-drop cursor on Wayland ([b92fe4c](https://github.com/StarleyDev/gitcito/commit/b92fe4cc81d4ca643f5a4895a28c708e17fd2191))
-* **git:** send an Azure DevOps PAT with a username, so git uses it ([d433f3d](https://github.com/StarleyDev/gitcito/commit/d433f3dac4d9b45c1ed9a69125307b5c8a2132e9))
-* **graph:** move the HEAD badge on checkout again ([a993c7a](https://github.com/StarleyDev/gitcito/commit/a993c7a219c490aff18c432cda772b32401a4c64))
-* **screenshots:** wait for the shot bridge by polling, not by animation frame ([1fe0540](https://github.com/StarleyDev/gitcito/commit/1fe054076fd31d2159c104b5d06ce7db27eabeef))
-* **settings:** say when a token will not survive a restart, and keep it once the keychain is on ([9f9f064](https://github.com/StarleyDev/gitcito/commit/9f9f0647c27cc2eaa1cc275d63e4a500b641f98b))
-* **tabs:** reach a group's own page from the group, to add repositories to it ([0948806](https://github.com/StarleyDev/gitcito/commit/0948806106f4bcc454b50fa533633d390c56f637))
-* **ui:** ask over a window instead of closing it ([175d20f](https://github.com/StarleyDev/gitcito/commit/175d20f3ec65bdb6dec57b93c87f8730c7f7fca0)), closes [#83](https://github.com/StarleyDev/gitcito/issues/83)
+* **changelog:** show the installed build's notes when GitHub has not published it yet ([687a11f](https://github.com/MyAppDesk/gitcito/commit/687a11ffed3004fad67a5070edb9b1fdcb201b39))
+* **drag:** drop a branch across panels, and without a no-drop cursor on Wayland ([b92fe4c](https://github.com/MyAppDesk/gitcito/commit/b92fe4cc81d4ca643f5a4895a28c708e17fd2191))
+* **git:** send an Azure DevOps PAT with a username, so git uses it ([d433f3d](https://github.com/MyAppDesk/gitcito/commit/d433f3dac4d9b45c1ed9a69125307b5c8a2132e9))
+* **graph:** confirm pushes from a branch drop, skip fast-forward onto a busy worktree ([bdaa8df](https://github.com/MyAppDesk/gitcito/commit/bdaa8dff2baeedd214a6362c5d8893e021c04c5e))
+* **graph:** move the HEAD badge on checkout again ([a993c7a](https://github.com/MyAppDesk/gitcito/commit/a993c7a219c490aff18c432cda772b32401a4c64))
+* keep the clone token out of argv and .git/config ([47029cf](https://github.com/MyAppDesk/gitcito/commit/47029cfebdbb155c4694818feb01d65a8eb35259))
+* **keychain:** report a failed token move instead of claiming success ([8b7e2c0](https://github.com/MyAppDesk/gitcito/commit/8b7e2c004a490572916b99bbc898ae13a73e1bb0))
+* **profiles:** harden picture import and translate the picker ([3d3b877](https://github.com/MyAppDesk/gitcito/commit/3d3b8772c743c2b6c7f47876e50d863018f4a337))
+* **screenshots:** wait for the shot bridge by polling, not by animation frame ([1fe0540](https://github.com/MyAppDesk/gitcito/commit/1fe054076fd31d2159c104b5d06ce7db27eabeef))
+* **settings:** say when a token will not survive a restart, and keep it once the keychain is on ([9f9f064](https://github.com/MyAppDesk/gitcito/commit/9f9f0647c27cc2eaa1cc275d63e4a500b641f98b))
+* **tabs:** reach a group's own page from the group, to add repositories to it ([0948806](https://github.com/MyAppDesk/gitcito/commit/0948806106f4bcc454b50fa533633d390c56f637))
+* **ui:** ask over a window instead of closing it ([175d20f](https://github.com/MyAppDesk/gitcito/commit/175d20f3ec65bdb6dec57b93c87f8730c7f7fca0)), closes [#83](https://github.com/MyAppDesk/gitcito/issues/83)
+* **watcher:** keep the switch marker through A-B-A and narrow checkout refetch ([f4d769e](https://github.com/MyAppDesk/gitcito/commit/f4d769efe60ce8db96e260086430f60167117676))
+* **worktrees:** relativise the gitdir pointer from the realpath ([861338c](https://github.com/MyAppDesk/gitcito/commit/861338ca06717eee4f4cf81b91621a5679a87f58))
+* **worktrees:** warn before removing a detached worktree, fix tests on macOS ([71ac7ca](https://github.com/MyAppDesk/gitcito/commit/71ac7caaec4c3f2752a05e98cc8d56881893cfa9))
 
 
 ### Performance Improvements
 
-* **watcher:** watch .git and tracked dirs on Linux instead of the whole tree ([85554dc](https://github.com/StarleyDev/gitcito/commit/85554dc64d19b9a97f84ba9e6d7a597e93438879))
-
-## Unreleased
-
-
-### Features
-
-* **toolbar:** a loading bar and "Loading repository…" show while a repository you switched to is refreshing, once that takes longer than 150 ms.
-* **graph:** dropping a branch on another now offers what git would accept, grouped like GitKraken: fast-forward the target (without a checkout, undoable), merge, rebase or interactive rebase, push to the target's remote branch, reset, open a pull request — pushing the branch first when it is not on the remote yet — or compare.
-* **worktrees:** each linked worktree shows its uncommitted files (●) and commits ahead/behind its upstream. Lock one with a reason, unlock, move it, reconnect a folder that was moved by hand, or forget worktrees whose folder is gone (eraser in the section header). Remove asks git first: a clean worktree gets a plain confirm with undo; one with uncommitted changes gets "Discard and remove", with no undo. Both say that ignored files such as `.env` are deleted too.
-* **profiles:** choose the profile picture — automatic (Gravatar or the generated face), the connected GitHub/GitLab account's picture, an icon on a colour, or an image of your own, kept on this computer and included in settings exports. Under the git identity, "Use my GitHub/GitLab noreply email" fills the private address that makes the host show your picture on commits without publishing your real one.
-* **diff:** **Wrap** now works in the unified view too, not only side by side: a long line — minified code, a paragraph of prose — folds inside the pane instead of scrolling sideways. One setting for both views, off by default, remembered across files and sessions.
-
-
-### Bug Fixes
-
-* **drag:** a branch picked up in the sidebar can be dropped on a graph badge and the other way round; before, each panel only saw its own drags, so the drop menu never appeared.
-* **drag:** on Wayland, dragging a branch no longer shows the no-drop cursor over every target.
-* **changelog:** What's new shows the notes of the build you are running when it is a beta or a local build GitHub has not published yet; before, it opened on the newest published release and those notes were never shown.
-* **git:** fetch, pull, push and clone with an Azure DevOps personal access token work again. The token went to git with an empty username, and with an empty username git never sends the password, so a valid token failed with "Authentication failed". The remote URL's username (Azure writes the organization there) is used, else a fixed one.
-* **settings:** with the OS keychain off, a token is kept only until you quit — on purpose, rather than written to disk in the clear — but nothing said so where you type it. The token field in Integrations now does, with an **Enable** button beside it.
-* **settings:** turning the keychain on stores the tokens already typed in that session. Before, they stayed in memory until some other setting was saved, and quitting first lost them again.
-* **tabs:** a group shows its own page — open, clone, create, recents — when created, but once one of its repositories was open that page was reachable only from the group's context menu, so adding a repository meant opening it elsewhere and dragging it in. A **+** beside the group's name now goes straight to it.
-* **i18n:** the group page's "Fetch all" and "Pull all" buttons were English in every language.
-* **ui:** a confirmation asked from inside a window no longer closes that window. Deleting an AI account closed Settings; in Credentials, Hooks, Todos, Attributes, Clean, Git flow, Snapshots, Reflog, History purge and others, the list a confirmed action was meant to refresh was already gone, and Cancel lost the window too. The question now opens over the window, which stays as it was.
-
-
-### Performance Improvements
-
-* **watcher:** switching repositories no longer stalls the app on Linux. The file watcher followed the whole working tree recursively, and Node walks that tree synchronously on Linux — about a second per switch next to a large `node_modules` (20k directories), with every other call waiting. It now watches `.git` and the directories that hold tracked files, asynchronously: about 10 ms for the same repository.
+* **watcher:** watch .git and tracked dirs on Linux instead of the whole tree ([85554dc](https://github.com/MyAppDesk/gitcito/commit/85554dc64d19b9a97f84ba9e6d7a597e93438879))
 
 ## [4.25.0](https://github.com/MyAppDesk/gitcito/compare/v4.24.0...v4.25.0) (2026-11-18)
 
