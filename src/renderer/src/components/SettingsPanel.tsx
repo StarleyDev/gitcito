@@ -72,6 +72,7 @@ import { useUIStore } from '../stores/ui'
 import { useProfileAvatarsStore } from '../stores/profileAvatars'
 import { Avatar } from './Avatar'
 import { NoreplyEmailButtons, ProfileAvatarSettings, useProfileAccounts } from './ProfileAvatarSettings'
+import { TokenKeychainNotice } from './TokenKeychainNotice'
 import { useUpdatesStore, hasPendingUpdate } from '../stores/updates'
 import { gitApi, aiApi, settingsApi, analyticsApi, logApi, infoApi, vaultApi, profileAvatarApi, shellApi, hostingApi, keychainApi, editorApi, sshApi, diffToolApi, localCiApi } from '../infrastructure/api'
 import type { AnalyzerMode } from '../../../shared/types'
@@ -659,6 +660,7 @@ export function IntegrationsPage({
           onChange={(e) => edit({ [active.field]: e.target.value } as Partial<Profile>)}
         />
       </label>
+      <TokenKeychainNotice />
       {active.id === 'azure' && (
         <label>
           {t('settings.azureOrg')} *

@@ -17,6 +17,8 @@
 * **drag:** on Wayland, dragging a branch no longer shows the no-drop cursor over every target.
 * **changelog:** What's new shows the notes of the build you are running when it is a beta or a local build GitHub has not published yet; before, it opened on the newest published release and those notes were never shown.
 * **git:** fetch, pull, push and clone with an Azure DevOps personal access token work again. The token went to git with an empty username, and with an empty username git never sends the password, so a valid token failed with "Authentication failed". The remote URL's username (Azure writes the organization there) is used, else a fixed one.
+* **settings:** with the OS keychain off, a token is kept only until you quit — on purpose, rather than written to disk in the clear — but nothing said so where you type it. The token field in Integrations now does, with an **Enable** button beside it.
+* **settings:** turning the keychain on stores the tokens already typed in that session. Before, they stayed in memory until some other setting was saved, and quitting first lost them again.
 
 
 ### Performance Improvements
