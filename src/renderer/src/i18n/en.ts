@@ -3656,6 +3656,7 @@ export const en = {
   'titlebar.moveToWorkspace': 'Move to workspace',
   'titlebar.manageRepos': 'Manage repositories…',
   'titlebar.viewGroupHome': 'View group home',
+  'titlebar.addReposToGroup': 'Add repositories to {group}',
   'titlebar.renameTab': 'Rename tab',
   'titlebar.rename': 'Rename…',
   'titlebar.fetchAll': 'Fetch all ({count})',

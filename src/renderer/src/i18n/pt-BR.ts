@@ -3658,6 +3658,7 @@ export const ptBR: Dict = {
   'titlebar.moveToWorkspace': 'Mover para o workspace',
   'titlebar.manageRepos': 'Gerenciar repositórios…',
   'titlebar.viewGroupHome': 'Ver a página do grupo',
+  'titlebar.addReposToGroup': 'Adicionar repositórios a {group}',
   'titlebar.renameTab': 'Renomear aba',
   'titlebar.rename': 'Renomear…',
   'titlebar.fetchAll': 'Fetch em todos ({count})',

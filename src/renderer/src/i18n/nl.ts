@@ -3657,6 +3657,7 @@ export const nl: Dict = {
   'titlebar.moveToWorkspace': 'Naar werkruimte verplaatsen',
   'titlebar.manageRepos': 'Repositories beheren…',
   'titlebar.viewGroupHome': 'Startpagina van de groep bekijken',
+  'titlebar.addReposToGroup': 'Repositories toevoegen aan {group}',
   'titlebar.renameTab': 'Tabblad hernoemen',
   'titlebar.rename': 'Hernoemen…',
   'titlebar.fetchAll': 'Alles fetchen ({count})',

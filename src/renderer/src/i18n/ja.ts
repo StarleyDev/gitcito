@@ -3589,6 +3589,7 @@ export const ja: Dict = {
   'titlebar.moveToWorkspace': 'ワークスペースへ移動',
   'titlebar.manageRepos': 'リポジトリを管理…',
   'titlebar.viewGroupHome': 'グループのホームを表示',
+  'titlebar.addReposToGroup': '{group} にリポジトリを追加',
   'titlebar.renameTab': 'タブの名前を変更',
   'titlebar.rename': '名前を変更…',
   'titlebar.fetchAll': 'すべてフェッチ（{count}）',
