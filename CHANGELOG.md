@@ -7,6 +7,7 @@
 
 * **toolbar:** a loading bar and "Loading repository…" show while a repository you switched to is refreshing, once that takes longer than 150 ms.
 * **graph:** dropping a branch on another now offers what git would accept, grouped like GitKraken: fast-forward the target (without a checkout, undoable), merge, rebase or interactive rebase, push to the target's remote branch, reset, open a pull request — pushing the branch first when it is not on the remote yet — or compare.
+* **worktrees:** each linked worktree shows its uncommitted files (●) and commits ahead/behind its upstream. Lock one with a reason, unlock, move it, reconnect a folder that was moved by hand, or forget worktrees whose folder is gone (eraser in the section header). Remove asks git first: a clean worktree gets a plain confirm with undo; one with uncommitted changes gets "Discard and remove", with no undo. Both say that ignored files such as `.env` are deleted too.
 
 
 ### Bug Fixes
