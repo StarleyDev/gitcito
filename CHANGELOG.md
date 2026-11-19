@@ -22,6 +22,7 @@
 * **settings:** turning the keychain on stores the tokens already typed in that session. Before, they stayed in memory until some other setting was saved, and quitting first lost them again.
 * **tabs:** a group shows its own page — open, clone, create, recents — when created, but once one of its repositories was open that page was reachable only from the group's context menu, so adding a repository meant opening it elsewhere and dragging it in. A **+** beside the group's name now goes straight to it.
 * **i18n:** the group page's "Fetch all" and "Pull all" buttons were English in every language.
+* **ui:** a confirmation asked from inside a window no longer closes that window. Deleting an AI account closed Settings; in Credentials, Hooks, Todos, Attributes, Clean, Git flow, Snapshots, Reflog, History purge and others, the list a confirmed action was meant to refresh was already gone, and Cancel lost the window too. The question now opens over the window, which stays as it was.
 
 
 ### Performance Improvements
