@@ -15,6 +15,7 @@
 
 * **drag:** a branch picked up in the sidebar can be dropped on a graph badge and the other way round; before, each panel only saw its own drags, so the drop menu never appeared.
 * **drag:** on Wayland, dragging a branch no longer shows the no-drop cursor over every target.
+* **changelog:** What's new shows the notes of the build you are running when it is a beta or a local build GitHub has not published yet; before, it opened on the newest published release and those notes were never shown.
 
 
 ### Performance Improvements
