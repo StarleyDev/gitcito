@@ -1,5 +1,12 @@
 
 
+## [4.26.0-huttbr.1](https://github.com/StarleyDev/gitcito/compare/v4.26.0...v4.26.0-huttbr.1) (2026-11-19)
+
+
+### Bug Fixes
+
+* **main:** don't crash when stdout or stderr has lost its reader ([6dc9baf](https://github.com/StarleyDev/gitcito/commit/6dc9baf5c8b0ee1d7698747cdeb312ca5dcffb47))
+
 ## [4.26.0](https://github.com/MyAppDesk/gitcito/compare/v4.25.0...v4.26.0) (2026-11-19)
 
 
