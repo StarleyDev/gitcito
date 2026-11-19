@@ -16,6 +16,7 @@
 
 import { execFile } from 'node:child_process'
 import { promisify } from 'node:util'
+import { PRODUCT_NAME } from '../shared/appIdentity'
 import { readFile, writeFile } from 'node:fs/promises'
 import { existsSync, readFileSync } from 'node:fs'
 import { join, resolve, isAbsolute } from 'node:path'
@@ -360,9 +361,9 @@ function summarizeConfig(config: RepoConfig): void {
  *  electron is exactly what this entry point may not do. */
 function userDataDir(): string {
   const home = homedir()
-  if (process.platform === 'darwin') return join(home, 'Library', 'Application Support', 'Gitcito')
-  if (process.platform === 'win32') return join(process.env.APPDATA ?? join(home, 'AppData', 'Roaming'), 'Gitcito')
-  return join(process.env.XDG_CONFIG_HOME ?? join(home, '.config'), 'Gitcito')
+  if (process.platform === 'darwin') return join(home, 'Library', 'Application Support', PRODUCT_NAME)
+  if (process.platform === 'win32') return join(process.env.APPDATA ?? join(home, 'AppData', 'Roaming'), PRODUCT_NAME)
+  return join(process.env.XDG_CONFIG_HOME ?? join(home, '.config'), PRODUCT_NAME)
 }
 
 function readSettings(): unknown {

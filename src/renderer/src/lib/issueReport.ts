@@ -1,4 +1,5 @@
-const ISSUES_NEW_URL = 'https://github.com/MyAppDesk/gitcito/issues/new'
+import { ISSUES_REPO } from '../../../shared/appIdentity'
+const ISSUES_NEW_URL = `https://github.com/${ISSUES_REPO}/issues/new`
 
 /** Electron wraps every error thrown by a main-process handler in this prefix. */
 const IPC_PREFIX = /^Error invoking remote method '[^']*': (?:\w*Error: )?/

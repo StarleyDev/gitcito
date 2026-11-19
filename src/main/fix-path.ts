@@ -3,6 +3,7 @@ import { readFileSync } from 'fs'
 import { mkdir, writeFile } from 'fs/promises'
 import { join } from 'path'
 import { homedir } from 'os'
+import { PRODUCT_NAME } from '../shared/appIdentity'
 
 /**
  * macOS/Linux GUI apps launched from Finder/Dock/Spotlight (not a terminal)
@@ -32,7 +33,7 @@ let ready: Promise<void> = Promise.resolve()
 function cacheFile(): string {
   // Shared by the dev and installed apps; it holds nothing but a PATH.
   const base = process.platform === 'darwin' ? join(homedir(), 'Library', 'Caches') : join(homedir(), '.cache')
-  return join(base, 'Gitcito', 'shell-path')
+  return join(base, PRODUCT_NAME, 'shell-path')
 }
 
 function mergeIntoPath(resolved: string): void {

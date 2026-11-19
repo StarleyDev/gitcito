@@ -39,6 +39,7 @@ import { parseCliOpenArgs, type CliOpenPayload } from '../shared/cli'
 import { MAIN_WINDOW_STATE, showMainWindow } from './windowState'
 import { attachRendererRecovery, registerRendererRecoveryHandlers } from './rendererRecovery'
 import { githubPublicGet } from './credentials'
+import { PRODUCT_NAME, RELEASES_REPO } from '../shared/appIdentity'
 
 // GUI launches inherit a minimal PATH; restore the login-shell PATH (cached, then
 // refreshed in the background) so git hooks find node/npm without delaying the window.
@@ -92,7 +93,7 @@ if (!app.isPackaged && !app.commandLine.hasSwitch('user-data-dir')) {
   // which is often the thing under test. Re-seed by deleting the dev dir.
   // The vault copy is best-effort: if dev's keychain entry differs from prod's,
   // vault load() just falls back to an empty vault.
-  const prodDir = join(app.getPath('appData'), 'Gitcito')
+  const prodDir = join(app.getPath('appData'), PRODUCT_NAME)
   if (!existsSync(join(devDir, 'gitcito-settings.json')) && existsSync(prodDir)) {
     mkdirSync(devDir, { recursive: true })
     for (const f of readdirSync(prodDir)) {
@@ -184,7 +185,7 @@ function createWindow(): void {
 }
 
 app.whenReady().then(() => {
-  app.setName(app.isPackaged ? 'Gitcito' : 'Gitcito Dev')
+  app.setName(app.isPackaged ? PRODUCT_NAME : `${PRODUCT_NAME} Dev`)
 
   // The embedded DevTools panel stays on loopback: a link inside it opens in
   // the real browser, and a redirect off the machine is refused outright.
@@ -310,7 +311,7 @@ app.whenReady().then(() => {
     if (process.argv.includes('--shot')) return cachedReleases()
     try {
       // What's New waits on this before showing notes, so a hanging network must not stall it.
-      const res = await githubPublicGet('https://api.github.com/repos/MyAppDesk/gitcito/releases?per_page=20')
+      const res = await githubPublicGet(`https://api.github.com/repos/${RELEASES_REPO}/releases?per_page=20`)
       if (!res.ok) return cachedReleases()
       const json = (await res.json()) as Array<{
         tag_name: string

@@ -1,3 +1,4 @@
+import { PRODUCT_NAME } from '../../shared/appIdentity'
 /**
  * Keeps the native application menu in sync with the app.
  *
@@ -19,7 +20,7 @@ import { menuApi } from './infrastructure/api'
 import { runAppCommand } from './appCommands'
 
 // i18n-ignore product name
-const APP_NAME = 'Gitcito'
+const APP_NAME = PRODUCT_NAME
 
 export function useAppMenu(): void {
   const t = useT()

@@ -36,8 +36,8 @@
     "repo:stats": "bash examples/repo-stats.sh"
   },
   "build": {
-    "appId": "com.gitcito.desktop",
-    "productName": "Gitcito",
+    "appId": "com.huttbr.githuttbr",
+    "productName": "GitHuttBr",
     "files": [
       "out/**/*",
       "resources/**",
@@ -59,7 +59,7 @@
     ],
     "publish": {
       "provider": "github",
-      "owner": "MyAppDesk",
+      "owner": "StarleyDev",
       "repo": "gitcito"
     },
     "mac": {
@@ -107,7 +107,11 @@
       "target": [
         "AppImage",
         "deb"
-      ]
+      ],
+      "executableName": "githuttbr"
+    },
+    "extraMetadata": {
+      "name": "githuttbr"
     }
   },
   "dependencies": {

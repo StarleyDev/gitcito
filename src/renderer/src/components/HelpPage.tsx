@@ -11,9 +11,10 @@ import {
   type HelpPage as HelpPageData
 } from '../help/pages'
 import { useT } from '../i18n'
+import { ISSUES_REPO } from '../../../shared/appIdentity'
 import { useSettingsStore } from '../stores/settings'
 
-const ISSUES_URL = 'https://github.com/MyAppDesk/gitcito/issues/new'
+const ISSUES_URL = `https://github.com/${ISSUES_REPO}/issues/new`
 
 /**
  * The handbook: every feature explained, offline, from the Markdown in

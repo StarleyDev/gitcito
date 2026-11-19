@@ -20,13 +20,14 @@ import type { AppRelease } from '../../../shared/types'
 import { useUpdatesStore } from '../stores/updates'
 import { useSettingsStore } from '../stores/settings'
 import { useT, interp } from '../i18n'
+import { RELEASES_REPO } from '../../../shared/appIdentity'
 
 type Source = 'loading' | 'live' | 'bundled'
 
 const stripV = (s: string): string => s.replace(/^v/i, '')
 
 /** Where the badge sends you when GitHub has not told us a release URL yet. */
-const RELEASES_URL = 'https://github.com/MyAppDesk/gitcito/releases/latest'
+const RELEASES_URL = `https://github.com/${RELEASES_REPO}/releases/latest`
 
 /** The "What's new" page tab. Steps through every GitHub release (newest →
  *  oldest) with ‹ › arrows, opening on the *currently installed* version. If

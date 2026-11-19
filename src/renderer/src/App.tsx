@@ -6,6 +6,7 @@ import { useRepoStore, repoActions, type RepoData } from './stores/repo'
 import { useUIStore } from './stores/ui'
 import { tabActiveRepoPath, tabRepos, type ConflictOpKind, type GroupTab, type PageTab, type PageContent } from '../../shared/types'
 import { useT, t as tr, interp } from './i18n'
+import { ISSUES_REPO } from '../../shared/appIdentity'
 import { applyDirection } from './i18n/direction'
 import { todoSummary } from './lib/todos'
 import { doctorSummary } from './lib/repoConfig'
@@ -1318,7 +1319,7 @@ export default function App(): React.JSX.Element {
                   <button
                     className="status-issue-btn"
                     title={t('app.reportIssueTitle')}
-                    onClick={() => void window.api.openExternal('https://github.com/MyAppDesk/gitcito/issues/new')}
+                    onClick={() => void window.api.openExternal(`https://github.com/${ISSUES_REPO}/issues/new`)}
                   >
                     <Bug size={12} />
                     <span>{t('app.reportIssue')}</span>
