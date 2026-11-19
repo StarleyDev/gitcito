@@ -9,6 +9,7 @@
 * **graph:** dropping a branch on another now offers what git would accept, grouped like GitKraken: fast-forward the target (without a checkout, undoable), merge, rebase or interactive rebase, push to the target's remote branch, reset, open a pull request — pushing the branch first when it is not on the remote yet — or compare.
 * **worktrees:** each linked worktree shows its uncommitted files (●) and commits ahead/behind its upstream. Lock one with a reason, unlock, move it, reconnect a folder that was moved by hand, or forget worktrees whose folder is gone (eraser in the section header). Remove asks git first: a clean worktree gets a plain confirm with undo; one with uncommitted changes gets "Discard and remove", with no undo. Both say that ignored files such as `.env` are deleted too.
 * **profiles:** choose the profile picture — automatic (Gravatar or the generated face), the connected GitHub/GitLab account's picture, an icon on a colour, or an image of your own, kept on this computer and included in settings exports. Under the git identity, "Use my GitHub/GitLab noreply email" fills the private address that makes the host show your picture on commits without publishing your real one.
+* **diff:** **Wrap** now works in the unified view too, not only side by side: a long line — minified code, a paragraph of prose — folds inside the pane instead of scrolling sideways. One setting for both views, off by default, remembered across files and sessions.
 
 
 ### Bug Fixes
