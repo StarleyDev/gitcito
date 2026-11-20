@@ -1,5 +1,37 @@
 
 
+## [4.28.0](https://github.com/StarleyDev/gitcito/compare/v4.27.2...v4.28.0) (2026-11-20)
+
+
+### Features
+
+* branch from an Azure Boards work item, and link AB# mentions ([44a39d0](https://github.com/StarleyDev/gitcito/commit/44a39d0c8d234f768e0c1e139bd305acf14f6f19)), closes [AB#1234](https://github.com/StarleyDev/AB/issues/1234) [AB#1234](https://github.com/StarleyDev/AB/issues/1234) [#1234](https://github.com/StarleyDev/gitcito/issues/1234) [#1234](https://github.com/StarleyDev/gitcito/issues/1234)
+* check which account each remote signs in with ([ad1571c](https://github.com/StarleyDev/gitcito/commit/ad1571c67cf3242e838e230beb63b5d51c8a776b))
+* drag a commit onto a branch to cherry-pick it or move the branch ([9911e39](https://github.com/StarleyDev/gitcito/commit/9911e394b62986d6e659e90de4892ef58a9572da))
+* mark the pull requests waiting for your review ([21d6e97](https://github.com/StarleyDev/gitcito/commit/21d6e979e8aaf6f967bae18430bcf9499611bf59))
+* review a PR with AI from its page, on the host's diff ([451c489](https://github.com/StarleyDev/gitcito/commit/451c48906317de2bf70f5de641fb9f85f3efc55f))
+* review Azure DevOps pull requests in the PR page ([a7603ab](https://github.com/StarleyDev/gitcito/commit/a7603ab780314e0e378e1939b1b1e5dd80a7d0df))
+* review Forgejo pull requests in the PR page ([c9d6c0a](https://github.com/StarleyDev/gitcito/commit/c9d6c0a0274f8e1bbcb10a27e6deb41d1bd5ab94))
+* suggest package.json scripts after npm run in the terminal ([bd9d5fa](https://github.com/StarleyDev/gitcito/commit/bd9d5fade0fe821ae1ad5348a23135e8e260011f))
+
+
+### Bug Fixes
+
+* bind self-managed credentials to their issuing instance ([2a8d0b7](https://github.com/StarleyDev/gitcito/commit/2a8d0b7efcbde4d1616e66437e1785a3cf4b824d))
+* constrain credential probes to recognized instances ([45b7199](https://github.com/StarleyDev/gitcito/commit/45b7199ec204d95e64dba2d27edaf66af9656da5))
+* credit the fork's author with the right Portuguese article ([ca5b76b](https://github.com/StarleyDev/gitcito/commit/ca5b76babf17be0b68ac7887bef65fc8c70218f9))
+* enforce HTTPS origin and reject authenticated redirects ([3a1b41e](https://github.com/StarleyDev/gitcito/commit/3a1b41e1c80b6046a7f77c4409d1ad3302478515))
+* isolate PR tab state and keep credentials out of saved tabs ([f8f0678](https://github.com/StarleyDev/gitcito/commit/f8f0678dd6fcff23f26e783d8ca5bdec8c53cdea))
+* keep helper commands private and document environment checks ([55c6b43](https://github.com/StarleyDev/gitcito/commit/55c6b43e6acfbc13600422b33e41622c55997f4c))
+* keep the Settings window one size while moving between sections ([cc7f18f](https://github.com/StarleyDev/gitcito/commit/cc7f18f1ab40ade3c455cad94b75be8562b71854))
+* **main:** don't crash when stdout or stderr has lost its reader ([6dc9baf](https://github.com/StarleyDev/gitcito/commit/6dc9baf5c8b0ee1d7698747cdeb312ca5dcffb47))
+* match hosting names only in the remote authority ([fafdd46](https://github.com/StarleyDev/gitcito/commit/fafdd46cdc8a0eb6d299b73c5d66c02ccdcb3e75))
+* read a PR's whole conversation, not its first 100 comments ([cf12614](https://github.com/StarleyDev/gitcito/commit/cf12614ddb7363d692e3bc17d40596b90de9b5e9))
+* resolve the remote sign-in check per GitLab/Forgejo instance ([29671ff](https://github.com/StarleyDev/gitcito/commit/29671ff79e6e659cf48694b3effc4ec7c986d0b0))
+* share push credential selection with sign-in diagnostics ([19b76da](https://github.com/StarleyDev/gitcito/commit/19b76da97ad69c5ad36417e85911010457de9119))
+* **tabs:** keep fit-mode groups compressible and reachable ([dd01cec](https://github.com/StarleyDev/gitcito/commit/dd01cec57a9cadbbfb106a3f441c8e940f75edca))
+* translate the remove-remote confirmation ([e14ac41](https://github.com/StarleyDev/gitcito/commit/e14ac41bc25b46bd778cace426b98c6514b00b1a))
+
 ## [4.27.2](https://github.com/StarleyDev/gitcito/compare/v4.27.1...v4.27.2) (2026-11-20)
 
 
