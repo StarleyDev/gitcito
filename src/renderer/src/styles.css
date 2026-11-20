@@ -17694,6 +17694,8 @@ mark.diff-find-hit.current { background: #ff9632; color: #10121a; }
   background: var(--bg-1);
   font-size: 11px;
   overflow-wrap: anywhere;
+}
+
 /* ── Pull request page ───────────────────────────────────────────────────────
    A PR as a tab: conversation / files / checks on the left, everything about
    the PR on the right. Shares the issue page's field styles (.issue-field…). */
