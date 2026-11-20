@@ -2,34 +2,11 @@
 
 ## [4.32.0](https://github.com/StarleyDev/gitcito/compare/v4.31.0...v4.32.0) (2026-11-20)
 
-
-### Features
-
-* a desktop notification when a pull request starts waiting for your review ([01cc921](https://github.com/StarleyDev/gitcito/commit/01cc92146d76b38e7f682119aa98f2a0e77b25b5))
-* branch from an Azure Boards work item, and link AB# mentions ([#120](https://github.com/StarleyDev/gitcito/issues/120)) ([17fba10](https://github.com/StarleyDev/gitcito/commit/17fba1022d094214cb6f8a1bfc0a72dc7ff438a1)), closes [AB#1234](https://github.com/StarleyDev/AB/issues/1234) [AB#1234](https://github.com/StarleyDev/AB/issues/1234) [#1234](https://github.com/StarleyDev/gitcito/issues/1234) [#1234](https://github.com/StarleyDev/gitcito/issues/1234)
-* drag a commit onto a branch to cherry-pick it or move the branch ([c11da18](https://github.com/StarleyDev/gitcito/commit/c11da182e8bd13ce4215c3f482aa16f232c1bb60))
-* issues, milestones, releases and notifications on Forgejo ([#124](https://github.com/StarleyDev/gitcito/issues/124)) ([62b810e](https://github.com/StarleyDev/gitcito/commit/62b810eb3e7692c8c6f3cf2f77401a73f5984215))
-* mark the pull requests waiting for your review ([d509529](https://github.com/StarleyDev/gitcito/commit/d5095298481b4a1dbe432c8a1c5e518ab1fdd2e1))
-* read a Forgejo Actions job's log in the PR page's Checks tab ([#126](https://github.com/StarleyDev/gitcito/issues/126)) ([e16b797](https://github.com/StarleyDev/gitcito/commit/e16b7972d002efae3ff69eb5b5617d9e270f727b))
-* review a PR with AI from its page, on the host's diff ([f51ff06](https://github.com/StarleyDev/gitcito/commit/f51ff06e6493bd4ccbd9f444a52bf4f61661ceca))
-* review Azure DevOps pull requests in the PR page ([#119](https://github.com/StarleyDev/gitcito/issues/119)) ([7bc7fe6](https://github.com/StarleyDev/gitcito/commit/7bc7fe668b263e49aeeeb7eed3d64522b9743eba))
-* review Forgejo pull requests in the PR page ([#112](https://github.com/StarleyDev/gitcito/issues/112)) ([1353f3f](https://github.com/StarleyDev/gitcito/commit/1353f3fcf393ee2cbebda136fe7466ca1ce28c34))
-* run the project's tests from the Problems dock ([e1e0d8a](https://github.com/StarleyDev/gitcito/commit/e1e0d8a0014e2c151a8fc16102f2a9d7de5ca023))
-* show the work items linked to an Azure DevOps pull request ([#123](https://github.com/StarleyDev/gitcito/issues/123)) ([43a23c3](https://github.com/StarleyDev/gitcito/commit/43a23c38a90aae436b8558837035c3bca6a43801)), closes [AB#1234](https://github.com/StarleyDev/AB/issues/1234) [AB#1234](https://github.com/StarleyDev/AB/issues/1234) [#1234](https://github.com/StarleyDev/gitcito/issues/1234) [#1234](https://github.com/StarleyDev/gitcito/issues/1234)
-* suggest Makefile targets, Composer scripts and branches in the terminal ([d446115](https://github.com/StarleyDev/gitcito/commit/d446115a5fc38fcb4e82b634e45f8f9adaa1989b))
-* suggest package.json scripts after npm run in the terminal ([c4eb065](https://github.com/StarleyDev/gitcito/commit/c4eb065dc7bfa33a86fd43a592b57f8fc1daa806))
-
-
 ### Bug Fixes
 
 * keep only a Forgejo job log's tail in memory, and keep its panel on its check ([b78b6e8](https://github.com/StarleyDev/gitcito/commit/b78b6e803512407001a7ccd6beaed4714f33c140))
-* keep the Settings window one size while moving between sections ([bd8609f](https://github.com/StarleyDev/gitcito/commit/bd8609fb0a4f1b06931cbed5c87a1226666dc164))
 * no burst of review notifications after a profile switch ([362957e](https://github.com/StarleyDev/gitcito/commit/362957eaa24ddaad74128a46cfa99369b5db4b74))
-* read a PR's whole conversation, not its first 100 comments ([8a420ad](https://github.com/StarleyDev/gitcito/commit/8a420ad26681f6fab8b36cff37313a637190ccfb))
-* read every page of Forgejo lists and Azure DevOps pull requests ([6bed170](https://github.com/StarleyDev/gitcito/commit/6bed170d48a9bfc4ef8a3a89e50583e29961473e))
-* run tests without a shell, and make a stopped run look stopped ([ddec37e](https://github.com/StarleyDev/gitcito/commit/ddec37ed7fce35d08e94a875b891bb6cef0b6c8a))
 * tell a cancelled test run apart from the next one ([7c5149f](https://github.com/StarleyDev/gitcito/commit/7c5149ff9b59d846d38e24d4d7e0ab0b58fe9210))
-* translate the notification reasons ([4e3188c](https://github.com/StarleyDev/gitcito/commit/4e3188c2e1efb1156aad42a290c3353f8e0b3049))
 * translate the notification reasons ([acd023a](https://github.com/StarleyDev/gitcito/commit/acd023a839852f4915f1bb29918157d151684867))
 
 ## [4.31.0](https://github.com/StarleyDev/gitcito/compare/v4.30.0...v4.31.0) (2026-11-20)
