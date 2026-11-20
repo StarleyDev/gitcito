@@ -1,5 +1,19 @@
 
 
+## [4.29.0](https://github.com/StarleyDev/gitcito/compare/v4.28.0...v4.29.0) (2026-11-20)
+
+
+### Features
+
+* show the work items linked to an Azure DevOps pull request ([a217c67](https://github.com/StarleyDev/gitcito/commit/a217c67f8bbcca430a43238fb031144deb40a518))
+* suggest Makefile targets, Composer scripts and branches in the terminal ([d8cebb0](https://github.com/StarleyDev/gitcito/commit/d8cebb032589f7c10a124c13778bd4ffafdc4685))
+* suggest package.json scripts after npm run in the terminal ([1822268](https://github.com/StarleyDev/gitcito/commit/1822268cb072a565c914e3d494ad678fd62a56bd))
+
+
+### Bug Fixes
+
+* read every page of Forgejo lists and Azure DevOps pull requests ([6f5278d](https://github.com/StarleyDev/gitcito/commit/6f5278d303634c6879b37bad9bb9fe42cd2ec032))
+
 ## [4.28.0](https://github.com/StarleyDev/gitcito/compare/v4.27.2...v4.28.0) (2026-11-20)
 
 
