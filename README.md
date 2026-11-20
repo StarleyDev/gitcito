@@ -2,13 +2,15 @@
 
 <img src="docs/gitcito-mark.png" alt="Gitcito" width="120" />
 
-# Gitcito
+# Git HuttBr
 
-**A fully vibe-coded Git client. Free.**
+**A fork of [Gitcito](https://github.com/MyAppDesk/gitcito), with its own releases.**
+
+_Everything Gitcito does, plus: self-managed GitLab and Forgejo/Gitea hosting, a pull-request page with a details sidebar and per-file diffs, an environment check, a per-remote sign-in check, and push errors that explain themselves. Changes made here are also offered upstream._
 
 _The whole of git — graph, staging by line, rebase, worktrees, submodules, LFS — with a UI that shows you git instead of hiding it._
 
-[![Release](https://img.shields.io/github/v/release/MyAppDesk/gitcito?style=flat-square&color=6366f1)](https://github.com/MyAppDesk/gitcito/releases)
+[![Release](https://img.shields.io/github/v/release/StarleyDev/gitcito?style=flat-square&color=6366f1)](https://github.com/StarleyDev/gitcito/releases)
 [![License](https://img.shields.io/badge/license-MIT-6366f1?style=flat-square)](LICENSE)
 ![Platforms](https://img.shields.io/badge/macOS%20·%20Windows%20·%20Linux-6366f1?style=flat-square)
 [![Sponsor](https://img.shields.io/badge/sponsor-💜-ec4899?style=flat-square)](https://github.com/sponsors/cgutierr-zgz)
@@ -16,6 +18,10 @@ _The whole of git — graph, staging by line, rebase, worktrees, submodules, LFS
 <img src="docs/screenshots/graph-dark.webp" alt="Gitcito's commit graph" width="820" />
 
 </div>
+
+> **Git HuttBr** is based on [Gitcito](https://github.com/MyAppDesk/gitcito) by MyAppDesk, under the MIT licence
+> (see [LICENSE](LICENSE)). The rest of this README is Gitcito's, and "Gitcito" below means this app too.
+> Installers and updates come from [this repository's releases](https://github.com/StarleyDev/gitcito/releases).
 
 ---
 

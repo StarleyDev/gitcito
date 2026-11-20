@@ -8,7 +8,7 @@
  * an "update" and replace themselves with it. `test/appRepo.test.ts` keeps the
  * two in step.
  */
-export const APP_REPO = 'MyAppDesk/gitcito'
+export const APP_REPO = 'StarleyDev/gitcito'
 
 export const APP_REPO_URL = `https://github.com/${APP_REPO}`
 export const APP_ISSUES_NEW_URL = `${APP_REPO_URL}/issues/new`
