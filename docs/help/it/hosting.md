@@ -153,7 +153,7 @@ Limiti:
   Forgejo non ha un’API per rispondere dentro un thread esistente. Rispondi sul
   server.
 - Solo https, un server Forgejo per profilo.
-- Gli elenchi mostrano le prime 50 pull request e repository.
+- Gli elenchi si fermano dopo venti richieste: 1.000 pull request o repository con la dimensione di pagina predefinita del server.
 
 ## Issue, milestone, release — GitHub
 

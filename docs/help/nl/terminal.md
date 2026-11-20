@@ -56,6 +56,17 @@ vindt `LOCAL_SERVER`. Elke naam toont het commando dat hij uitvoert.
 | **↑ / ↓** | Een ander kiezen |
 | **Esc** | Sluit de lijst tot je weer typt |
 
+Andere commando’s krijgen een eigen lijst:
+
+| Getypt | Toont | Gelezen uit |
+|------|-----|-----------|
+| `composer run ` | Composer-scripts | de dichtstbijzijnde `composer.json` |
+| `make ` | Makefile-targets, met de `## tekst` na een target als beschrijving | de `Makefile` van de huidige map, zoals `make` hem leest |
+| `git checkout `, `switch`, `merge`, `rebase` | Lokale branches, daarna externe op hun korte naam | de repository waarin de shell staat |
+
+Een Makefile-target opgebouwd uit variabelen of een patroon (`%.o`) staat er niet
+in, en `git checkout -b` krijgt geen lijst: het geeft een nieuwe branch een naam.
+
 De scripts komen uit de `package.json` die het dichtst bij de **huidige** map van
 de shell ligt, dus na `cd frontend` krijg je die van de frontend. Namen die
 beginnen met wat je typte komen eerst, daarna namen die het bevatten.

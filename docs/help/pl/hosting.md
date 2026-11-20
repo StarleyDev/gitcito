@@ -149,7 +149,7 @@ Ograniczenia:
   aplikacji: Forgejo nie ma API do odpowiedzi w istniejącym wątku. Odpowiedz na
   serwerze.
 - Tylko https, jeden serwer Forgejo na profil.
-- Listy pokazują pierwsze 50 pull requestów i repozytoriów.
+- Listy kończą się po dwudziestu żądaniach: 1000 pull requestów lub repozytoriów przy domyślnym rozmiarze strony serwera.
 
 ## Zgłoszenia, kamienie milowe, wydania — GitHub
 

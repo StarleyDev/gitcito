@@ -155,7 +155,7 @@ Grenzen:
   op antwoorden: Forgejo heeft geen API voor een antwoord binnen een bestaande
   draad. Antwoord op de server.
 - Alleen https, één Forgejo-server per profiel.
-- Lijsten tonen de eerste 50 pull requests en repositories.
+- Lijsten stoppen na twintig verzoeken: 1.000 pull requests of repositories bij de standaard paginagrootte van de server.
 
 ## Issues, milestones, releases — GitHub
 

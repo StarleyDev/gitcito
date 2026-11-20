@@ -55,6 +55,17 @@ apparaît au curseur, filtrée au fil de la frappe : `npm run loc` trouve
 | **↑ / ↓** | En choisir un autre |
 | **Échap** | Ferme la liste jusqu’à la prochaine frappe |
 
+D’autres commandes ont leur propre liste :
+
+| Tapé | Liste | Lu depuis |
+|----|-----|---------|
+| `composer run ` | Scripts Composer | le `composer.json` le plus proche |
+| `make ` | Cibles du Makefile, avec le `## texte` après une cible comme description | le `Makefile` du répertoire courant, comme `make` le lit |
+| `git checkout `, `switch`, `merge`, `rebase` | Branches locales, puis distantes par leur nom court | le dépôt où se trouve le shell |
+
+Une cible de Makefile construite à partir de variables ou d’un motif (`%.o`)
+n’apparaît pas, et `git checkout -b` n’a pas de liste : il nomme une nouvelle branche.
+
 Les scripts viennent du `package.json` le plus proche du répertoire **courant**
 du shell : après `cd frontend`, vous obtenez ceux du frontend. Les noms qui
 commencent par ce que vous avez tapé passent d’abord, puis ceux qui le

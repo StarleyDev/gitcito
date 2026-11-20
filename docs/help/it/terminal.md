@@ -57,6 +57,17 @@ Ogni nome mostra il comando che esegue.
 | **↑ / ↓** | Sceglie un altro |
 | **Esc** | Chiude l’elenco finché non digiti di nuovo |
 
+Altri comandi hanno un elenco proprio:
+
+| Digitato | Elenca | Letto da |
+|--------|------|--------|
+| `composer run ` | Script di Composer | il `composer.json` più vicino |
+| `make ` | Target del Makefile, con il `## testo` dopo il target come descrizione | il `Makefile` della directory corrente, come lo legge `make` |
+| `git checkout `, `switch`, `merge`, `rebase` | Branch locali, poi quelli remoti con il nome breve | il repository in cui si trova la shell |
+
+Un target del Makefile costruito da variabili o da un pattern (`%.o`) non compare,
+e `git checkout -b` non ha elenco: dà il nome a un nuovo branch.
+
 Gli script vengono dal `package.json` più vicino alla directory **corrente** della
 shell, quindi dopo `cd frontend` vedi quelli del frontend. Prima i nomi che
 iniziano con ciò che hai digitato, poi quelli che lo contengono.

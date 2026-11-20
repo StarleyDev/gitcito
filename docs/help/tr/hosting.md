@@ -151,7 +151,7 @@ Sınırlar:
 - Satır yorumu dizileri gösterilir ama uygulamadan yanıtlanamaz: Forgejo’nun var
   olan bir dizinin içine yanıt için API’si yoktur. Sunucuda yanıtlayın.
 - Yalnızca https, profil başına bir Forgejo sunucusu.
-- Listeler ilk 50 pull request’i ve depoyu gösterir.
+- Listeler yirmi istekten sonra durur: sunucunun varsayılan sayfa boyutunda 1.000 pull request veya depo.
 
 ## Issue'lar, kilometre taşları, sürümler — GitHub
 

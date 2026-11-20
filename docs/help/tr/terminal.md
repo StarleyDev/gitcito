@@ -55,6 +55,17 @@ betiklerinin listesi belirir ve siz yazdıkça süzülür: `npm run loc`,
 | **↑ / ↓** | Başka birini seçer |
 | **Esc** | Yeniden yazana kadar listeyi kapatır |
 
+Diğer komutların da kendi listesi vardır:
+
+| Yazılan | Listeler | Okunduğu yer |
+|-------|--------|------------|
+| `composer run ` | Composer betikleri | en yakın `composer.json` |
+| `make ` | Makefile hedefleri, hedeften sonraki `## metin` açıklama olarak | geçerli dizinin `Makefile` dosyası, `make` nasıl okuyorsa |
+| `git checkout `, `switch`, `merge`, `rebase` | Yerel dallar, ardından uzak dallar kısa adlarıyla | kabuğun içinde bulunduğu depo |
+
+Değişkenlerden ya da bir desenden (`%.o`) oluşan bir Makefile hedefi listelenmez ve
+`git checkout -b` liste almaz: yeni bir dala ad verir.
+
 Betikler, kabuğun **geçerli** dizinine en yakın `package.json` dosyasından gelir;
 yani `cd frontend` sonrasında frontend’in betiklerini görürsünüz. Yazdığınızla
 başlayan adlar önce, onu içerenler sonra gelir.

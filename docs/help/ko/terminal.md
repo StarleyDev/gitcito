@@ -55,6 +55,17 @@ keywords: 터미널 셸 콘솔 탭 도킹 분할 terminal shell pty xterm consol
 | **↑ / ↓** | 다른 항목 선택 |
 | **Esc** | 다시 입력할 때까지 목록 닫기 |
 
+다른 명령에도 각자의 목록이 있습니다:
+
+| 입력 | 목록 | 읽는 곳 |
+|---|---|----|
+| `composer run ` | Composer 스크립트 | 가장 가까운 `composer.json` |
+| `make ` | Makefile 타깃, 타깃 뒤의 `## 텍스트`를 설명으로 | 현재 디렉터리의 `Makefile`(`make`가 읽는 방식대로) |
+| `git checkout `, `switch`, `merge`, `rebase` | 로컬 브랜치, 그다음 원격 브랜치를 짧은 이름으로 | 셸이 있는 저장소 |
+
+변수나 패턴(`%.o`)으로 만든 Makefile 타깃은 나오지 않으며,
+`git checkout -b`에는 목록이 없습니다. 새 브랜치의 이름을 정하는 명령이기 때문입니다.
+
 스크립트는 셸의 **현재** 디렉터리에서 가장 가까운 `package.json`에서 가져오므로,
 `cd frontend` 뒤에는 프런트엔드의 스크립트가 나옵니다. 입력한 글자로 시작하는 이름이
 먼저, 그 글자를 포함하는 이름이 그다음에 옵니다.

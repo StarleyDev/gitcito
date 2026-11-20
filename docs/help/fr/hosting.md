@@ -157,7 +157,7 @@ Limites :
   depuis l’app : Forgejo n’a pas d’API pour répondre dans un fil existant.
   Répondez sur le serveur.
 - https uniquement, un serveur Forgejo par profil.
-- Les listes affichent les 50 premières pull requests et dépôts.
+- Les listes s’arrêtent après vingt requêtes : 1 000 pull requests ou dépôts avec la taille de page par défaut du serveur.
 
 ## Tickets, jalons, releases — GitHub
 

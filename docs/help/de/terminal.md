@@ -55,6 +55,17 @@ Liste der Skripte des Projekts, gefiltert während du tippst: `npm run loc` find
 | **↑ / ↓** | Ein anderes wählen |
 | **Esc** | Schließt die Liste, bis du wieder tippst |
 
+Andere Befehle bekommen eine eigene Liste:
+
+| Getippt | Listet | Gelesen aus |
+|-------|------|-----------|
+| `composer run ` | Composer-Skripte | der nächstgelegenen `composer.json` |
+| `make ` | Makefile-Ziele, mit dem `## Text` nach einem Ziel als Beschreibung | dem `Makefile` des aktuellen Verzeichnisses, wie `make` es liest |
+| `git checkout `, `switch`, `merge`, `rebase` | Lokale Branches, dann entfernte mit ihrem Kurznamen | dem Repository, in dem die Shell steht |
+
+Ein Makefile-Ziel aus Variablen oder einem Muster (`%.o`) erscheint nicht, und
+`git checkout -b` bekommt keine Liste: Es benennt einen neuen Branch.
+
 Die Skripte kommen aus der `package.json`, die dem **aktuellen** Verzeichnis der
 Shell am nächsten liegt — nach `cd frontend` also die des Frontends. Namen, die
 mit dem Getippten beginnen, stehen vorn, danach Namen, die es enthalten.

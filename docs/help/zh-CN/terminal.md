@@ -47,6 +47,17 @@ keywords: 终端 terminal shell pty xterm 控制台 console 标签页 tabs 停�
 | **↑ / ↓** | 选择其他项 |
 | **Esc** | 关闭列表，直到你再次输入 |
 
+其他命令也有各自的列表：
+
+| 输入 | 列出 | 读取自 |
+|---|---|---|
+| `composer run ` | Composer 脚本 | 最近的 `composer.json` |
+| `make ` | Makefile 目标，目标后的 `## 文字` 作为说明 | 当前目录的 `Makefile`，与 `make` 的读取方式一致 |
+| `git checkout `、`switch`、`merge`、`rebase` | 本地分支，然后是按短名称列出的远程分支 | shell 所在的仓库 |
+
+由变量或模式（`%.o`）构成的 Makefile 目标不会列出，
+`git checkout -b` 也没有列表：它是在为新分支命名。
+
 脚本来自离 shell **当前**目录最近的 `package.json`，所以 `cd frontend` 之后看到的是前端
 的脚本。以所输入内容开头的名称排在前面，包含它的名称排在后面。
 

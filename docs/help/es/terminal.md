@@ -56,6 +56,17 @@ encuentra `LOCAL_SERVER`. Cada nombre muestra el comando que ejecuta.
 | **↑ / ↓** | Elige otro |
 | **Esc** | Cierra la lista hasta que vuelvas a escribir |
 
+Otros comandos tienen su propia lista:
+
+| Escrito | Lista | Leído de |
+|-------|-----|--------|
+| `composer run ` | Scripts de Composer | el `composer.json` más cercano |
+| `make ` | Objetivos del Makefile, con el `## texto` tras el objetivo como descripción | el `Makefile` del directorio actual, como lo lee `make` |
+| `git checkout `, `switch`, `merge`, `rebase` | Ramas locales, luego las remotas por su nombre corto | el repositorio en el que está el shell |
+
+Un objetivo de Makefile construido con variables o un patrón (`%.o`) no aparece,
+y `git checkout -b` no tiene lista: da nombre a una rama nueva.
+
 Los scripts salen del `package.json` más cercano al directorio **actual** del
 shell, así que tras `cd frontend` ves los del frontend. Primero van los nombres
 que empiezan por lo escrito, luego los que lo contienen.

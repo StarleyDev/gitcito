@@ -56,6 +56,17 @@ lista skryptów projektu, filtrowana w trakcie pisania: `npm run loc` znajduje
 | **↑ / ↓** | Wybór innego |
 | **Esc** | Zamyka listę do następnego wpisania |
 
+Inne polecenia mają własną listę:
+
+| Wpisane | Pokazuje | Czytane z |
+|-------|--------|---------|
+| `composer run ` | Skrypty Composera | najbliższego `composer.json` |
+| `make ` | Cele Makefile, z `## tekstem` po celu jako opisem | `Makefile` bieżącego katalogu, tak jak czyta go `make` |
+| `git checkout `, `switch`, `merge`, `rebase` | Gałęzie lokalne, potem zdalne po krótkiej nazwie | repozytorium, w którym jest powłoka |
+
+Cel Makefile zbudowany ze zmiennych lub wzorca (`%.o`) się nie pojawia, a
+`git checkout -b` nie dostaje listy: nadaje nazwę nowej gałęzi.
+
 Skrypty pochodzą z `package.json` najbliższego **bieżącemu** katalogowi powłoki,
 więc po `cd frontend` dostajesz skrypty frontendu. Najpierw nazwy zaczynające się
 od wpisanego tekstu, potem te, które go zawierają.

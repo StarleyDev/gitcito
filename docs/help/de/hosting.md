@@ -157,7 +157,7 @@ Grenzen:
   beantworten: Forgejo hat keine API für eine Antwort in einem bestehenden
   Thread. Antworte auf dem Server.
 - Nur https, ein Forgejo-Server pro Profil.
-- Listen zeigen die ersten 50 Pull Requests und Repositories.
+- Listen enden nach zwanzig Anfragen: 1.000 Pull Requests oder Repositories bei der Standard-Seitengröße des Servers.
 
 ## Issues, Meilensteine, Releases — GitHub
 
