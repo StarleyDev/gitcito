@@ -1,5 +1,34 @@
 
 
+## [4.27.0](https://github.com/StarleyDev/gitcito/compare/v4.26.0...v4.27.0) (2026-11-20)
+
+
+### Features
+
+* add an environment check to settings ([1e4e38e](https://github.com/StarleyDev/gitcito/commit/1e4e38e936bb15885ed90de92af73f3f008943d2))
+* add Forgejo (and Gitea) as a hosting provider ([094bd6e](https://github.com/StarleyDev/gitcito/commit/094bd6e558bb73fac6e1095ac026cefb7e1648ef))
+* check which account each remote signs in with ([a7bbb7c](https://github.com/StarleyDev/gitcito/commit/a7bbb7c431ff5cd71212362b369f6bcd6b8fcb5f))
+* explain common push and auth errors in the toast ([82011bf](https://github.com/StarleyDev/gitcito/commit/82011bf3c7cf483e27f9d8dcba34264cdc636cb2))
+* list the Forgejo token scopes under the create-token link ([95f36e4](https://github.com/StarleyDev/gitcito/commit/95f36e4d0cce4b64675cb497536bd43aaf2688b3))
+* open a pull request on its repository's tab or group chip ([e6eb492](https://github.com/StarleyDev/gitcito/commit/e6eb4924f46554d1c3bf80ba93302490ba1ae759))
+* open pull requests as a page with a details sidebar ([5f02ab4](https://github.com/StarleyDev/gitcito/commit/5f02ab443dd8210377ce15257d76d26820140f18))
+* show each changed file's diff on the PR page ([a0a5517](https://github.com/StarleyDev/gitcito/commit/a0a55175e69614961fc2caa95d9d3b7de1743990))
+* support self-managed GitLab instances ([0c35533](https://github.com/StarleyDev/gitcito/commit/0c3553364732131d6e507a2927da5881a30c3d3b))
+
+
+### Bug Fixes
+
+* count per-host credential helpers in the environment check ([821a7f8](https://github.com/StarleyDev/gitcito/commit/821a7f8ea124c3532e7155feaf65137a4cd613ca))
+* explain missing token scopes, and unwrap errors in Integrations ([9dccc0c](https://github.com/StarleyDev/gitcito/commit/9dccc0cbdb1e8eaa3b83cba5e3ef263cf23ff7bd))
+* keep git's messages in English whatever the system locale ([92bd7f9](https://github.com/StarleyDev/gitcito/commit/92bd7f9a6fbe0325dfb7299e7abb65764415fc0e))
+* keep GitLab and Forgejo tokens on their own instance in every path ([56378e3](https://github.com/StarleyDev/gitcito/commit/56378e34651eeb1e55e2aa5a6ad3388b6d7ee999))
+* list every file of a large PR, and tidy the PR page ([2ac5e6b](https://github.com/StarleyDev/gitcito/commit/2ac5e6b259e85cbef9ee3bba80396634834ff231))
+* match hosting providers at a host boundary, and surface GitLab owner errors ([09e2aee](https://github.com/StarleyDev/gitcito/commit/09e2aee3a055c4048241c995098a74e48d7b2118))
+* resolve the remote sign-in check per GitLab/Forgejo instance ([f99ded7](https://github.com/StarleyDev/gitcito/commit/f99ded7c71c011322b180b1ccacc2e6993ea91ab))
+* restore a brace lost when merging the stylesheet ([9bc8194](https://github.com/StarleyDev/gitcito/commit/9bc81949f0b7546032f5c7c2c13ece27815d1c5e))
+* say an expired token can also cause a refused write ([24dc5ae](https://github.com/StarleyDev/gitcito/commit/24dc5aec06ab44abcd9848a7facee190465b2cb2))
+* translate the remove-remote confirmation ([41f6761](https://github.com/StarleyDev/gitcito/commit/41f6761f9b45d29473febb3575ed719a2f99a775))
+
 ## [4.26.0](https://github.com/MyAppDesk/gitcito/compare/v4.25.0...v4.26.0) (2026-11-19)
 
 
