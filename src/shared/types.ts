@@ -607,7 +607,7 @@ export interface PullRequest {
   headRepo?: string
 }
 
-export type HostingProvider = 'github' | 'azure' | 'gitlab' | 'bitbucket' | null
+export type HostingProvider = 'github' | 'azure' | 'gitlab' | 'bitbucket' | 'forgejo' | null
 
 /** The ref-naming convention a forge uses to publish pull request heads. */
 export type PrRefFlavor = 'github' | 'gitlab' | 'bitbucket' | 'azure'
@@ -779,7 +779,44 @@ export interface ReleaseInfo {
   draft: boolean
 }
 
-export type RepoHost = 'github' | 'gitlab' | 'bitbucket' | 'azure'
+export type RepoHost = 'github' | 'gitlab' | 'bitbucket' | 'azure' | 'forgejo'
+
+/**
+ * Where a remote's credential comes from on push and fetch — the same
+ * precedence `withRemoteAuth` applies (git.ts).
+ *
+ * - `token` / `gh` / `git`: a profile's PAT, or its linked GitHub CLI / git
+ *   helper account.
+ * - `helper`: no profile credential for this host; git's own helper answers.
+ * - `embedded`: a password written into the remote URL itself.
+ * - `ssh`: an ssh remote — the key in the agent decides.
+ * - `none`: https with nothing that would answer.
+ */
+export type RemoteAuthSource = 'token' | 'gh' | 'git' | 'helper' | 'embedded' | 'ssh' | 'none'
+
+export interface RemoteAuthCheck {
+  remote: string
+  /** The push URL with any user:password removed. */
+  url: string
+  provider?: RepoHost
+  source: RemoteAuthSource
+  /** The profile whose credential is used, when it is one. */
+  profile?: string
+  /** The repository is explicitly bound to that profile (vs. the active one). */
+  bound?: boolean
+  /** The account the host says the credential belongs to. */
+  login?: string
+  /** A linked account whose credential could not be found on this machine. */
+  linkMissing?: boolean
+  /** The host refused the credential (401). */
+  rejected?: boolean
+  /** Scopes the host reported; absent when it does not report them (fine-grained tokens). */
+  scopes?: string[]
+  /** Whether the scopes allow pushing at all. Absent when unknown. */
+  canPush?: boolean
+  /** GitHub only: whether pushes that change `.github/workflows` are allowed. Absent when unknown. */
+  canPushWorkflows?: boolean
+}
 
 export interface RemoteRepo {
   name: string // display name, e.g. owner/repo
@@ -2652,7 +2689,16 @@ export interface Profile {
   /** Azure DevOps organization, used to validate the PAT and scope repo/PR lookups. */
   azureOrg?: string
   gitlabToken: string
+  /** Self-managed GitLab this profile's GitLab token belongs to (`https://git.example.org`).
+   *  Empty means gitlab.com. The token is only ever sent to this instance. */
+  gitlabUrl?: string
   bitbucketToken: string
+  /** Forgejo (or Gitea) access token, for the instance at `forgejoUrl`. Optional:
+   *  settings written before Forgejo support have no such field. */
+  forgejoToken?: string
+  /** The Forgejo instance this profile's token belongs to (`https://git.example.org`,
+   *  or codeberg.org). There is no default: empty means no Forgejo. */
+  forgejoUrl?: string
   /** Accounts this profile signed in with from a login already on the machine —
    *  git's credential helper or the GitHub CLI — one per provider. Without one
    *  (and without a token) the profile is not connected: a machine-wide login is
@@ -3432,6 +3478,7 @@ export function defaultProfile(): Profile {
     azureOrg: '',
     gitlabToken: '',
     bitbucketToken: '',
+    forgejoToken: '',
     ai: defaultAIConfig()
   }
 }

@@ -14,6 +14,7 @@ import {
   Github,
   Cloud,
   Gitlab,
+  GitFork,
   Server,
   BadgeCheck,
   FlaskConical,
@@ -109,6 +110,7 @@ import {
   resolveCodeColors
 } from '../theme/themes'
 import { ansiToSpans } from '../lib/ansi'
+import { forgejoTokenUrl, gitlabTokenUrl, normalizeGitlabUrl } from '../../../shared/gitlabInstance'
 import { useT, interp, type TranslationKey } from '../i18n'
 import { resolveAI } from '../../../shared/aiAccounts'
 import { AIAccountsEditor } from './AIAccounts'
@@ -392,7 +394,8 @@ const INTEGRATIONS = [
     field: 'gitlabToken',
     kind: 'pat',
     placeholder: 'glpat-…',
-    tokenUrl: 'https://gitlab.com/-/user_settings/personal_access_tokens?name=Gitcito&scopes=read_api,read_repository'
+    // The real link is per instance — see gitlabTokenUrl at the click.
+    tokenUrl: gitlabTokenUrl(undefined)
   },
   {
     id: 'bitbucket',
@@ -402,6 +405,16 @@ const INTEGRATIONS = [
     kind: 'app',
     placeholder: 'username:app_password',
     tokenUrl: 'https://bitbucket.org/account/settings/app-passwords/'
+  },
+  {
+    id: 'forgejo',
+    label: 'Forgejo',
+    icon: GitFork,
+    field: 'forgejoToken',
+    kind: 'pat',
+    placeholder: '',
+    // Per instance — see forgejoTokenUrl at the click. Empty until an address is set.
+    tokenUrl: ''
   }
 ] as const
 
@@ -419,9 +432,22 @@ export function IntegrationsPage({
   const [tab, setTab] = useState<(typeof INTEGRATIONS)[number]['id']>('github')
   const active = INTEGRATIONS.find((i) => i.id === tab) ?? INTEGRATIONS[0]
   const ActiveIcon = active.icon
-  const token = profile[active.field]
+  const token = profile[active.field] ?? ''
   const azureOrg = profile.azureOrg ?? ''
-  const whoAmIOrg = active.id === 'azure' ? azureOrg.trim() : undefined
+  const gitlabUrl = profile.gitlabUrl ?? ''
+  // Typed but not an https address: say so, rather than silently using gitlab.com.
+  const gitlabUrlInvalid = !!gitlabUrl.trim() && !normalizeGitlabUrl(gitlabUrl)
+  const forgejoUrl = profile.forgejoUrl ?? ''
+  const forgejoUrlInvalid = !!forgejoUrl.trim() && !normalizeGitlabUrl(forgejoUrl)
+  // Azure scopes by organization, GitLab and Forgejo by instance (GitLab empty = gitlab.com).
+  const whoAmIOrg =
+    active.id === 'azure'
+      ? azureOrg.trim()
+      : active.id === 'gitlab'
+        ? profile.gitlabUrl?.trim() || undefined
+        : active.id === 'forgejo'
+          ? forgejoUrl.trim() || undefined
+          : undefined
   const azureOrgRequired = t('settings.azureOrgRequired')
 
   const sshNotice = t('settings.sshFromIntegrations').split('{link}')
@@ -538,7 +564,7 @@ export function IntegrationsPage({
           const Icon = i.icon
           // For the tab being viewed the resolved state is known; the others can
           // only report whether a token is configured, without probing them all.
-          const isConnected = i.id === tab ? connected : !!profile[i.field].trim() || !!profile.links?.[i.id]
+          const isConnected = i.id === tab ? connected : !!profile[i.field]?.trim() || !!profile.links?.[i.id]
           return (
             <button
               key={i.id}
@@ -675,7 +701,52 @@ export function IntegrationsPage({
           <span className="settings-hint">{t('settings.azureOrgHint')}</span>
         </label>
       )}
-      <button className="link-btn" type="button" onClick={() => void window.api.openExternal(active.tokenUrl)}>
+      {active.id === 'gitlab' && (
+        <label>
+          {t('settings.gitlabUrl')}
+          <input
+            type="text"
+            value={gitlabUrl}
+            placeholder={t('settings.gitlabUrlPlaceholder')}
+            aria-invalid={gitlabUrlInvalid}
+            onChange={(e) => edit({ gitlabUrl: e.target.value })}
+          />
+          <span className="settings-hint">
+            {gitlabUrlInvalid ? t('settings.gitlabUrlInvalid') : t('settings.gitlabUrlHint')}
+          </span>
+        </label>
+      )}
+      {active.id === 'forgejo' && (
+        <label>
+          {t('settings.forgejoUrl')} *
+          <input
+            type="text"
+            value={forgejoUrl}
+            placeholder={t('settings.forgejoUrlPlaceholder')}
+            required
+            aria-required="true"
+            aria-invalid={forgejoUrlInvalid}
+            onChange={(e) => edit({ forgejoUrl: e.target.value })}
+          />
+          <span className="settings-hint">
+            {forgejoUrlInvalid ? t('settings.gitlabUrlInvalid') : t('settings.forgejoUrlHint')}
+          </span>
+        </label>
+      )}
+      <button
+        className="link-btn"
+        type="button"
+        disabled={active.id === 'forgejo' && !forgejoTokenUrl(forgejoUrl)}
+        onClick={() => {
+          const url =
+            active.id === 'gitlab'
+              ? gitlabTokenUrl(gitlabUrl)
+              : active.id === 'forgejo'
+                ? forgejoTokenUrl(forgejoUrl)
+                : active.tokenUrl
+          if (url) void window.api.openExternal(url)
+        }}
+      >
         <ExternalLink size={12} /> {t('settings.createToken')}
       </button>
       <p className="settings-hint">{t('settings.integrationsHint')}</p>
