@@ -69,27 +69,74 @@ trabajo. Las pilas y las búsquedas de ramas siguen usando solo la lista de
 
 ## Revisar — GitHub y GitLab
 
-| | |
+![Página del pull request con la conversación y la barra lateral de revisores](../../screenshots/pull-request-page.webp)
+
+Al hacer clic en un pull request se abre como **una página propia**. Va unida a
+su repositorio como la wiki: un icono con el número del PR en la pestaña del
+repositorio, o en su chip dentro de un grupo. Vuelve a hacer clic en el icono, o
+en el nombre del repositorio, para regresar. **Abrir en una pestaña nueva** en el
+menú contextual del PR le da en cambio una pestaña propia. Si el repositorio no
+está abierto en ningún sitio, el PR se abre en una pestaña propia.
+
+El trabajo ocurre en la columna principal, y la barra lateral dice qué *es* el
+PR, sin tener que desplazarte. Con la IA activada, el botón ✨ de la cabecera
+revisa el diff del PR tal como lo informa el host, así que funciona incluso con
+una rama que nunca descargaste (un fork, la de otra persona).
+
+La columna principal tiene tres secciones:
+
+| Sección | Qué contiene |
 |---|---|
-| **Conversación** | Comentarios y estado de la revisión |
-| **Checks** | Ejecuciones de CI (GitHub) o trabajos de pipeline (GitLab) con pasa/falla/pendiente y enlaces a los logs |
-| **Archivos vistos** | Una lista de comprobación con ✓ por archivo y su progreso |
-| **Hilos en línea** | Comentarios de línea agrupados por `file:line`, y las respuestas |
-| **Acciones** | Comentar, aprobar, pedir cambios, y merge / squash |
+| **Conversación** | La descripción, los comentarios y los hilos de revisión en línea (`archivo:línea`, con respuestas). Después, el cuadro de comentario con comentar / aprobar / pedir cambios, y el cuadro de merge (merge, squash o rebase) |
+| **Archivos** | Cada archivo cambiado, y el diff del seleccionado junto a la lista, con resaltado de sintaxis y cambios a nivel de palabra (los archivos que parecen secretos se enmascaran si ese ajuste está activo). Una lista ✓ de "visto" recuerda tu avance. Un archivo del que el host no envía diff (binario o demasiado grande) enlaza al host |
+| **Checks** | Check-runs de CI (GitHub), jobs de pipeline (GitLab), estados de commit (Forgejo) o estados del PR (Azure DevOps), con pasa/falla/en curso y enlaces a los logs |
 
-Si alguien hace force push a mitad de la revisión, [qué ha cambiado
-desde](range-diff.md) te enseña exactamente qué se ha movido.
+La barra lateral muestra:
 
-Las diferencias de GitLab, dichas claramente: GitLab no tiene una única llamada
-de "enviar revisión", así que **aprobar** usa su endpoint de aprobaciones y
-**pedir cambios** retira tu aprobación y publica tu comentario. El
-**rebase-merge** no se ofrece — GitLab decide entre merge-commit y fast-forward
-según la configuración del proyecto, así que el menú de merge muestra solo
-merge y squash. Los hilos en línea muestran el archivo y la línea, pero no el
-hunk del diff que los rodea, porque la API de GitLab no lo devuelve.
-Revisar/fusionar funciona para proyectos en **gitlab.com**; las instancias
-autoalojadas aún no están soportadas. Bitbucket y Azure DevOps se siguen
-abriendo en el navegador para revisar.
+| Fila | Muestra |
+|---|---|
+| **Autor** | Quién lo abrió, y cuándo |
+| **Estado** | Abierto, borrador, fusionado (por quién, cuándo) o cerrado; conflictos con el destino |
+| **Revisores** | La última decisión de cada revisor (aprobado, cambios pedidos, comentado) y quién falta por revisar, equipos incluidos |
+| **Asignados, etiquetas, hito** | Tal como están en el host, las etiquetas en sus propios colores |
+| **Ramas** | Origen → destino, y el fork del que viene |
+| **Cambios** | Archivos cambiados, commits, líneas añadidas y quitadas, con una barra |
+| **Checks** | Pasados / fallidos / en curso, a un clic de la sección Checks |
+| **Participantes** | Todos los que participaron |
+| **Actividad** | Cuándo se abrió y cuándo se actualizó por última vez |
+
+GitLab no informa los totales de líneas de un merge request; se suman desde la
+lista de archivos cuando carga. Una fila que el host no informa se omite.
+
+Si alguien hace force-push en mitad de la revisión, [qué cambió desde entonces](range-diff.md)
+te muestra exactamente qué se movió.
+
+Diferencias de GitLab, dichas sin rodeos: GitLab no tiene una única llamada de
+"enviar revisión", así que **aprobar** usa su endpoint de aprobación y **pedir
+cambios** retira tu aprobación y publica tu comentario. **Rebase-merge** no se
+ofrece — GitLab decide entre commit de merge y fast-forward según los ajustes del
+proyecto, así que el menú de merge muestra solo merge y squash. Los hilos en
+línea muestran archivo y línea, pero no el fragmento de diff alrededor, que la
+API de GitLab no devuelve. Revisar y fusionar funciona en gitlab.com y en un
+[GitLab autogestionado](#gitlab-autogestionado). Bitbucket sigue abriéndose en el
+navegador para revisar.
+
+Diferencias de Forgejo: los hilos de comentarios en línea se muestran pero no se
+pueden responder (Forgejo no tiene API para ello), y los checks son los estados
+del commit de la cabeza — más en [Forgejo](#forgejo).
+
+Diferencias de Azure DevOps: aprobar emite tu voto (*Approved*); **pedir
+cambios** vota *Waiting for author*. Completar el PR admite merge, squash o
+rebase. Azure lista los archivos cambiados de un PR pero no envía diff, así que
+la app descarga las dos versiones de cada archivo y calcula el diff ella misma —
+para los primeros 200 archivos; un archivo binario, o un cambio demasiado grande,
+enlaza al host. Las personas aparecen con sus iniciales, porque las fotos de
+perfil de Azure requieren un navegador con sesión iniciada.
+
+La barra lateral también lista los **work items vinculados al PR** — número,
+título, tipo y estado —, cada uno se abre en el navegador. Leerlos requiere un
+token que pueda leer work items (*Work Items: Read*); sin él, la fila
+simplemente no aparece.
 
 ## GitLab autogestionado
 
@@ -132,9 +179,10 @@ Configura la dirección de la instancia antes de introducir su token. Cambiar la
 Forgejo — y Gitea, que comparte su API — siempre corre en una dirección elegida
 por su dueño: tu propio servidor, o uno público como codeberg.org. Indícale esa
 dirección a un perfil en **Ajustes → Integraciones → Forgejo**, junto con un token
-de acceso. **Crear token** abre la página de tokens de ese servidor. Dale al
-token permiso de lectura y escritura en *repository*, y de lectura en *user* y
-*organization*.
+de acceso. **Crear token** abre la página de tokens de ese servidor. Dale al token permiso de lectura y escritura en *repository*, *issue* y
+*notification*, y de lectura en *user* y *organization*. Los permisos de un token
+no se pueden cambiar después: uno creado sin *issue* o *notification* no lista
+issues ni notificaciones, y la solución es crear uno nuevo.
 
 Desde entonces, los remotos en ese servidor son Forgejo:
 
@@ -144,6 +192,15 @@ Desde entonces, los remotos en ese servidor son Forgejo:
 | Pull requests abiertos | Listados en la barra lateral, y se abren en la [página del pull request](#revisar--github-y-gitlab): conversación, diff de cada archivo, checks (estados del commit, incluido Forgejo Actions), comentar, aprobar, pedir cambios y merge / squash / rebase |
 | Crear un pull request | Desde la app; un borrador lleva el prefijo `WIP:` que usa Forgejo |
 | Explorador de clonado, crear repositorio | En ese servidor, bajo tu cuenta o una organización |
+
+Un check que es un job de **Forgejo Actions** muestra su log bajo la fila, con
+colores, empezando por el final, donde está el fallo. Forgejo no tiene API para
+logs de jobs, así que la app pide la misma página que descarga el visor de logs
+de la web, y envía el token solo cuando el enlace es un job de este mismo
+servidor; un estado de una CI externa nunca lo recibe. Un servidor que solo
+entrega logs a un navegador con sesión responde con su página de inicio de
+sesión, y la fila lo dice y ofrece el navegador. Los logs muy largos muestran sus
+últimas miles de líneas.
 
 Igual que con GitLab, **un token de Forgejo solo va al servidor que lo emitió**.
 Un perfil sin dirección de Forgejo no tiene ninguna credencial de Forgejo. No hay
@@ -157,13 +214,18 @@ Límites:
 - Solo https, un servidor de Forgejo por perfil.
 - Las listas se detienen tras veinte peticiones: 1.000 pull requests o repositorios con el tamaño de página predeterminado del servidor.
 
-## Incidencias, hitos y releases — GitHub
+## Issues, hitos, releases — GitHub y Forgejo
 
 Explora las incidencias y abre una pestaña completa por incidencia: cuerpo,
 comentarios, etiquetas, asignados, hito, campos de Projects v2, cerrar/reabrir,
 y **crear una rama para esta incidencia** (con nombre generado por IA). Los
 hitos muestran su progreso y sus incidencias. Los releases se pueden explorar
 con su página de changelog.
+
+En un servidor [Forgejo](#forgejo) funcionan las mismas listas y páginas, con
+el token de Forgejo del perfil. Dos cosas son solo de GitHub y quedan vacías allí:
+los campos de Projects v2 y los pull requests vinculados a una issue. Las
+releases listan las más recientes, no todo el historial.
 
 ## Esperando tu revisión
 
@@ -173,13 +235,24 @@ igual. Quién eres «tú» se le pregunta al host con la credencial del perfil y
 recuerda diez minutos. Un token que no puede leer su propio usuario (sin
 `read:user` en Forgejo, por ejemplo) no marca nada.
 
-## Notificaciones — GitHub
+Con **Ajustes → Notificaciones del sistema** activado, un pull request de GitLab o
+Forgejo que *empieza* a esperarte lanza una; hacer clic abre la página del PR. La
+primera mirada a un repositorio solo toma nota de lo que ya espera, así que abrir
+la app no repite el atraso. Las solicitudes de revisión de GitHub quedan para su
+bandeja de notificaciones, más abajo, que ya las anuncia.
+
+## Notificaciones — GitHub y Forgejo
 
 Tu bandeja entera — peticiones de revisión, menciones, actividad de CI — de
 todos los repositorios, con filtros de no leídas/todas y marcar como leída. La
 campana de la barra lleva un contador de no leídas, y opcionalmente saltan
 notificaciones de escritorio cuando te piden una revisión o cuando termina la
 CI.
+
+Si el perfil activo tiene un servidor Forgejo, sus notificaciones entran en la
+misma lista, de las más nuevas a las más antiguas, y se marcan como leídas en ese
+servidor. Forgejo no dice *por qué* se te notificó, así que esas filas no tienen
+motivo y nunca lanzan una notificación del sistema — eso lo decide el motivo.
 
 ## Tokens
 
