@@ -3,8 +3,9 @@ import { autoUpdater } from 'electron-updater'
 import type { UpdateState, UpdateInfo } from '../shared/types'
 import { isNewerVersion } from '../shared/version'
 import { githubPublicGet } from './credentials'
+import { APP_REPO } from '../shared/appRepo'
 
-const REPO = 'MyAppDesk/gitcito'
+const REPO = APP_REPO
 const releaseUrl = (version: string): string =>
   `https://github.com/${REPO}/releases/tag/v${version.replace(/^v/, '')}`
 
