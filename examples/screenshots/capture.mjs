@@ -195,7 +195,10 @@ async function launch(shot, theme) {
   const app = await electron.launch({
     // --disable-gpu forces software (CPU) rasterization so pixel output is
     // identical across runs, eliminating GPU/subpixel-antialiasing drift.
-    args: [MAIN, '--shot', `--user-data-dir=${userDataDir}`, '--disable-gpu'],
+    // SHOT_ELECTRON_ARGS adds switches for this machine's display — on a Wayland
+    // desktop whose compositor will not hand Chromium a screenshot,
+    // `--ozone-platform=x11` (with WAYLAND_DISPLAY unset) captures through XWayland.
+    args: [MAIN, '--shot', `--user-data-dir=${userDataDir}`, '--disable-gpu', ...(process.env.SHOT_ELECTRON_ARGS ?? '').split(/\s+/).filter(Boolean)],
     // `shot.env` lets an entry redirect something machine-specific at a
     // throwaway copy — the SSH key list, say, which must never photograph the
     // real one. Honoured by the app only under --shot.
