@@ -1,4 +1,5 @@
 import type { AppTheme, CodeTheme, ThemeMode, AppThemeColors, CodeThemeColors, TerminalTheme } from '../../../shared/types'
+import { PRODUCT_NAME } from '../../../shared/brand'
 
 // ─── Built-in app themes ─────────────────────────────────────────────────────
 // Every built-in theme ships a light and a dark palette. The active palette is
@@ -7,7 +8,7 @@ import type { AppTheme, CodeTheme, ThemeMode, AppThemeColors, CodeThemeColors, T
 export const APP_THEMES: AppTheme[] = [
   {
     id: 'gitcito',
-    name: 'Gitcito',
+    name: PRODUCT_NAME,
     builtin: true,
     light: {
       bg0: '#eef0f8',
@@ -365,7 +366,7 @@ export const APP_THEMES: AppTheme[] = [
 export const CODE_THEMES: CodeTheme[] = [
   {
     id: 'gitcito',
-    name: 'Gitcito',
+    name: PRODUCT_NAME,
     builtin: true,
     light: {
       bg: 'transparent',
@@ -817,7 +818,7 @@ export function findCodeTheme(id: string, custom: CodeTheme[]): CodeTheme {
 export const TERMINAL_THEMES: TerminalTheme[] = [
   {
     id: 'gitcito',
-    name: 'Gitcito',
+    name: PRODUCT_NAME,
     builtin: true,
     colors: {
       background: '#0f1220',

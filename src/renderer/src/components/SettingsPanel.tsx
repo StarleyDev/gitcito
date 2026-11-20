@@ -120,7 +120,7 @@ import { AIAccountsEditor } from './AIAccounts'
 import { LanguagePicker } from './LanguagePicker'
 import { NumberField } from './NumberField'
 import { ShortcutEditor } from './CheatsheetModal'
-import madLogo from '../assets/mad-high.png'
+import { AUTHOR_NAME, AUTHOR_URL, PRODUCT_NAME } from '../../../shared/brand'
 
 type SettingsPage =
   | 'profile'
@@ -380,7 +380,7 @@ const INTEGRATIONS = [
     field: 'githubToken',
     kind: 'pat',
     placeholder: 'ghp_…',
-    tokenUrl: 'https://github.com/settings/tokens/new?scopes=repo&description=Gitcito'
+    tokenUrl: `https://github.com/settings/tokens/new?scopes=repo&description=${encodeURIComponent(PRODUCT_NAME)}`
   },
   {
     id: 'azure',
@@ -1312,7 +1312,7 @@ const PREVIEW_FOCUS_INPUT: FocusInput = {
 
 // Sample identities for the live preview's avatar nodes, so it mirrors the
 // real graph (Gravatar when available, generated avatar otherwise).
-const PREVIEW_EMAILS = ['team@myappdesk.dev', 'alex@myappdesk.dev', 'sam@myappdesk.dev', 'jordan@myappdesk.dev']
+const PREVIEW_EMAILS = ['team@example.com', 'alex@example.com', 'sam@example.com', 'jordan@example.com']
 
 /** Dashed, diagonally-hatched box used for stash nodes in compact mode. */
 function StashHatchBox({ cx, cy, color, idSuffix }: { cx: number; cy: number; color: string; idSuffix: string }): React.JSX.Element {
@@ -4514,10 +4514,11 @@ export function SettingsPanel({ initialPage, initialThemeTab }: { initialPage?: 
             <button
               className="settings-madeby"
               type="button"
-              title="myappdesk.dev"
-              onClick={() => void window.api.openExternal('https://myappdesk.dev')}
+              title={AUTHOR_URL}
+              onClick={() => void window.api.openExternal(AUTHOR_URL)}
             >
-              <img src={madLogo} alt="MyAppDesk" draggable={false} />
+              {/* The author's GitHub picture, by account id — it follows renames of the login. */}
+              <img src="https://avatars.githubusercontent.com/u/9012499?s=64" alt={AUTHOR_NAME} draggable={false} />
               <span>{t('settings.madeBy')}</span>
             </button>
             {version && pendingUpdate && updateInfo ? (

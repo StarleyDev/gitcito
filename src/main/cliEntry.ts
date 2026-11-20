@@ -25,6 +25,8 @@ import { knownRepos, matchesRepo, resolveRepo } from '../shared/cliRepos'
 import { readRepoConfig, runRepoDoctor, applyDoctorFix, suggestRepoConfig } from './repoConfig'
 import { checkCommitMessage, type CommitCheckIssue } from '../shared/commitCheck'
 import type { DoctorCheck, RepoConfig } from '../shared/types'
+import { PRODUCT_NAME } from '../shared/brand'
+import { APP_REPO_URL } from '../shared/appRepo'
 
 const pexecFile = promisify(execFile)
 
@@ -378,7 +380,7 @@ async function cmdRepos(argv: string[]): Promise<number> {
   const args = parseArgs(argv)
   const repos = knownRepos(readSettings())
   if (!repos.length) {
-    out(dim('No repositories yet — open one in Gitcito, or run `gitcito .` in a checkout.'))
+    out(dim(`No repositories yet — open one in ${PRODUCT_NAME}, or run \`gitcito .\` in a checkout.`))
     return 0
   }
   const filter = args.rest[0]?.toLowerCase()
@@ -429,7 +431,7 @@ async function cmdEditor(argv: string[]): Promise<number> {
   if (sub === 'uninstall') {
     await set('core.editor')
     await set('sequence.editor')
-    out(`${OK} Gitcito is no longer git’s editor (${scope.slice(2)}).`)
+    out(`${OK} ${PRODUCT_NAME} is no longer git’s editor (${scope.slice(2)}).`)
     return 0
   }
   if (sub !== 'install') {
@@ -438,7 +440,7 @@ async function cmdEditor(argv: string[]): Promise<number> {
   }
   await set('core.editor', 'gitcito --wait')
   await set('sequence.editor', 'gitcito --wait')
-  out(`${OK} git will now open commit messages and rebase todos in Gitcito (${scope.slice(2)}).`)
+  out(`${OK} git will now open commit messages and rebase todos in ${PRODUCT_NAME} (${scope.slice(2)}).`)
   out(dim('Undo with `gitcito editor uninstall`.'))
   return 0
 }
@@ -540,7 +542,7 @@ function appVersion(): string {
 
 function usage(): void {
   const h = (s: string): string => bold(s)
-  out(`${h('gitcito')} — Gitcito from the command line
+  out(`${h('gitcito')} — ${PRODUCT_NAME} from the command line
 
 ${h('OPEN')}
   gitcito [path]                 Open a repository (default: the current directory)
@@ -563,10 +565,10 @@ ${h('ANSWER IN THE TERMINAL')}
   gitcito doctor [path] [--fix]  Check what ${REPO_CONFIG_FILE} requires. Exit 1 on failure
   gitcito commit-check [file]    Lint a commit message. Exit 1 on an error
   gitcito config init|show|check Propose, print or validate ${REPO_CONFIG_FILE}
-  gitcito repos [filter]         Repositories Gitcito knows about (--paths for scripts)
+  gitcito repos [filter]         Repositories ${PRODUCT_NAME} knows about (--paths for scripts)
 
 ${h('SET UP')}
-  gitcito editor install         Use Gitcito for commit messages and rebase todos
+  gitcito editor install         Use ${PRODUCT_NAME} for commit messages and rebase todos
   gitcito completions <shell>    bash · zsh · fish
 
 ${h('OPTIONS')}
@@ -577,7 +579,7 @@ ${h('OPTIONS')}
   -h, --help                     This text
   -V, --version                  Version
 
-${dim('Docs: https://myappdesk.github.io/gitcito/help/cli.html')}`)
+${dim(`Docs: ${APP_REPO_URL}/blob/main/docs/help/cli.md`)}`)
 }
 
 function verbList(): void {

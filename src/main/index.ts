@@ -42,6 +42,7 @@ import { parseCliOpenArgs, type CliOpenPayload } from '../shared/cli'
 import { MAIN_WINDOW_STATE, showMainWindow } from './windowState'
 import { attachRendererRecovery, registerRendererRecoveryHandlers } from './rendererRecovery'
 import { githubPublicGet } from './credentials'
+import { APP_RELEASES_API } from '../shared/appRepo'
 
 // First, before anything logs: a closed stdout/stderr must not crash main (see stdioGuard).
 guardStdio()
@@ -89,6 +90,16 @@ async function deliverEdit(win: BrowserWindow, file: string, sentinel: string): 
 // An explicit --user-data-dir (screenshot harness, scripted runs) must win:
 // Electron has already applied it, and redirecting to the dev dir here would
 // replace the caller's seeded throwaway settings with a copy of prod data.
+// The installer, executable and window say "Git HuttBr", but the app keeps the
+// name it has always had inside: Electron derives both the settings folder and
+// the OS keychain entry that encrypts tokens from it. Renaming it would start
+// on empty settings and leave every saved token undecryptable. Pinned here,
+// before anything reads userData, so the packaged product name cannot move it.
+if (app.isPackaged && !app.commandLine.hasSwitch('user-data-dir')) {
+  app.setName('Gitcito')
+  app.setPath('userData', join(app.getPath('appData'), 'Gitcito'))
+}
+
 if (!app.isPackaged && !app.commandLine.hasSwitch('user-data-dir')) {
   const devDir = join(app.getPath('appData'), 'gitcito-dev')
   app.setPath('userData', devDir)
@@ -321,7 +332,7 @@ app.whenReady().then(() => {
     if (process.argv.includes('--shot')) return cachedReleases()
     try {
       // What's New waits on this before showing notes, so a hanging network must not stall it.
-      const res = await githubPublicGet('https://api.github.com/repos/MyAppDesk/gitcito/releases?per_page=20')
+      const res = await githubPublicGet(`${APP_RELEASES_API}?per_page=20`)
       if (!res.ok) return cachedReleases()
       const json = (await res.json()) as Array<{
         tag_name: string

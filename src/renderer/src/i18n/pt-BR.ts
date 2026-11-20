@@ -1687,7 +1687,7 @@ export const ptBR: Dict = {
   'hoverKey.ctrl': 'Control',
   'hoverKey.meta': 'Command / Win',
   'hoverKey.none': 'Nenhuma tecla — só o hover',
-  'settings.madeBy': 'com ♥ da MyAppDesk',
+  'settings.madeBy': 'com ♥ do MyAppDesk',
   'settings.autoOpenChangelog': 'Abrir o changelog depois das atualizações',
   'settings.autoOpenChangelogHint':
     'Mostra as novidades numa aba automaticamente quando o gitcito atualiza para uma versão nova.',

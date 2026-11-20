@@ -1,5 +1,6 @@
 import { app, BrowserWindow, Menu, ipcMain, type MenuItemConstructorOptions } from 'electron'
 import { isMenuRole, type MenuSpec, type MenuSpecItem } from '../shared/menu'
+import { PRODUCT_NAME } from '../shared/brand'
 
 /**
  * The native application menu.
@@ -66,7 +67,9 @@ export function registerMenuHandlers(): void {
 
   // The About item is a role, so the panel is drawn (and localised) by macOS.
   app.setAboutPanelOptions({
-    applicationName: app.getName(),
+    // The display name: app.getName() stays "Gitcito" inside, to keep the
+    // settings folder and keychain entry (see index.ts).
+    applicationName: PRODUCT_NAME,
     applicationVersion: app.getVersion(),
     version: ''
   })

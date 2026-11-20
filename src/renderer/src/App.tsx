@@ -68,6 +68,7 @@ import { runAppCommand } from './appCommands'
 import { chooseRepositories } from './openRepositories'
 import { useAppMenu } from './useAppMenu'
 import { trackRepoSwitch } from './lib/repoSwitch'
+import { APP_ISSUES_NEW_URL } from '../../shared/appRepo'
 
 /**
  * Carry out what a `gitcito <verb>` invocation asked for, once its repository
@@ -1327,7 +1328,7 @@ export default function App(): React.JSX.Element {
                   <button
                     className="status-issue-btn"
                     title={t('app.reportIssueTitle')}
-                    onClick={() => void window.api.openExternal('https://github.com/MyAppDesk/gitcito/issues/new')}
+                    onClick={() => void window.api.openExternal(APP_ISSUES_NEW_URL)}
                   >
                     <Bug size={12} />
                     <span>{t('app.reportIssue')}</span>

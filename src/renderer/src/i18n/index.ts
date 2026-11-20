@@ -16,6 +16,7 @@ import { ru } from './ru'
 import { tr } from './tr'
 import { uk } from './uk'
 import { zhCN } from './zh-CN'
+import { brandText } from '../../../shared/brand'
 
 export type { TranslationKey }
 
@@ -64,7 +65,8 @@ export const LANGUAGES: { id: Language; label: string }[] = [
 ]
 
 export function translate(lang: Language, key: TranslationKey): string {
-  return dictionaries[lang]?.[key] ?? dictionaries.en[key] ?? key
+  // The dictionaries keep upstream's wording; the product name is applied here.
+  return brandText(dictionaries[lang]?.[key] ?? dictionaries.en[key] ?? key)
 }
 
 /** Simple string interpolation — replaces {key} tokens with values. */

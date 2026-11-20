@@ -1,6 +1,7 @@
 import { withoutIpcPrefix } from './gitErrorHint'
+import { APP_ISSUES_NEW_URL } from '../../../shared/appRepo'
 
-const ISSUES_NEW_URL = 'https://github.com/MyAppDesk/gitcito/issues/new'
+const ISSUES_NEW_URL = APP_ISSUES_NEW_URL
 
 
 /** The title for a reported error: its first line, without the IPC wrapper that

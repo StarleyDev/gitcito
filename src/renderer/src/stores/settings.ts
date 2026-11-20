@@ -54,6 +54,7 @@ import {
   toggleTodo,
   type TodoScope
 } from '../lib/todos'
+import { PRODUCT_NAME } from '../../../shared/brand'
 
 const uid = (): string => Math.random().toString(36).slice(2, 10)
 
@@ -429,15 +430,16 @@ export const useSettingsStore = create<SettingsState>((set, get) => ({
       settings.workspaces[0].id === 'default' &&
       !settings.workspaces[0].tabs?.length
     if (!settings.workspaces?.length || (pristineDefaultWs && settings.tabs?.length)) {
-      settings.workspaces = [{ id: 'default', name: 'Gitcito', tabs: settings.tabs, activeTabId: settings.activeTabId }]
+      settings.workspaces = [{ id: 'default', name: PRODUCT_NAME, tabs: settings.tabs, activeTabId: settings.activeTabId }]
     } else if (
       settings.workspaces.length === 1 &&
       settings.workspaces[0].id === 'default' &&
-      settings.workspaces[0].name === 'Default'
+      // "Gitcito" too: the lone default carries the app's name, and this build has another.
+      (settings.workspaces[0].name === 'Default' || settings.workspaces[0].name === 'Gitcito')
     ) {
       // Legacy auto-created workspace was named "Default". The logo now doubles
       // as the workspace switcher, so rebrand the lone default to the app name.
-      settings.workspaces[0].name = 'Gitcito'
+      settings.workspaces[0].name = PRODUCT_NAME
     }
     settings.activeWorkspaceId =
       settings.activeWorkspaceId && settings.workspaces.some((w) => w.id === settings.activeWorkspaceId)

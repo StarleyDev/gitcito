@@ -21,8 +21,9 @@ import { chooseRepositories } from './openRepositories'
 import { openInEditor } from './lib/editorOpen'
 import { requestCloseTab } from './lib/repositoryMenuItems'
 import { repoChatAvailable, rightPanelToggleAction } from './lib/repoChatUI'
+import { APP_ISSUES_NEW_URL } from '../../shared/appRepo'
 
-const ISSUES_URL = 'https://github.com/myappdesk/gitcito/issues/new'
+const ISSUES_URL = APP_ISSUES_NEW_URL
 
 /** The repository the active tab is currently showing, or null. */
 export function activeRepoPath(): string | null {
