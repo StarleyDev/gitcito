@@ -187,7 +187,8 @@ Limits:
 - Line-comment threads are shown but cannot be replied to from the app:
   Forgejo has no API for a reply inside an existing thread. Reply on the server.
 - https only, one Forgejo server per profile.
-- Lists show the first 50 pull requests and repositories.
+- Lists stop after twenty requests: 1,000 pull requests or repositories at the
+  server's default page size.
 
 ## Issues, milestones, releases — GitHub
 

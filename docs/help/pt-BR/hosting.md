@@ -192,7 +192,8 @@ Limites:
   app: o Forgejo não tem API para responder dentro de uma thread existente.
   Responda no servidor.
 - Só https, um servidor Forgejo por perfil.
-- As listas mostram os primeiros 50 pull requests e repositórios.
+- As listas param depois de vinte requisições: 1.000 pull requests ou
+  repositórios no tamanho de página padrão do servidor.
 
 ## Issues, milestones, releases — GitHub
 
