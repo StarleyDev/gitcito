@@ -1,5 +1,12 @@
 
 
+## [4.27.2](https://github.com/StarleyDev/gitcito/compare/v4.27.1...v4.27.2) (2026-11-20)
+
+
+### Bug Fixes
+
+* give the package author an e-mail, which the .deb maintainer field needs ([f756c51](https://github.com/StarleyDev/gitcito/commit/f756c510b850f232425d1e8f9149562383677a49))
+
 ## [4.27.1](https://github.com/StarleyDev/gitcito/compare/v4.27.0...v4.27.1) (2026-11-20)
 
 ## [4.27.0](https://github.com/StarleyDev/gitcito/compare/v4.26.0...v4.27.0) (2026-11-20)
