@@ -1,5 +1,119 @@
 
 
+## [4.32.0](https://github.com/StarleyDev/gitcito/compare/v4.31.0...v4.32.0) (2026-11-20)
+
+### Bug Fixes
+
+* keep only a Forgejo job log's tail in memory, and keep its panel on its check ([b78b6e8](https://github.com/StarleyDev/gitcito/commit/b78b6e803512407001a7ccd6beaed4714f33c140))
+* no burst of review notifications after a profile switch ([362957e](https://github.com/StarleyDev/gitcito/commit/362957eaa24ddaad74128a46cfa99369b5db4b74))
+* tell a cancelled test run apart from the next one ([7c5149f](https://github.com/StarleyDev/gitcito/commit/7c5149ff9b59d846d38e24d4d7e0ab0b58fe9210))
+* translate the notification reasons ([acd023a](https://github.com/StarleyDev/gitcito/commit/acd023a839852f4915f1bb29918157d151684867))
+
+## [4.31.0](https://github.com/StarleyDev/gitcito/compare/v4.30.0...v4.31.0) (2026-11-20)
+
+
+### Features
+
+* run the project's tests from the Problems dock ([632b771](https://github.com/StarleyDev/gitcito/commit/632b7716512ff3f6487c3db92f7cc600f91d1d33))
+
+
+### Bug Fixes
+
+* run tests without a shell, and make a stopped run look stopped ([72b5d45](https://github.com/StarleyDev/gitcito/commit/72b5d45677ea255484048849b949eee5cde1c98e))
+
+## [4.30.0](https://github.com/StarleyDev/gitcito/compare/v4.29.0...v4.30.0) (2026-11-20)
+
+
+### Features
+
+* a desktop notification when a pull request starts waiting for your review ([da21fa3](https://github.com/StarleyDev/gitcito/commit/da21fa3098df8cf0c09ac566ba8d2176c86846a9))
+* issues, milestones, releases and notifications on Forgejo ([88dade2](https://github.com/StarleyDev/gitcito/commit/88dade2155acfdaf39e6d10cc69831c2a13b8946))
+* read a Forgejo Actions job's log in the PR page's Checks tab ([8d7dce1](https://github.com/StarleyDev/gitcito/commit/8d7dce1d50a77cb462c5f18203ec73d460b08d86))
+
+## [4.29.0](https://github.com/StarleyDev/gitcito/compare/v4.28.0...v4.29.0) (2026-11-20)
+
+
+### Features
+
+* show the work items linked to an Azure DevOps pull request ([a217c67](https://github.com/StarleyDev/gitcito/commit/a217c67f8bbcca430a43238fb031144deb40a518))
+* suggest Makefile targets, Composer scripts and branches in the terminal ([d8cebb0](https://github.com/StarleyDev/gitcito/commit/d8cebb032589f7c10a124c13778bd4ffafdc4685))
+* suggest package.json scripts after npm run in the terminal ([1822268](https://github.com/StarleyDev/gitcito/commit/1822268cb072a565c914e3d494ad678fd62a56bd))
+
+
+### Bug Fixes
+
+* read every page of Forgejo lists and Azure DevOps pull requests ([6f5278d](https://github.com/StarleyDev/gitcito/commit/6f5278d303634c6879b37bad9bb9fe42cd2ec032))
+
+## [4.28.0](https://github.com/StarleyDev/gitcito/compare/v4.27.2...v4.28.0) (2026-11-20)
+
+
+### Features
+
+* branch from an Azure Boards work item, and link AB# mentions ([44a39d0](https://github.com/StarleyDev/gitcito/commit/44a39d0c8d234f768e0c1e139bd305acf14f6f19)), closes [AB#1234](https://github.com/StarleyDev/AB/issues/1234) [AB#1234](https://github.com/StarleyDev/AB/issues/1234) [#1234](https://github.com/StarleyDev/gitcito/issues/1234) [#1234](https://github.com/StarleyDev/gitcito/issues/1234)
+* check which account each remote signs in with ([ad1571c](https://github.com/StarleyDev/gitcito/commit/ad1571c67cf3242e838e230beb63b5d51c8a776b))
+* drag a commit onto a branch to cherry-pick it or move the branch ([9911e39](https://github.com/StarleyDev/gitcito/commit/9911e394b62986d6e659e90de4892ef58a9572da))
+* mark the pull requests waiting for your review ([21d6e97](https://github.com/StarleyDev/gitcito/commit/21d6e979e8aaf6f967bae18430bcf9499611bf59))
+* review a PR with AI from its page, on the host's diff ([451c489](https://github.com/StarleyDev/gitcito/commit/451c48906317de2bf70f5de641fb9f85f3efc55f))
+* review Azure DevOps pull requests in the PR page ([a7603ab](https://github.com/StarleyDev/gitcito/commit/a7603ab780314e0e378e1939b1b1e5dd80a7d0df))
+* review Forgejo pull requests in the PR page ([c9d6c0a](https://github.com/StarleyDev/gitcito/commit/c9d6c0a0274f8e1bbcb10a27e6deb41d1bd5ab94))
+* suggest package.json scripts after npm run in the terminal ([bd9d5fa](https://github.com/StarleyDev/gitcito/commit/bd9d5fade0fe821ae1ad5348a23135e8e260011f))
+
+
+### Bug Fixes
+
+* bind self-managed credentials to their issuing instance ([2a8d0b7](https://github.com/StarleyDev/gitcito/commit/2a8d0b7efcbde4d1616e66437e1785a3cf4b824d))
+* constrain credential probes to recognized instances ([45b7199](https://github.com/StarleyDev/gitcito/commit/45b7199ec204d95e64dba2d27edaf66af9656da5))
+* credit the fork's author with the right Portuguese article ([ca5b76b](https://github.com/StarleyDev/gitcito/commit/ca5b76babf17be0b68ac7887bef65fc8c70218f9))
+* enforce HTTPS origin and reject authenticated redirects ([3a1b41e](https://github.com/StarleyDev/gitcito/commit/3a1b41e1c80b6046a7f77c4409d1ad3302478515))
+* isolate PR tab state and keep credentials out of saved tabs ([f8f0678](https://github.com/StarleyDev/gitcito/commit/f8f0678dd6fcff23f26e783d8ca5bdec8c53cdea))
+* keep helper commands private and document environment checks ([55c6b43](https://github.com/StarleyDev/gitcito/commit/55c6b43e6acfbc13600422b33e41622c55997f4c))
+* keep the Settings window one size while moving between sections ([cc7f18f](https://github.com/StarleyDev/gitcito/commit/cc7f18f1ab40ade3c455cad94b75be8562b71854))
+* **main:** don't crash when stdout or stderr has lost its reader ([6dc9baf](https://github.com/StarleyDev/gitcito/commit/6dc9baf5c8b0ee1d7698747cdeb312ca5dcffb47))
+* match hosting names only in the remote authority ([fafdd46](https://github.com/StarleyDev/gitcito/commit/fafdd46cdc8a0eb6d299b73c5d66c02ccdcb3e75))
+* read a PR's whole conversation, not its first 100 comments ([cf12614](https://github.com/StarleyDev/gitcito/commit/cf12614ddb7363d692e3bc17d40596b90de9b5e9))
+* resolve the remote sign-in check per GitLab/Forgejo instance ([29671ff](https://github.com/StarleyDev/gitcito/commit/29671ff79e6e659cf48694b3effc4ec7c986d0b0))
+* share push credential selection with sign-in diagnostics ([19b76da](https://github.com/StarleyDev/gitcito/commit/19b76da97ad69c5ad36417e85911010457de9119))
+* **tabs:** keep fit-mode groups compressible and reachable ([dd01cec](https://github.com/StarleyDev/gitcito/commit/dd01cec57a9cadbbfb106a3f441c8e940f75edca))
+* translate the remove-remote confirmation ([e14ac41](https://github.com/StarleyDev/gitcito/commit/e14ac41bc25b46bd778cace426b98c6514b00b1a))
+
+## [4.27.2](https://github.com/StarleyDev/gitcito/compare/v4.27.1...v4.27.2) (2026-11-20)
+
+
+### Bug Fixes
+
+* give the package author an e-mail, which the .deb maintainer field needs ([f756c51](https://github.com/StarleyDev/gitcito/commit/f756c510b850f232425d1e8f9149562383677a49))
+
+## [4.27.1](https://github.com/StarleyDev/gitcito/compare/v4.27.0...v4.27.1) (2026-11-20)
+
+## [4.27.0](https://github.com/StarleyDev/gitcito/compare/v4.26.0...v4.27.0) (2026-11-20)
+
+
+### Features
+
+* add an environment check to settings ([1e4e38e](https://github.com/StarleyDev/gitcito/commit/1e4e38e936bb15885ed90de92af73f3f008943d2))
+* add Forgejo (and Gitea) as a hosting provider ([094bd6e](https://github.com/StarleyDev/gitcito/commit/094bd6e558bb73fac6e1095ac026cefb7e1648ef))
+* check which account each remote signs in with ([a7bbb7c](https://github.com/StarleyDev/gitcito/commit/a7bbb7c431ff5cd71212362b369f6bcd6b8fcb5f))
+* explain common push and auth errors in the toast ([82011bf](https://github.com/StarleyDev/gitcito/commit/82011bf3c7cf483e27f9d8dcba34264cdc636cb2))
+* list the Forgejo token scopes under the create-token link ([95f36e4](https://github.com/StarleyDev/gitcito/commit/95f36e4d0cce4b64675cb497536bd43aaf2688b3))
+* open a pull request on its repository's tab or group chip ([e6eb492](https://github.com/StarleyDev/gitcito/commit/e6eb4924f46554d1c3bf80ba93302490ba1ae759))
+* open pull requests as a page with a details sidebar ([5f02ab4](https://github.com/StarleyDev/gitcito/commit/5f02ab443dd8210377ce15257d76d26820140f18))
+* show each changed file's diff on the PR page ([a0a5517](https://github.com/StarleyDev/gitcito/commit/a0a55175e69614961fc2caa95d9d3b7de1743990))
+* support self-managed GitLab instances ([0c35533](https://github.com/StarleyDev/gitcito/commit/0c3553364732131d6e507a2927da5881a30c3d3b))
+
+
+### Bug Fixes
+
+* count per-host credential helpers in the environment check ([821a7f8](https://github.com/StarleyDev/gitcito/commit/821a7f8ea124c3532e7155feaf65137a4cd613ca))
+* explain missing token scopes, and unwrap errors in Integrations ([9dccc0c](https://github.com/StarleyDev/gitcito/commit/9dccc0cbdb1e8eaa3b83cba5e3ef263cf23ff7bd))
+* keep git's messages in English whatever the system locale ([92bd7f9](https://github.com/StarleyDev/gitcito/commit/92bd7f9a6fbe0325dfb7299e7abb65764415fc0e))
+* keep GitLab and Forgejo tokens on their own instance in every path ([56378e3](https://github.com/StarleyDev/gitcito/commit/56378e34651eeb1e55e2aa5a6ad3388b6d7ee999))
+* list every file of a large PR, and tidy the PR page ([2ac5e6b](https://github.com/StarleyDev/gitcito/commit/2ac5e6b259e85cbef9ee3bba80396634834ff231))
+* match hosting providers at a host boundary, and surface GitLab owner errors ([09e2aee](https://github.com/StarleyDev/gitcito/commit/09e2aee3a055c4048241c995098a74e48d7b2118))
+* resolve the remote sign-in check per GitLab/Forgejo instance ([f99ded7](https://github.com/StarleyDev/gitcito/commit/f99ded7c71c011322b180b1ccacc2e6993ea91ab))
+* restore a brace lost when merging the stylesheet ([9bc8194](https://github.com/StarleyDev/gitcito/commit/9bc81949f0b7546032f5c7c2c13ece27815d1c5e))
+* say an expired token can also cause a refused write ([24dc5ae](https://github.com/StarleyDev/gitcito/commit/24dc5aec06ab44abcd9848a7facee190465b2cb2))
+* translate the remove-remote confirmation ([41f6761](https://github.com/StarleyDev/gitcito/commit/41f6761f9b45d29473febb3575ed719a2f99a775))
+
 ## [4.26.0](https://github.com/MyAppDesk/gitcito/compare/v4.25.0...v4.26.0) (2026-11-19)
 
 
