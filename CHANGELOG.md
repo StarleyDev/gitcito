@@ -1,5 +1,7 @@
 
 
+## [4.27.1](https://github.com/StarleyDev/gitcito/compare/v4.27.0...v4.27.1) (2026-11-20)
+
 ## [4.27.0](https://github.com/StarleyDev/gitcito/compare/v4.26.0...v4.27.0) (2026-11-20)
 
 
