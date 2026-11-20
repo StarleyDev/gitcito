@@ -664,6 +664,50 @@ export const shots = [
     }
   },
   {
+    out: 'pull-request-page',
+    repos: ['octopus-merge'],
+    drive: async (page, repos, app) => {
+      await app.evaluate(({ ipcMain }) => {
+        for (const method of ['prDetail', 'prChecks', 'prFiles']) ipcMain.removeHandler('hosting:' + method)
+        ipcMain.handle('hosting:prDetail', () => ({
+          number: 42, title: 'Add workspace search', author: 'sam', source: 'workspace-search', target: 'main',
+          body: 'Search filenames across open repositories from the command palette.',
+          state: 'open', draft: false, merged: false, mergeable: true, url: 'https://github.com/example/workspace/pull/42',
+          comments: [], reviews: [], reviewThreads: [], requestedReviewers: [{ login: 'alex' }],
+          labels: [{ name: 'enhancement', color: '84c5dd' }], commits: 3, changedFiles: 2, additions: 84, deletions: 12
+        }))
+        ipcMain.handle('hosting:prChecks', () => [])
+        ipcMain.handle('hosting:prFiles', () => [])
+      })
+      await page.evaluate((repoPath) => window.__shot.settings.getState().openPageTab({
+        type: 'pr', repoPath, remoteUrl: 'https://github.com/example/workspace.git', number: 42, title: 'Add workspace search'
+      }), repos['octopus-merge'])
+      await page.locator('.prp-head h2').waitFor()
+    }
+  },
+  {
+    out: 'settings-environment',
+    repos: ['octopus-merge'],
+    themes: ['light'],
+    drive: async (page, _repos, app) => {
+      await app.evaluate(({ ipcMain }) => {
+        ipcMain.removeHandler('env:check')
+        ipcMain.removeHandler('env:checkNetwork')
+        ipcMain.handle('env:check', () => [
+          { id: 'git', status: 'ok', actual: '2.51.0' },
+          { id: 'lfs', status: 'ok', actual: '3.7.0' },
+          { id: 'terminal', status: 'ok' },
+          { id: 'credentialHelper', status: 'ok', actual: 'libsecret' }
+        ])
+        ipcMain.handle('env:checkNetwork', () => [
+          { id: 'gh', status: 'warn', actual: 'repo', fix: 'gh auth refresh -h github.com -s workflow' }
+        ])
+      })
+      await page.evaluate(() => window.__shot.ui.getState().openModal({ kind: 'settings', page: 'environment' }))
+      await page.locator('.env-check-row').nth(4).waitFor()
+    }
+  },
+  {
     // Settings → Shortcuts tab (rebindable shortcut editor).
     out: 'settings-shortcuts',
     repos: ['octopus-merge'],
@@ -681,6 +725,28 @@ export const shots = [
     drive: async (page) => {
       await page.evaluate(() => window.__shot.ui.getState().openModal({ kind: 'settings', page: 'security' }))
       await page.waitForTimeout(400)
+    }
+  },
+  {
+    out: 'remote-sign-in',
+    repos: ['octopus-merge'],
+    prepare: async ({ repoPaths, run }) => {
+      const repo = repoPaths['octopus-merge']
+      await run('git', ['-C', repo, 'remote', 'remove', 'origin'], { allowFail: true })
+      await run('git', ['-C', repo, 'remote', 'add', 'origin', 'git@forge.example.org:studio/catalog.git'])
+    },
+    drive: async (page, repos) => {
+      await page.evaluate((path) => window.__shot.ui.getState().openModal({ kind: 'remoteAuth', path }), repos['octopus-merge'])
+      await page.locator('.remote-auth-card').waitFor()
+    }
+  },
+  {
+    out: 'forgejo-integration',
+    repos: ['octopus-merge'],
+    drive: async (page) => {
+      await page.evaluate(() => window.__shot.ui.getState().openModal({ kind: 'settings', page: 'integrations' }))
+      await page.getByRole('button', { name: 'Forgejo', exact: true }).click()
+      await page.locator('input[aria-required="true"]').fill('https://forge.example.org')
     }
   },
   {

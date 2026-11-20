@@ -857,7 +857,7 @@ export interface RemoteAuthCheck {
   /** Scopes the host reported; absent when it does not report them (fine-grained tokens). */
   scopes?: string[]
   /** Whether the scopes allow pushing at all. Absent when unknown. */
-  canPush?: boolean
+  scopeAllowsPush?: boolean
   /** GitHub only: whether pushes that change `.github/workflows` are allowed. Absent when unknown. */
   canPushWorkflows?: boolean
 }
@@ -2735,6 +2735,8 @@ export interface Profile {
   /** Azure DevOps organization, used to validate the PAT and scope repo/PR lookups. */
   azureOrg?: string
   gitlabToken: string
+  gitlabTokenIssuer?: string
+  forgejoTokenIssuer?: string
   /** Self-managed GitLab this profile's GitLab token belongs to (`https://git.example.org`).
    *  Empty means gitlab.com. The token is only ever sent to this instance. */
   gitlabUrl?: string

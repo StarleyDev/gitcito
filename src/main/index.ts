@@ -29,6 +29,7 @@ import { registerSecureShareHandlers } from './secureShare'
 import { registerInfoHandlers } from './info'
 import { registerEnvironmentHandlers } from './environment'
 import { registerUpdaterHandlers, checkForUpdatesOnLaunch } from './updater'
+import { guardStdio } from './stdioGuard'
 import { fixPath } from './fix-path'
 import { stripEditorGitAskpass } from './editorEnv'
 import { registerCliHandlers, trackWait, releaseAllWaits } from './cli'
@@ -41,6 +42,9 @@ import { MAIN_WINDOW_STATE, showMainWindow } from './windowState'
 import { attachRendererRecovery, registerRendererRecoveryHandlers } from './rendererRecovery'
 import { githubPublicGet } from './credentials'
 import { APP_RELEASES_API } from '../shared/appRepo'
+
+// First, before anything logs: a closed stdout/stderr must not crash main (see stdioGuard).
+guardStdio()
 
 // GUI launches inherit a minimal PATH; restore the login-shell PATH (cached, then
 // refreshed in the background) so git hooks find node/npm without delaying the window.

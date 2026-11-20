@@ -1,3 +1,4 @@
+import { prRemoteIdentity } from '../src/renderer/src/lib/hosting'
 import { describe, it, expect } from 'vitest'
 import {
   checkCounts,
@@ -137,4 +138,9 @@ describe('markAwaitingYou', () => {
     // Without a known login nothing is marked.
     expect(markAwaitingYou([pr(1, ['ana'])], null)[0].awaitingYou).toBeUndefined()
   })
+})
+
+it('keeps credentials out of saved PR tab identities', () => {
+  expect(prRemoteIdentity('https://user:fixture@gitlab.com/group/repo.git?extra=value')).toBe('https://gitlab.com/group/repo.git')
+  expect(prRemoteIdentity('git@github.com:team/repo.git')).toBe('git@github.com:team/repo.git')
 })

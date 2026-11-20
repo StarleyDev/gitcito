@@ -11,6 +11,8 @@ import { PRODUCT_NAME } from './brand'
  * issued by one instance and may only ever be sent to that one.
  */
 
+import type { Profile } from './types'
+
 export const GITLAB_COM = 'https://gitlab.com'
 
 /**
@@ -32,6 +34,25 @@ export function normalizeInstanceUrl(raw: string | undefined): string | null {
   return `https://${u.host.toLowerCase()}${path}`
 }
 
+export function tokenInstance(provider: 'gitlab' | 'forgejo', address?: string): string | null {
+  if (provider === 'gitlab' && !address?.trim()) return GITLAB_COM
+  return normalizeInstanceUrl(address)
+}
+
+/** Tokens from versions before self-managed hosting could only belong to gitlab.com. */
+export function tokenMatchesInstance(provider: 'gitlab' | 'forgejo', address?: string, issuer?: string): boolean {
+  const base = tokenInstance(provider, address)
+  return !!base && base === (issuer ?? (provider === 'gitlab' ? GITLAB_COM : undefined))
+}
+
+export function editInstance(profile: Profile, provider: 'gitlab' | 'forgejo', address: string): Partial<Profile> {
+  const field = provider === 'gitlab' ? 'gitlabUrl' : 'forgejoUrl'
+  if (tokenInstance(provider, profile[field]) === tokenInstance(provider, address)) return { [field]: address }
+  const links = { ...profile.links }
+  delete links[provider]
+  return { [field]: address, [provider + 'Token']: '', [provider + 'TokenIssuer']: undefined, links }
+}
+
 /** Kept for readability at GitLab call sites. */
 export const normalizeGitlabUrl = normalizeInstanceUrl
 
@@ -48,7 +69,7 @@ function remoteParts(url: string): { scheme: 'https' | 'ssh'; host: string; path
     const u = new URL(url)
     const scheme = u.protocol === 'https:' ? 'https' : u.protocol === 'ssh:' ? 'ssh' : null
     if (!scheme) return null
-    return { scheme, host: u.hostname.toLowerCase(), path: decodeURIComponent(u.pathname).replace(/^\/+/, '') }
+    return { scheme, host: (scheme === 'https' ? u.host : u.hostname).toLowerCase(), path: decodeURIComponent(u.pathname).replace(/^\/+/, '') }
   } catch {
     return null
   }
@@ -69,7 +90,7 @@ export function instanceOf(remoteUrl: string, bases: readonly string[]): { base:
   const sorted = [...new Set(bases)].sort((a, b) => b.length - a.length)
   for (const base of sorted) {
     const b = new URL(base)
-    if (b.hostname.toLowerCase() !== r.host) continue
+    if ((r.scheme === 'https' ? b.host : b.hostname).toLowerCase() !== r.host) continue
     let path = r.path
     if (r.scheme === 'https') {
       const prefix = b.pathname.replace(/^\/+/, '')
