@@ -231,6 +231,20 @@ change has to update the handbook.
 is deliberately out of scope. Ideas welcome as
 [issues](https://github.com/StarleyDev/gitcito/issues).
 
+## Keeping up with Gitcito
+
+Once a day the **Upstream watch** workflow compares this repository's `main` with
+Gitcito's and keeps an issue open while there is something new. To bring it in:
+
+```sh
+scripts/sync-upstream.sh          # fetch, merge, run the gate
+scripts/sync-upstream.sh --push   # …and push main when it is green
+npx release-it patch --ci         # then cut a release
+```
+
+Conflicts, when there are any, are in the files that make this build its own —
+the brand, the README's top, LICENSE, the version. Keep this repository's side.
+
 ## Credits
 
 Git HuttBr is built on **[Gitcito](https://github.com/MyAppDesk/gitcito)** by MyAppDesk —
