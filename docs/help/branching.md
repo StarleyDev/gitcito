@@ -92,6 +92,9 @@ opens the usual dialog with the name filled in — `bugfix/1234-title` for a bug
 `feature/1234-title` for anything else — and `AB#1234 title` as the task, if
 you would rather have AI suggest a name.
 
+
+![A work item looked up, with the branch name built from its type and title](../screenshots/work-item-branch.webp)
+
 Work item mentions link in commit messages and pull request text: `AB#1234`
 everywhere the Azure organization is known, and on an Azure repository plain
 `#1234` too, since Azure numbers work items, not issues. On a GitHub repository

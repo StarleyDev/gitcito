@@ -14,6 +14,7 @@
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { writeFile, mkdir, rm, chmod } from 'node:fs/promises'
+import { chmodSync, writeFileSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { execFileSync } from 'node:child_process'
 
@@ -22,6 +23,16 @@ const ASSETS = join(dirname(fileURLToPath(import.meta.url)), 'assets')
 /** Throwaway SSH keys for the ssh-keys shot. Outside the repository on purpose:
  *  disposable or not, these are real private key files. */
 const DEMO_SSH = join(tmpdir(), 'gitcito-demo-ssh')
+
+/** A neutral shell for terminal shots. The real one runs the machine's profile,
+ *  whose prompt prints the user, the host name and often the LAN address.
+ *  `bash --noprofile --norc` reads none of it; the prompt is a bare `$ `. */
+const DEMO_SHELL = join(tmpdir(), 'gitcito-demo-shell.sh')
+const neutralShell = () => {
+  writeFileSync(DEMO_SHELL, '#!/bin/sh\nexport PS1="$ "\nexec bash --noprofile --norc\n')
+  chmodSync(DEMO_SHELL, 0o755)
+  return { SHELL: DEMO_SHELL, HOME: join(tmpdir(), 'gitcito-demo-home') }
+}
 
 /** A throwaway HOME for the credential-helper shot: the real one holds this
  *  machine's global git config and possibly live passwords. */
@@ -683,6 +694,133 @@ export const shots = [
         type: 'pr', repoPath, remoteUrl: 'https://github.com/example/workspace.git', number: 42, title: 'Add workspace search'
       }), repos['octopus-merge'])
       await page.locator('.prp-head h2').waitFor()
+    }
+  },
+  {
+    // The Checks tab with a Forgejo Actions job's log open under its row.
+    out: 'pr-check-log',
+    repos: ['octopus-merge'],
+    themes: ['dark'],
+    drive: async (page, repos, app) => {
+      await app.evaluate(({ ipcMain }) => {
+        for (const method of ['prDetail', 'prChecks', 'prFiles', 'prCheckLog']) ipcMain.removeHandler('hosting:' + method)
+        ipcMain.handle('hosting:prDetail', () => ({
+          number: 7, title: 'Cache the catalog index', author: 'sam', source: 'catalog-cache', target: 'main',
+          body: 'Keeps the index between requests.', state: 'open', draft: false, merged: false, mergeable: true,
+          url: 'https://forge.example.org/studio/catalog/pulls/7', comments: [], reviews: [], reviewThreads: []
+        }))
+        const job = (n) => `https://forge.example.org/studio/catalog/actions/runs/12/jobs/${n}`
+        ipcMain.handle('hosting:prChecks', () => [
+          { name: 'ci / lint', status: 'completed', conclusion: 'success', url: job(0), hasLog: true },
+          { name: 'ci / test', status: 'completed', conclusion: 'failure', url: job(1), hasLog: true }
+        ])
+        ipcMain.handle('hosting:prFiles', () => [])
+        const R = '\u001b[31m', G = '\u001b[32m', D = '\u001b[2m', X = '\u001b[0m'
+        ipcMain.handle('hosting:prCheckLog', () => [
+          `${D}Run npm test${X}`,
+          '> catalog@1.4.0 test',
+          '> vitest run',
+          '',
+          ` ${G}✓${X} src/index.test.ts (12 tests) 41ms`,
+          ` ${G}✓${X} src/search.test.ts (8 tests) 22ms`,
+          ` ${R}✗${X} src/cache.test.ts (3 tests | 1 failed) 18ms`,
+          `   ${R}× keeps the index between requests${X}`,
+          `     AssertionError: expected 2 to be 1 // Object.is equality`,
+          `      ${D}❯ src/cache.test.ts:27:35${X}`,
+          '',
+          ` Test Files  ${R}1 failed${X} | ${G}2 passed${X} (3)`,
+          `      Tests  ${R}1 failed${X} | ${G}22 passed${X} (23)`,
+          `${R}Error: Process completed with exit code 1.${X}`
+        ].join('\n'))
+      })
+      await page.evaluate((repoPath) => window.__shot.settings.getState().openPageTab({
+        type: 'pr', repoPath, remoteUrl: 'https://forge.example.org/studio/catalog.git', number: 7, title: 'Cache the catalog index'
+      }), repos['octopus-merge'])
+      await page.locator('.prp-head h2').waitFor()
+      await page.locator('.prp-tab').nth(2).click()
+      await page.locator('.prd-check-logs[aria-expanded]').nth(1).click()
+      await page.locator('.prp-check-log pre').waitFor()
+      await page.waitForTimeout(300)
+    }
+  },
+  {
+    // The 👁 on pull requests waiting for your review.
+    out: 'pr-awaiting-review',
+    repos: ['stacked-branches'],
+    themes: ['light'],
+    drive: async (page, repoPaths) => {
+      const repo = repoPaths['stacked-branches']
+      await page.evaluate((p) => {
+        const pr = (id, head, title, extra = {}) => ({
+          id, title, author: 'sam', sourceBranch: head, targetBranch: 'main',
+          url: `https://forge.example.org/studio/app/pulls/${id}`, isDraft: false, state: 'open', ...extra
+        })
+        window.__shot.repo.getState().patch(p, {
+          prProvider: 'forgejo',
+          prs: [
+            pr(31, 'search-filters', 'feat: filter search by folder', { awaitingYou: true, requestedReviewers: ['you'] }),
+            pr(30, 'fix-empty-state', 'fix: keep the empty state centred', { author: 'alex' }),
+            pr(28, 'docs-install', 'docs: install on Linux', { author: 'alex', awaitingYou: true, requestedReviewers: ['you'] })
+          ]
+        })
+      }, repo)
+      await page.waitForTimeout(300)
+      const section = page.locator('.sb-header', { hasText: 'PULL REQUESTS' }).first()
+      if (await section.count()) {
+        await section.click()
+        await page.waitForTimeout(300)
+      }
+    }
+  },
+  {
+    // Branch from an Azure Boards work item: the item looked up, the branch name built.
+    out: 'work-item-branch',
+    repos: ['octopus-merge'],
+    themes: ['light'],
+    drive: async (page, repos, app) => {
+      await app.evaluate(({ ipcMain }) => {
+        ipcMain.removeHandler('hosting:workItem')
+        ipcMain.handle('hosting:workItem', () => ({ id: 1234, title: 'Login fails after the password reset', type: 'Bug', state: 'Active' }))
+      })
+      await page.evaluate((path) => window.__shot.ui.getState().openModal({
+        kind: 'work-item-branch', path, remoteUrl: 'https://dev.azure.com/example-org/Web/_git/site'
+      }), repos['octopus-merge'])
+      const input = page.locator('.modal-input').first()
+      await input.waitFor()
+      await input.fill('1234')
+      await input.press('Enter')
+      await page.locator('.work-item-card').waitFor()
+      await page.waitForTimeout(250)
+    }
+  },
+  {
+    // npm run suggestions at the terminal's cursor.
+    out: 'terminal-script-suggest',
+    repos: ['deep-history-monorepo'],
+    themes: ['dark'],
+    appTheme: 'midnight',
+    env: neutralShell(),
+    drive: async (page, repoPaths, app) => {
+      await app.evaluate(({ ipcMain }) => {
+        ipcMain.removeHandler('term:completions')
+        ipcMain.handle('term:completions', (_e, _id, kind) =>
+          kind === 'scripts'
+            ? { items: { dev: 'vite', build: 'vite build', 'build:web': 'vite build --mode web', test: 'vitest run', 'test:watch': 'vitest', LOCAL_SERVER: 'node scripts/serve.mjs --port 4000' } }
+            : null
+        )
+      })
+      const repo = repoPaths['deep-history-monorepo']
+      await page.evaluate((p) => window.__shot.repo.getState().select(p, { type: 'wip' }), repo)
+      await page.waitForTimeout(300)
+      await page.evaluate((p) => {
+        const ui = window.__shot.ui.getState()
+        if (!ui.terminalOpenByRepo[p]) ui.toggleTerminal(p)
+      }, repo)
+      await page.waitForTimeout(1200)
+      await page.click('.xterm').catch(() => {})
+      await page.keyboard.type('npm run ')
+      await page.locator('.term-suggest:not([hidden])').waitFor()
+      await page.waitForTimeout(300)
     }
   },
   {
@@ -3053,6 +3191,39 @@ export const clips = [
         await page.waitForTimeout(700)
         await page.mouse.up()
         // The drop opens the menu of what it could mean — that is the payoff frame.
+        await page.waitForTimeout(1600)
+      }
+    }
+  },
+  {
+    // A commit dragged from the graph onto a branch badge: the menu of what the drop can do.
+    out: 'clip-commit-drop',
+    repos: ['merge-conflict'],
+    themes: ['light'],
+    gif: {
+      durationMs: 5200,
+      drive: async (page) => {
+        const from = await page.evaluate(() => {
+          const row = document.querySelectorAll('.graph-row[draggable="true"]')[0]
+          if (!row) return null
+          const r = row.getBoundingClientRect()
+          return { x: r.left + r.width * 0.6, y: r.top + r.height / 2 }
+        })
+        const to = await page.evaluate(() => {
+          const badge = [...document.querySelectorAll('.ref-badge.ref-local')].find((b) => b.textContent?.includes('feature'))
+          if (!badge) return null
+          const r = badge.getBoundingClientRect()
+          return { x: r.left + r.width / 2, y: r.top + r.height / 2 }
+        })
+        if (!from || !to) return
+        await page.mouse.move(from.x, from.y)
+        await page.mouse.down()
+        for (let i = 1; i <= 14; i++) {
+          await page.mouse.move(from.x + ((to.x - from.x) * i) / 14, from.y + ((to.y - from.y) * i) / 14)
+          await page.waitForTimeout(60)
+        }
+        await page.waitForTimeout(700)
+        await page.mouse.up()
         await page.waitForTimeout(1600)
       }
     }

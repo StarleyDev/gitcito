@@ -83,6 +83,9 @@ diálogo de sempre com o nome preenchido — `bugfix/1234-titulo` para um bug,
 `feature/1234-titulo` para o resto — e `AB#1234 título` como tarefa, se preferir
 que a IA sugira um nome.
 
+
+![Um work item consultado, com o nome da branch montado pelo tipo e pelo título](../../screenshots/work-item-branch.webp)
+
 Menções a work items viram link em mensagens de commit e no texto dos pull
 requests: `AB#1234` onde a organização do Azure é conhecida, e num repositório
 do Azure também o `#1234` simples, porque lá a numeração é de work items, não de

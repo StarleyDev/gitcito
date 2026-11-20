@@ -55,6 +55,9 @@ projeto aparece no cursor, filtrada enquanto você digita: `npm run loc` acha o
 | **↑ / ↓** | Escolhe outro |
 | **Esc** | Fecha a lista até você digitar de novo |
 
+![Sugestões do npm run no cursor, cada uma com o seu comando](../../screenshots/terminal-script-suggest.webp)
+
+
 Outros comandos ganham a própria lista:
 
 | Digitado | Lista | Lido de |

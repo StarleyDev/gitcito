@@ -60,6 +60,9 @@ Arraste a linha de um commit no grafo sobre o selo de uma **branch local**:
 | A branch em checkout | **Cherry-pick** do commit aqui; **Reset** da branch para ele (o diálogo de reset, que diz o que cada modo mantém) |
 | Outra branch local | **Checkout dela e cherry-pick**; **Mover a branch** para o commit (`git branch -f`) |
 
+
+![Um commit arrastado sobre a etiqueta de uma branch, e o menu do que soltar pode fazer](../../screenshots/clip-commit-drop.webp)
+
 Mover uma branch pede confirmação: commits que só ela alcançava deixam de estar
 em alguma branch. Desfazer devolve a branch para onde estava. Branches remotas e
 tags não aceitam o drop, porque o git não as move assim, e uma branch que já

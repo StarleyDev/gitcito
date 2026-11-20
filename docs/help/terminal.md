@@ -58,6 +58,9 @@ scripts appears at the cursor, filtered as you type: `npm run loc` finds
 | **↑ / ↓** | Choose another |
 | **Esc** | Closes the list until you type again |
 
+![npm run suggestions at the cursor, each with its command](../screenshots/terminal-script-suggest.webp)
+
+
 Other commands get a list of their own:
 
 | Typed | Lists | Read from |

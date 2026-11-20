@@ -192,6 +192,9 @@ external CI is never sent it. A server that serves logs only to a signed-in
 browser answers with its sign-in page, and the row says so and offers the
 browser instead. Very long logs show their last few thousand lines.
 
+
+![A Forgejo Actions job log open under its check row](../screenshots/pr-check-log.webp)
+
 Just like GitLab tokens, **a Forgejo token only goes to the server that issued
 it**. A profile without a Forgejo address has no Forgejo credential at all.
 There is no default server to fall back to.
@@ -223,6 +226,9 @@ reviewer who has not answered yet — on GitHub, GitLab and Forgejo alike. Who
 "you" are is asked of the host with the profile's credential and remembered for
 ten minutes. A token that cannot read its own user (no `read:user` on Forgejo,
 for example) marks nothing.
+
+
+![Pull requests waiting for your review, marked with an eye](../screenshots/pr-awaiting-review.webp)
 
 With **Settings → Desktop notifications** on, a GitLab or Forgejo pull request
 that *starts* waiting for you raises one; clicking it opens the PR page. The

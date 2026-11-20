@@ -197,6 +197,9 @@ de CI externa nunca o recebe. Um servidor que só entrega logs a um navegador co
 login responde com a tela de login, e a linha avisa isso e oferece o navegador.
 Logs muito longos mostram as últimas milhares de linhas.
 
+
+![O log de um job do Forgejo Actions aberto embaixo da linha da check](../../screenshots/pr-check-log.webp)
+
 Como no GitLab, **um token do Forgejo só vai para o servidor que o emitiu**. Um
 perfil sem endereço do Forgejo não tem credencial do Forgejo, e não existe
 servidor padrão para onde cair.
@@ -229,6 +232,9 @@ revisor e ainda não respondeu — no GitHub, no GitLab e no Forgejo. Quem é
 "você" é perguntado ao host com a credencial do perfil e lembrado por dez
 minutos. Um token que não consegue ler o próprio usuário (sem `read:user` no
 Forgejo, por exemplo) não marca nada.
+
+
+![Pull requests aguardando a sua revisão, marcados com um olho](../../screenshots/pr-awaiting-review.webp)
 
 Com **Configurações → Notificações do sistema** ligado, um pull request do GitLab
 ou do Forgejo que *passa* a esperar por você dispara uma; clicar nela abre a
