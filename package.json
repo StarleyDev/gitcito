@@ -5,7 +5,11 @@
   "description": "A lightweight Git client built with Electron, React and clean architecture",
   "main": "out/main/index.js",
   "license": "MIT",
-  "author": "Starley - Mestre Jedi (https://github.com/StarleyDev)",
+  "author": {
+    "name": "Starley - Mestre Jedi",
+    "email": "9012499+StarleyDev@users.noreply.github.com",
+    "url": "https://github.com/StarleyDev"
+  },
   "scripts": {
     "dev": "electron-vite dev -w",
     "build": "node scripts/sync-grammars.mjs && node scripts/gen-licenses.mjs && electron-vite build",
