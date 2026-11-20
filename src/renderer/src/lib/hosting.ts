@@ -1,5 +1,5 @@
 import type { RemoteInfo } from '../../../shared/types'
-import { gitlabInstanceOf, normalizeGitlabUrl } from '../../../shared/gitlabInstance'
+import { forgejoInstanceOf, gitlabInstanceOf, normalizeGitlabUrl } from '../../../shared/gitlabInstance'
 
 /** True if a remote URL points at github.com (SSH or HTTPS). */
 export function isGitHubRemote(url: string | undefined | null): boolean {
@@ -56,17 +56,26 @@ export function repoIsGitHub(remotes: RemoteInfo[]): boolean {
  * GitLab — gitlab.com or one of the self-managed `gitlabInstances` the
  * profiles point at (their `gitlabUrl`s).
  */
-export function isReviewableRemote(url: string | undefined | null, gitlabInstances: readonly string[] = []): boolean {
+export function isReviewableRemote(
+  url: string | undefined | null,
+  gitlabInstances: readonly string[] = [],
+  forgejoInstances: readonly string[] = []
+): boolean {
   if (!url) return false
   if (/(?:^|[/@.])github\.com[/:]/i.test(url)) return true
-  const known = gitlabInstances.map((u) => normalizeGitlabUrl(u)).filter((u): u is string => !!u)
-  return gitlabInstanceOf(url, known) !== null
+  const norm = (list: readonly string[]): string[] =>
+    list.map((u) => normalizeGitlabUrl(u)).filter((u): u is string => !!u)
+  return gitlabInstanceOf(url, norm(gitlabInstances)) !== null || forgejoInstanceOf(url, norm(forgejoInstances)) !== null
 }
 
 /** True if the repo's origin (or first) remote supports the PR detail modal. */
-export function repoSupportsPrReview(remotes: RemoteInfo[], gitlabInstances: readonly string[] = []): boolean {
+export function repoSupportsPrReview(
+  remotes: RemoteInfo[],
+  gitlabInstances: readonly string[] = [],
+  forgejoInstances: readonly string[] = []
+): boolean {
   const origin = remotes.find((r) => r.name === 'origin') ?? remotes[0]
-  return isReviewableRemote(origin?.url, gitlabInstances)
+  return isReviewableRemote(origin?.url, gitlabInstances, forgejoInstances)
 }
 
 /**
