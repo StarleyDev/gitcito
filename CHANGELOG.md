@@ -1,5 +1,12 @@
 
 
+## [4.33.0](https://github.com/StarleyDev/gitcito/compare/v4.32.0...v4.33.0) (2026-11-20)
+
+
+### Features
+
+* show each repo's last commit, last fetch and a column layout in mission control ([60278ad](https://github.com/StarleyDev/gitcito/commit/60278adad91151a7ca9178a50c17fb95f0af5710))
+
 ## [4.32.0](https://github.com/StarleyDev/gitcito/compare/v4.31.0...v4.32.0) (2026-11-20)
 
 ### Bug Fixes
