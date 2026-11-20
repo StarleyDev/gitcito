@@ -4,9 +4,7 @@
 
 # Git HuttBr
 
-**A fork of [Gitcito](https://github.com/MyAppDesk/gitcito), with its own releases.**
-
-_Everything Git HuttBr does, plus: self-managed GitLab and Forgejo/Gitea hosting, a pull-request page with a details sidebar and per-file diffs, an environment check, a per-remote sign-in check, and push errors that explain themselves. Changes made here are also offered upstream._
+**A Git client for macOS, Windows and Linux.**
 
 _The whole of git — graph, staging by line, rebase, worktrees, submodules, LFS — with a UI that shows you git instead of hiding it._
 
@@ -17,11 +15,6 @@ _The whole of git — graph, staging by line, rebase, worktrees, submodules, LFS
 <img src="docs/screenshots/graph-dark.webp" alt="Git HuttBr's commit graph" width="820" />
 
 </div>
-
-> **Git HuttBr** is based on [Gitcito](https://github.com/MyAppDesk/gitcito) by MyAppDesk, under the MIT licence
-> (see [LICENSE](LICENSE)). Most of what follows comes from Gitcito's own README; the handbook pages in
-> `docs/help/` still say "Gitcito" on GitHub, while the app shows them as Git HuttBr.
-> Installers and updates come from [this repository's releases](https://github.com/StarleyDev/gitcito/releases).
 
 ---
 
@@ -235,10 +228,23 @@ change has to update the handbook.
 is deliberately out of scope. Ideas welcome as
 [issues](https://github.com/StarleyDev/gitcito/issues).
 
-## Keeping up with Gitcito
+## Sponsor
 
-Once a day the **Upstream watch** workflow compares this repository's `main` with
-Gitcito's and keeps an issue open while there is something new. To bring it in:
+If Git HuttBr saves you an afternoon of `git reflog`, consider
+[sponsoring its development](https://github.com/sponsors/StarleyDev). 💜
+
+## License
+
+MIT — see [LICENSE](LICENSE).
+
+## Origin
+
+Git HuttBr is a fork of **[Gitcito](https://github.com/MyAppDesk/gitcito)** by MyAppDesk,
+released under the MIT licence; [LICENSE](LICENSE) keeps its original copyright notice.
+Thanks to its author for the foundation this project grew from.
+
+Once a day the **Upstream watch** workflow compares this repository's `main` with the
+original's and keeps an issue open while there is something new. To bring it in:
 
 ```sh
 scripts/sync-upstream.sh          # fetch, merge, run the gate
@@ -247,17 +253,7 @@ npx release-it patch --ci         # then cut a release
 ```
 
 Conflicts, when there are any, are in the files that make this build its own —
-the brand, the README's top, LICENSE, the version. Keep this repository's side.
-
-## Credits
-
-Git HuttBr is built on **[Gitcito](https://github.com/MyAppDesk/gitcito)** by MyAppDesk —
-free, MIT-licensed, with no backend and no telemetry. If it saves you an afternoon of
-`git reflog`, consider [sponsoring its author](https://github.com/sponsors/cgutierr-zgz).
-
-## License
-
-MIT — see [LICENSE](LICENSE), which keeps Gitcito's original copyright notice.
+the brand, the README, LICENSE, the version. Keep this repository's side.
 
 ---
 

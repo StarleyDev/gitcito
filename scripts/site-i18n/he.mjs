@@ -6,7 +6,7 @@ export const he = {
   'nav.sponsor': 'חסות',
   'nav.download': 'הורדה',
 
-  'foot.license': 'ברישיון MIT · נוצר עם 💜 על ידי <a href="https://myappdesk.dev">MyAppDesk</a>',
+  'foot.license': 'ברישיון MIT · נוצר עם 💜 על ידי <a href="https://github.com/StarleyDev">Starley - Mestre Jedi</a>',
   'foot.source': 'קוד מקור',
   'foot.roadmap': 'מפת דרכים',
   'foot.reportIssue': 'דיווח על תקלה',

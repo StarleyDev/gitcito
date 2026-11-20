@@ -28,7 +28,7 @@ export const en = {
   'nav.sponsor': 'Sponsor',
   'nav.download': 'Download',
 
-  'foot.license': 'MIT licensed · Made by <a href="https://myappdesk.dev">MyAppDesk</a> with 💜',
+  'foot.license': 'MIT licensed · Made by <a href="https://github.com/StarleyDev">Starley - Mestre Jedi</a> with 💜',
   'foot.source': 'Source',
   'foot.roadmap': 'Roadmap',
   'foot.reportIssue': 'Report an issue',

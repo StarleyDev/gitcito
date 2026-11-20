@@ -6,7 +6,7 @@ export const ptBR = {
   'nav.sponsor': 'Patrocinar',
   'nav.download': 'Baixar',
 
-  'foot.license': 'Licenciado sob MIT · Feito pela <a href="https://myappdesk.dev">MyAppDesk</a> com 💜',
+  'foot.license': 'Licenciado sob MIT · Feito por <a href="https://github.com/StarleyDev">Starley - Mestre Jedi</a> com 💜',
   'foot.source': 'Código-fonte',
   'foot.roadmap': 'Roadmap',
   'foot.reportIssue': 'Relatar um problema',

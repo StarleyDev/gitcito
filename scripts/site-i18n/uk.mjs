@@ -6,7 +6,7 @@ export const uk = {
   'nav.sponsor': 'Підтримати',
   'nav.download': 'Завантажити',
 
-  'foot.license': 'Ліцензія MIT · Створено <a href="https://myappdesk.dev">MyAppDesk</a> з 💜',
+  'foot.license': 'Ліцензія MIT · Створено <a href="https://github.com/StarleyDev">Starley - Mestre Jedi</a> з 💜',
   'foot.source': 'Вихідний код',
   'foot.roadmap': 'Дорожня карта',
   'foot.reportIssue': 'Повідомити про проблему',

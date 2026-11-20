@@ -6,7 +6,7 @@ export const ko = {
   'nav.sponsor': '후원',
   'nav.download': '다운로드',
 
-  'foot.license': 'MIT 라이선스 · <a href="https://myappdesk.dev">MyAppDesk</a>가 💜 를 담아 만들었어요',
+  'foot.license': 'MIT 라이선스 · <a href="https://github.com/StarleyDev">Starley - Mestre Jedi</a>가 💜 를 담아 만들었어요',
   'foot.source': '소스',
   'foot.roadmap': '로드맵',
   'foot.reportIssue': '문제 신고',

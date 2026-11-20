@@ -7,7 +7,7 @@ export const nl = {
   'nav.download': 'Downloaden',
 
   'foot.license':
-    'MIT-gelicentieerd · Gemaakt door <a href="https://myappdesk.dev">MyAppDesk</a> met 💜',
+    'MIT-gelicentieerd · Gemaakt door <a href="https://github.com/StarleyDev">Starley - Mestre Jedi</a> met 💜',
   'foot.source': 'Broncode',
   'foot.roadmap': 'Roadmap',
   'foot.reportIssue': 'Een probleem melden',

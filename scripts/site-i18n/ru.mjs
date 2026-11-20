@@ -7,7 +7,7 @@ export const ru = {
   'nav.download': 'Скачать',
 
   'foot.license':
-    'Лицензия MIT · Сделано командой <a href="https://myappdesk.dev">MyAppDesk</a> с 💜',
+    'Лицензия MIT · Автор: <a href="https://github.com/StarleyDev">Starley - Mestre Jedi</a> · с 💜',
   'foot.source': 'Исходники',
   'foot.roadmap': 'Дорожная карта',
   'foot.reportIssue': 'Сообщить о проблеме',

@@ -7,7 +7,7 @@ export const tr = {
   'nav.download': 'İndir',
 
   'foot.license':
-    'MIT lisanslı · <a href="https://myappdesk.dev">MyAppDesk</a> tarafından 💜 ile yapıldı',
+    'MIT lisanslı · <a href="https://github.com/StarleyDev">Starley - Mestre Jedi</a> tarafından 💜 ile yapıldı',
   'foot.source': 'Kaynak kod',
   'foot.roadmap': 'Yol haritası',
   'foot.reportIssue': 'Sorun bildir',

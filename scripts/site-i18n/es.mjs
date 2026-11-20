@@ -6,7 +6,7 @@ export const es = {
   'nav.sponsor': 'Patrocinar',
   'nav.download': 'Descargar',
 
-  'foot.license': 'Licencia MIT · Hecho por <a href="https://myappdesk.dev">MyAppDesk</a> con 💜',
+  'foot.license': 'Licencia MIT · Hecho por <a href="https://github.com/StarleyDev">Starley - Mestre Jedi</a> con 💜',
   'foot.source': 'Código fuente',
   'foot.roadmap': 'Hoja de ruta',
   'foot.reportIssue': 'Informar de un problema',

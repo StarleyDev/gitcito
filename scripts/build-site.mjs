@@ -28,7 +28,7 @@ const REPO = 'MyAppDesk/gitcito'
 const SITE_URL = 'https://myappdesk.github.io/gitcito'
 const RELEASES = `https://github.com/${REPO}/releases`
 const LATEST = `${RELEASES}/latest`
-const SPONSOR = 'https://github.com/sponsors/cgutierr-zgz'
+const SPONSOR = 'https://github.com/sponsors/StarleyDev'
 const pkg = JSON.parse(readFileSync(join(ROOT, 'package.json'), 'utf8'))
 
 marked.setOptions({ gfm: true, breaks: false })
