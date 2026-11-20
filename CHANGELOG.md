@@ -1,5 +1,17 @@
 
 
+## [4.31.0](https://github.com/StarleyDev/gitcito/compare/v4.30.0...v4.31.0) (2026-11-20)
+
+
+### Features
+
+* run the project's tests from the Problems dock ([632b771](https://github.com/StarleyDev/gitcito/commit/632b7716512ff3f6487c3db92f7cc600f91d1d33))
+
+
+### Bug Fixes
+
+* run tests without a shell, and make a stopped run look stopped ([72b5d45](https://github.com/StarleyDev/gitcito/commit/72b5d45677ea255484048849b949eee5cde1c98e))
+
 ## [4.30.0](https://github.com/StarleyDev/gitcito/compare/v4.29.0...v4.30.0) (2026-11-20)
 
 
