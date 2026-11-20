@@ -2810,6 +2810,7 @@ export const de: Dict = {
   'prPage.assignees': 'Zugewiesen',
   'prPage.author': 'Autor',
   'prPage.branches': 'Branches',
+  'prPage.workItems': 'Work Items',
   'prPage.changes': 'Änderungen',
   'prPage.checksSummary': '{pass} bestanden · {fail} fehlgeschlagen · {pending} laufen',
   'prPage.closedOn': 'Geschlossen am {date}',
