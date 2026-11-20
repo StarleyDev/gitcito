@@ -1,5 +1,14 @@
 
 
+## [4.30.0](https://github.com/StarleyDev/gitcito/compare/v4.29.0...v4.30.0) (2026-11-20)
+
+
+### Features
+
+* a desktop notification when a pull request starts waiting for your review ([da21fa3](https://github.com/StarleyDev/gitcito/commit/da21fa3098df8cf0c09ac566ba8d2176c86846a9))
+* issues, milestones, releases and notifications on Forgejo ([88dade2](https://github.com/StarleyDev/gitcito/commit/88dade2155acfdaf39e6d10cc69831c2a13b8946))
+* read a Forgejo Actions job's log in the PR page's Checks tab ([8d7dce1](https://github.com/StarleyDev/gitcito/commit/8d7dce1d50a77cb462c5f18203ec73d460b08d86))
+
 ## [4.29.0](https://github.com/StarleyDev/gitcito/compare/v4.28.0...v4.29.0) (2026-11-20)
 
 
