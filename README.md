@@ -38,8 +38,18 @@ _The whole of git — graph, staging by line, rebase, worktrees, submodules, LFS
 ## Install
 
 Grab the latest build from **[Releases](https://github.com/StarleyDev/gitcito/releases)**.
-The macOS build is not signed: the first time, open it with right-click → Open.
-Once installed, the app updates itself from those releases.
+On Linux and Windows the app then updates itself from those releases.
+
+The macOS build is **not signed**, so macOS blocks it the first time ("Apple could not
+verify…"). Open it once, then go to **System Settings → Privacy & Security** and click
+**Open Anyway** (since macOS 15, right-click → Open no longer does it). Or, in a terminal:
+
+```sh
+xattr -dr com.apple.quarantine "/Applications/Git HuttBr.app"
+```
+
+macOS only lets a signed app update itself, so on a Mac each new version is downloaded
+from Releases by hand.
 
 Then, optionally, open repositories from your terminal:
 
