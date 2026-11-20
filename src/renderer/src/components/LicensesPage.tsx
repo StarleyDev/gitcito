@@ -3,8 +3,9 @@ import { motion } from 'framer-motion'
 import { Scale, Search, ExternalLink, ChevronRight } from 'lucide-react'
 import { dependencyLicenses } from '../licenses'
 import { useT, interp } from '../i18n'
+import { APP_REPO_URL } from '../../../shared/appRepo'
 
-const REPO_LICENSE = 'https://github.com/MyAppDesk/gitcito/blob/main/LICENSE'
+const REPO_LICENSE = `${APP_REPO_URL}/blob/main/LICENSE`
 
 /** The "Licenses" page tab: every third-party package this build ships, with
  *  the licence text it was published under. The list is generated at build

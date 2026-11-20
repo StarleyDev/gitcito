@@ -39,6 +39,7 @@ import { parseCliOpenArgs, type CliOpenPayload } from '../shared/cli'
 import { MAIN_WINDOW_STATE, showMainWindow } from './windowState'
 import { attachRendererRecovery, registerRendererRecoveryHandlers } from './rendererRecovery'
 import { githubPublicGet } from './credentials'
+import { APP_RELEASES_API } from '../shared/appRepo'
 
 // GUI launches inherit a minimal PATH; restore the login-shell PATH (cached, then
 // refreshed in the background) so git hooks find node/npm without delaying the window.
@@ -310,7 +311,7 @@ app.whenReady().then(() => {
     if (process.argv.includes('--shot')) return cachedReleases()
     try {
       // What's New waits on this before showing notes, so a hanging network must not stall it.
-      const res = await githubPublicGet('https://api.github.com/repos/MyAppDesk/gitcito/releases?per_page=20')
+      const res = await githubPublicGet(`${APP_RELEASES_API}?per_page=20`)
       if (!res.ok) return cachedReleases()
       const json = (await res.json()) as Array<{
         tag_name: string

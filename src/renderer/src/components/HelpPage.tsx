@@ -12,8 +12,9 @@ import {
 } from '../help/pages'
 import { useT } from '../i18n'
 import { useSettingsStore } from '../stores/settings'
+import { APP_ISSUES_NEW_URL } from '../../../shared/appRepo'
 
-const ISSUES_URL = 'https://github.com/MyAppDesk/gitcito/issues/new'
+const ISSUES_URL = APP_ISSUES_NEW_URL
 
 /**
  * The handbook: every feature explained, offline, from the Markdown in
