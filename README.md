@@ -91,6 +91,7 @@ git actually is.
 | **[Edit any commit](docs/help/commit-edit.md)** | Rewrite a past commit's files or message in place — cascade previewed before anything moves, merges replayed with their recorded resolutions. |
 | **[Interactive rebase](docs/help/rebase.md)** | Drag to reorder, squash, fixup, reword, edit or drop. |
 | **[Drop a branch on another](docs/help/merging.md#drag-one-ref-onto-another)** | Fast-forward, merge, rebase, interactive rebase, push to its remote branch, reset, open a pull request (pushing first if needed) or compare — in the sidebar, on the graph's badges, or from one to the other. Only what git would accept is offered. |
+| **[Drop a commit on a branch](docs/help/merging.md#drag-a-commit-onto-a-branch)** | Drag a commit from the graph onto a branch: cherry-pick it there, or move the branch to it — confirmed first, and undoable. |
 | **[Stacked branches](docs/help/stacks.md)** | Graphite-style chains, edited as a route: a start branch and one stop per level, added, swapped, reordered or removed from typeaheads — then one click pushes every level and opens/retargets the chained PRs, registering them as a **native GitHub stack** where that exists and carrying stack navigation in every body where it does not. |
 | **[Git flow](docs/help/gitflow.md)** | Start and finish features, releases and hotfixes — merges, tag and cleanup in one step, undoable. |
 | **[Merge options](docs/help/merge-options.md)** | `-X ours`, whitespace-blind merges, squash, `-s subtree` — and the commits behind a conflict. |
@@ -113,10 +114,11 @@ git actually is.
 | **[Tab images](docs/help/repo-settings.md#tab-image)** | Give a repository a small picture from its own files, and show tabs as image, name or both. |
 | **[Pull or push any branch](docs/help/syncing.md)** | Catch a branch up or publish it from its right-click menu, without checking it out first. |
 | **[Untracked-branch repair](docs/help/syncing.md)** | A pull that stops on "no tracking information" offers the fix as a button — link the branch to its remote, or push it if the remote has never seen it. |
-| **[Pull requests](docs/help/hosting.md)** | Create on GitHub, GitLab, Bitbucket and Azure DevOps. Review on GitHub and GitLab in a [page of its own](docs/help/hosting.md#reviewing--github-and-gitlab), on the repository's tab or group chip: conversation, each file's diff, checks, and a sidebar with reviewers and their decisions, labels, branches and size. Each profile [links its own account](docs/help/hosting.md#tokens) — a token, or a login git's credential helper or the GitHub CLI already holds. |
+| **[Pull requests](docs/help/hosting.md)** | Create on GitHub, GitLab, Bitbucket and Azure DevOps. Review on GitHub, GitLab, Forgejo and Azure DevOps in a [page of its own](docs/help/hosting.md#reviewing--github-and-gitlab), on the repository's tab or group chip: conversation, each file's diff, checks, an AI review of the host's diff, and a sidebar with reviewers and their decisions, labels, branches and size. A 👁 marks the ones [waiting for your review](docs/help/hosting.md#waiting-for-your-review). Each profile [links its own account](docs/help/hosting.md#tokens) — a token, or a login git's credential helper or the GitHub CLI already holds. |
 | **[Errors that explain themselves](docs/help/syncing.md#when-the-host-refuses)** | A push refused for a missing `workflow` scope, a 100 MB file, a protected branch or a missing credential says why and what to do, in your language — git's raw text one click away. |
 | **[Self-managed GitLab](docs/help/hosting.md#self-managed-gitlab)** | Point a profile at your company's GitLab: merge requests, the clone browser and push sign-in work there, and its token is only ever sent to that instance. |
 | **[Forgejo](docs/help/hosting.md#forgejo)** | Your own Forgejo or Gitea server, or Codeberg: push sign-in, open and create pull requests, clone and create repositories — the token only ever goes to that server. |
+| **[Azure Boards work items](docs/help/branching.md#a-branch-from-an-azure-boards-work-item)** | Start a branch from a work item's number, named from its type and title — and `AB#1234` in commits and pull requests links to the item. |
 | **[Plumbing, with a UI](docs/help/lfs-sparse.md)** | Stashes, tags, [worktrees](docs/help/worktrees.md#looking-after-worktrees) (with what each one holds, lock, move and repair), submodules, LFS, sparse-checkout, patches, hooks. |
 | **[Subtrees](docs/help/subtree.md)** | Vendor another repo into a directory — and remember where it came from, which git does not. |
 | **[Bundles & archives](docs/help/export.md)** | The repository as one file git can clone from — or a tree as a zip, honouring `export-ignore`. |
@@ -163,7 +165,8 @@ blob drawn offline where it does not, and a title-bar face that reacts to
 conflicts, half-finished rebases, a detached HEAD and piles left to grow — or
 [your own picture](docs/help/avatars.md#your-profiles-picture): your account's, an
 icon, or an image ·
-[integrated terminal](docs/help/terminal.md) with splits ·
+[integrated terminal](docs/help/terminal.md) with splits, and
+[`npm run` suggestions](docs/help/terminal.md#script-suggestions) from the nearest `package.json` ·
 [**A real CLI**](docs/help/cli.md) — `gitcito .` opens a repo, `gitcito blame
 src/api.ts -l 84` opens it *there*, `gitcito doctor` answers in the terminal with
 an exit code your CI can use, and `gitcito editor install` makes Git HuttBr the
