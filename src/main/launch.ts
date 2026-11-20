@@ -6,6 +6,7 @@ import { join, relative, sep } from 'path'
 import type { LaunchConfig, LaunchGroup, LaunchInput, LaunchTask } from '../shared/types'
 import { resolveLaunchInputs } from './launchInputFiles'
 import { makeBatchedSender } from './ptyBatch'
+import { PRODUCT_NAME } from '../shared/brand'
 
 // ─── JSONC parsing ──────────────────────────────────────────────────────────
 // launch.json / tasks.json are JSON-with-comments and allow trailing commas.
@@ -864,7 +865,7 @@ export function registerLaunchHandlers(): void {
       // rather than running a half-substituted command line.
       if (hasUnresolvableVars(config.program, config.cwd, typeof config.command === 'string' ? config.command : undefined, ...(config.args ?? []), ...(config.runtimeArgs ?? []))) {
         return {
-          error: `"${config.name}" uses a VS Code variable Gitcito can't resolve outside the editor (e.g. \${input:…}, \${command:…} or \${file}). Run it from VS Code instead.`
+          error: `"${config.name}" uses a VS Code variable ${PRODUCT_NAME} can't resolve outside the editor (e.g. \${input:…}, \${command:…} or \${file}). Run it from VS Code instead.`
         }
       }
 
@@ -873,7 +874,7 @@ export function registerLaunchHandlers(): void {
 
       if (parts.length === 0) {
         return {
-          error: `"${config.name}" isn't directly runnable from Gitcito (type "${config.type ?? '?'}"). It likely needs a debugger we can't launch.`
+          error: `"${config.name}" isn't directly runnable from ${PRODUCT_NAME} (type "${config.type ?? '?'}"). It likely needs a debugger we can't launch.`
         }
       }
 

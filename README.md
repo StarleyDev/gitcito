@@ -1,32 +1,32 @@
 <div align="center">
 
-<img src="docs/gitcito-mark.png" alt="Gitcito" width="120" />
+<img src="docs/gitcito-mark.png" alt="Git HuttBr" width="120" />
 
 # Git HuttBr
 
 **A fork of [Gitcito](https://github.com/MyAppDesk/gitcito), with its own releases.**
 
-_Everything Gitcito does, plus: self-managed GitLab and Forgejo/Gitea hosting, a pull-request page with a details sidebar and per-file diffs, an environment check, a per-remote sign-in check, and push errors that explain themselves. Changes made here are also offered upstream._
+_Everything Git HuttBr does, plus: self-managed GitLab and Forgejo/Gitea hosting, a pull-request page with a details sidebar and per-file diffs, an environment check, a per-remote sign-in check, and push errors that explain themselves. Changes made here are also offered upstream._
 
 _The whole of git — graph, staging by line, rebase, worktrees, submodules, LFS — with a UI that shows you git instead of hiding it._
 
 [![Release](https://img.shields.io/github/v/release/StarleyDev/gitcito?style=flat-square&color=6366f1)](https://github.com/StarleyDev/gitcito/releases)
 [![License](https://img.shields.io/badge/license-MIT-6366f1?style=flat-square)](LICENSE)
 ![Platforms](https://img.shields.io/badge/macOS%20·%20Windows%20·%20Linux-6366f1?style=flat-square)
-[![Sponsor](https://img.shields.io/badge/sponsor-💜-ec4899?style=flat-square)](https://github.com/sponsors/cgutierr-zgz)
 
-<img src="docs/screenshots/graph-dark.webp" alt="Gitcito's commit graph" width="820" />
+<img src="docs/screenshots/graph-dark.webp" alt="Git HuttBr's commit graph" width="820" />
 
 </div>
 
 > **Git HuttBr** is based on [Gitcito](https://github.com/MyAppDesk/gitcito) by MyAppDesk, under the MIT licence
-> (see [LICENSE](LICENSE)). The rest of this README is Gitcito's, and "Gitcito" below means this app too.
+> (see [LICENSE](LICENSE)). Most of what follows comes from Gitcito's own README; the handbook pages in
+> `docs/help/` still say "Gitcito" on GitHub, while the app shows them as Git HuttBr.
 > Installers and updates come from [this repository's releases](https://github.com/StarleyDev/gitcito/releases).
 
 ---
 
 > [!WARNING]
-> **Honest disclaimer.** Gitcito is young. **GitHub** is the battle-tested path:
+> **Honest disclaimer.** Git HuttBr is young. **GitHub** is the battle-tested path:
 > issues, milestones, notifications, inline CI and project fields are
 > GitHub-only. **GitLab** (gitlab.com) now gets the full PR detail screen too —
 > review, comment, approve and merge. Bitbucket and Azure DevOps can **list and
@@ -37,9 +37,9 @@ _The whole of git — graph, staging by line, rebase, worktrees, submodules, LFS
 
 ## Install
 
-Grab the latest build from **[gitcito's site](https://myappdesk.github.io/gitcito/)**
-or **[Releases](https://github.com/MyAppDesk/gitcito/releases)** — the macOS build
-is signed and notarised.
+Grab the latest build from **[Releases](https://github.com/StarleyDev/gitcito/releases)**.
+The macOS build is not signed: the first time, open it with right-click → Open.
+Once installed, the app updates itself from those releases.
 
 Then, optionally, open repositories from your terminal:
 
@@ -97,7 +97,7 @@ git actually is.
 
 | | |
 |---|---|
-| **[Repositories](docs/help/repositories.md)** | Every repository Gitcito has ever opened, plus folders you scan, in one searchable list — open, favourite, recent, and per workspace. |
+| **[Repositories](docs/help/repositories.md)** | Every repository Git HuttBr has ever opened, plus folders you scan, in one searchable list — open, favourite, recent, and per workspace. |
 | **[Go to repository](docs/help/workspaces.md#going-to-a-repository)** (`⌘J`) | Jump to any open repository by name, folder or branch — group members included, most recently used first. Switching is instant even next to a huge `node_modules`: the file watcher follows only what git tracks, and a bar under the toolbar shows while the repository you switched to catches up. |
 | **[Groups & workspaces](docs/help/workspaces.md)** | Tabs with folders nested to any depth, colour-coded, fetch-all per subtree. Browser-like tab sizing, opt-in auto-grouping of [worktrees](docs/help/worktrees.md#grouping-worktrees-in-the-header). [Right-click a repository](docs/help/repo-menu.md) for alias, worktrees, GitHub, terminal and remove. |
 | **[Tab images](docs/help/repo-settings.md#tab-image)** | Give a repository a small picture from its own files, and show tabs as image, name or both. |
@@ -156,7 +156,7 @@ icon, or an image ·
 [integrated terminal](docs/help/terminal.md) with splits ·
 [**A real CLI**](docs/help/cli.md) — `gitcito .` opens a repo, `gitcito blame
 src/api.ts -l 84` opens it *there*, `gitcito doctor` answers in the terminal with
-an exit code your CI can use, and `gitcito editor install` makes Gitcito the
+an exit code your CI can use, and `gitcito editor install` makes Git HuttBr the
 editor `git commit` and `git rebase -i` open ·
 [**Repository rules**](docs/help/repo-config.md) — an optional `.gitcito.json`
 carries the house rules with the clone: protected branches, commit scopes,
@@ -194,7 +194,7 @@ readable in the app.
 
 ## Your secrets stay yours
 
-Gitcito has no backend. Tokens and [vault](docs/help/vault.md) entries are
+Git HuttBr has no backend. Tokens and [vault](docs/help/vault.md) entries are
 encrypted with your **OS keychain** — and before it ever touches that keychain it
 tells you what for and lets you say no; the app keeps working either way. Nothing
 is synced or phoned home. The only network calls are to your Git host and, if you
@@ -219,30 +219,22 @@ change has to update the handbook.
 
 **[ROADMAP.md](ROADMAP.md)** — what might come next, what it would cost, and what
 is deliberately out of scope. Ideas welcome as
-[issues](https://github.com/MyAppDesk/gitcito/issues).
+[issues](https://github.com/StarleyDev/gitcito/issues).
 
-## Sponsor this project
+## Credits
 
-Gitcito is free, MIT-licensed and has no backend, no telemetry and nothing to
-upsell — so there is nothing to buy. If it saves you an afternoon of `git reflog`,
-you can pay for the next one instead:
-
-**[💜 Sponsor on GitHub](https://github.com/sponsors/cgutierr-zgz)**
-
-Sponsorship funds the Apple Developer certificate the signed macOS builds need,
-the time that goes into the handbook, and the translations. Not sponsoring costs
-you nothing — bug reports, issues and pull requests are worth as much.
+Git HuttBr is built on **[Gitcito](https://github.com/MyAppDesk/gitcito)** by MyAppDesk —
+free, MIT-licensed, with no backend and no telemetry. If it saves you an afternoon of
+`git reflog`, consider [sponsoring its author](https://github.com/sponsors/cgutierr-zgz).
 
 ## License
 
-MIT.
+MIT — see [LICENSE](LICENSE), which keeps Gitcito's original copyright notice.
 
 ---
 
 <div align="center">
 
-Made by **MyAppDesk** with 💜
-
-_[myappdesk.dev](https://myappdesk.dev)_
+Made by **[Starley - Mestre Jedi](https://github.com/StarleyDev)** with 💜
 
 </div>

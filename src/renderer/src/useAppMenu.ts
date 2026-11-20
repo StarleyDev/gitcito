@@ -17,9 +17,10 @@ import { buildMenuSpec } from './lib/appMenu'
 import { effectiveBindings } from './lib/shortcuts'
 import { menuApi } from './infrastructure/api'
 import { runAppCommand } from './appCommands'
+import { PRODUCT_NAME } from '../../shared/brand'
 
 // i18n-ignore product name
-const APP_NAME = 'Gitcito'
+const APP_NAME = PRODUCT_NAME
 
 export function useAppMenu(): void {
   const t = useT()

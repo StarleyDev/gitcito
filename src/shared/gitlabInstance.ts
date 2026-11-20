@@ -1,3 +1,4 @@
+import { PRODUCT_NAME } from './brand'
 /**
  * GitLab instances: gitlab.com plus the self-managed ones profiles point at.
  *
@@ -104,7 +105,7 @@ export function remoteIsOnGitlab(remoteUrl: string, base: string): boolean {
  * first push.
  */
 export function gitlabTokenUrl(gitlabUrl: string | undefined): string {
-  return `${profileGitlabBase(gitlabUrl)}/-/user_settings/personal_access_tokens?name=Gitcito&scopes=api,write_repository`
+  return `${profileGitlabBase(gitlabUrl)}/-/user_settings/personal_access_tokens?name=${encodeURIComponent(PRODUCT_NAME)}&scopes=api,write_repository`
 }
 
 // ─── Forgejo / Gitea ────────────────────────────────────────────────────────

@@ -7,6 +7,7 @@ import { useT } from '../i18n'
 import { confirmRemoveRecentRepo, repositoryMenuItems } from '../lib/repositoryMenuItems'
 import { chooseRepositories } from '../openRepositories'
 import gitcitoLaunch from '../assets/gitcito-launch.png'
+import { PRODUCT_NAME } from '../../../shared/brand'
 
 export interface LauncherItem {
   name: string
@@ -240,7 +241,7 @@ export function Welcome(): React.JSX.Element {
         <div className="welcome-logo">
           <img className="welcome-art" src={gitcitoLaunch} alt="" draggable={false} />
         </div>
-        <h1>Gitcito</h1>
+        <h1>{PRODUCT_NAME}</h1>
         <p>{t('welcome.tagline')}</p>
         <LauncherPanel
           onOpen={() => void openRepo()}

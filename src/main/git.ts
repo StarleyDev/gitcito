@@ -175,6 +175,7 @@ import { gitCredentialEnv, gitSupportsCredentialEnv, MIN_GIT_FOR_CREDENTIAL_ENV,
 import { AsyncLocalStorage } from 'node:async_hooks'
 import { indexCodegraphAsync } from './codegraph'
 import { applyPreparedRepoFileActions, RepoFileActionError } from './repoFileActions'
+import { PRODUCT_NAME } from '../shared/brand'
 
 const SEP = '\x1f'
 
@@ -1782,7 +1783,7 @@ function assertGitSupportsCredentialEnv(): Promise<void> {
     ({ stdout }) => {
       const v = gitSupportsCredentialEnv(String(stdout))
       if (!v.ok) {
-        throw new Error(`Gitcito needs git ${MIN_GIT_FOR_CREDENTIAL_ENV} or newer to use a profile's account for fetch and push (found ${v.found}). Update git and retry.`)
+        throw new Error(`${PRODUCT_NAME} needs git ${MIN_GIT_FOR_CREDENTIAL_ENV} or newer to use a profile's account for fetch and push (found ${v.found}). Update git and retry.`)
       }
     },
     () => undefined

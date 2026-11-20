@@ -28,6 +28,7 @@ import type {
   SecureApplyPlan,
   SecureApplyResult
 } from '../shared/types'
+import { PRODUCT_NAME } from '../shared/brand'
 
 const pexecFile = promisify(execFile)
 
@@ -152,7 +153,7 @@ async function exportBundle(
   const { canceled, filePath } = await dialog.showSaveDialog({
     title: 'Export secure bundle',
     defaultPath: `${safeName}.gitcito`,
-    filters: [{ name: 'Gitcito bundle', extensions: ['gitcito'] }]
+    filters: [{ name: `${PRODUCT_NAME} bundle`, extensions: ['gitcito'] }]
   })
   if (canceled || !filePath) return { canceled: true }
   try {
@@ -169,7 +170,7 @@ async function pickBundle(): Promise<
   const { canceled, filePaths } = await dialog.showOpenDialog({
     title: 'Import secure bundle',
     filters: [
-      { name: 'Gitcito bundle', extensions: ['gitcito'] },
+      { name: `${PRODUCT_NAME} bundle`, extensions: ['gitcito'] },
       { name: 'All files', extensions: ['*'] }
     ],
     properties: ['openFile']
@@ -312,7 +313,7 @@ export async function exportSectionsV2(
   const { canceled, filePath } = await dialog.showSaveDialog({
     title: 'Export secure bundle',
     defaultPath: `${safeName}.gitcito`,
-    filters: [{ name: 'Gitcito bundle', extensions: ['gitcito'] }]
+    filters: [{ name: `${PRODUCT_NAME} bundle`, extensions: ['gitcito'] }]
   })
   if (canceled || !filePath) return { canceled: true }
   try {

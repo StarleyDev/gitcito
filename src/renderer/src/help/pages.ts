@@ -7,6 +7,8 @@
  * that stops matching the code shows up in review as a diff next to it.
  */
 
+import { brandText } from '../../../shared/brand'
+
 /** Front-matter every help page carries. */
 export interface HelpMeta {
   /** URL-ish id, taken from the file name (`conflict-radar.md` → `conflict-radar`). */
@@ -93,14 +95,15 @@ export function resolveMedia(markdown: string): string {
 function toPage(path: string, source: string): HelpPage {
   const id = (path.split('/').pop() ?? '').replace(/\.md$/, '')
   const { meta, body } = parseFrontMatter(source)
+  // The handbook keeps upstream's wording; the product name is applied here.
   return {
     id,
-    title: meta.title ?? id,
-    category: meta.category ?? 'Guide',
+    title: brandText(meta.title ?? id),
+    category: brandText(meta.category ?? 'Guide'),
     order: meta.order ?? 999,
-    summary: meta.summary ?? '',
+    summary: brandText(meta.summary ?? ''),
     keywords: meta.keywords ?? '',
-    body
+    body: brandText(body)
   }
 }
 

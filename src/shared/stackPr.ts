@@ -3,6 +3,8 @@
 // carries in its body. Shared main ↔ renderer, no I/O — the renderer plans and
 // renders, the main process merges the section into live PR bodies.
 import type { StackInfo } from './types'
+import { PRODUCT_NAME } from './brand'
+import { APP_REPO_URL } from './appRepo'
 
 /** What `planStackSubmit` decides per stack level. */
 export interface StackPrAction {
@@ -68,7 +70,7 @@ export function buildStackSection(levels: StackSectionLevel[], self: number, tru
     `**Stack** (top → bottom, lands on \`${trunk}\`):`,
     ...rows,
     '',
-    '_Managed by [Gitcito](https://myappdesk.github.io/gitcito/) — merge bottom-up._',
+    `_Managed by [${PRODUCT_NAME}](${APP_REPO_URL}) — merge bottom-up._`,
     STACK_SECTION_END
   ].join('\n')
 }
