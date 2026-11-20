@@ -59,6 +59,9 @@ Drag a commit row from the graph onto a **local branch's** badge:
 | The branch checked out | **Cherry-pick** the commit here; **Reset** the branch to it (the reset dialog, which says what each mode keeps) |
 | Another local branch | **Check it out and cherry-pick**; **Move the branch** to the commit (`git branch -f`) |
 
+
+![A commit dragged onto a branch badge, and the menu of what the drop can do](../screenshots/clip-commit-drop.webp)
+
 Moving a branch asks first: commits only that branch reached are no longer on
 any branch afterwards. Undo puts the branch back. Remote-tracking branches and
 tags take no commit drop, since git does not move them this way, and a branch

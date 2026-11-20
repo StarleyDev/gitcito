@@ -78,6 +78,8 @@ acender uma restringe àquela severidade.
 
 ## Testes
 
+![A aba Testes: um teste que falhou aberto, com o arquivo na asserção que falhou](../../screenshots/tests-panel.webp)
+
 A terceira aba do painel roda a suíte de testes do projeto e mostra o resultado
 como uma árvore: cada arquivo de teste e, dentro dele, os testes, com as falhas
 primeiro. **Rodar testes** na paleta de comandos abre a aba e já começa; o botão

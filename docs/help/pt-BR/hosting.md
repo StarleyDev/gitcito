@@ -46,6 +46,24 @@ aterrissar. As ações da linha aparecem no hover, para o título manter a largu
 Ler os checks custa uma requisição por pull request, e só quando a lista é
 atualizada.
 
+## Os seus pull requests no repositório de origem de um fork
+
+Num fork, os pull requests que importam costumam ser os que você abriu no
+repositório de onde fez o fork, e eles moram lá, não no seu fork. Por isso,
+quando um repositório tem um remote `upstream` que aponta para um repositório do
+GitHub diferente do `origin`, a lista também pergunta ao `upstream` pelos pull
+requests abertos e mantém **só os cuja branch vem do seu fork**. Eles aparecem
+abaixo dos do seu fork, sob uma legenda com o nome do repositório de origem,
+**Em dono/repo**. Um clique abre a mesma tela de detalhes, com checks e review,
+no repositório de origem.
+
+![O pull request do próprio fork e, abaixo, os pull requests dele no repositório de origem, em On example/pr-ready-branch](../../screenshots/fork-upstream-prs.webp)
+
+*Limites:* só GitHub, e só um remote chamado `upstream`. Os outros pull requests
+do repositório de origem ficam de fora de propósito: aquela é a fila dele, não o
+seu trabalho. Pilhas e buscas de branch continuam usando só a lista do `origin`.
+Listar o repositório de origem custa mais uma requisição por atualização.
+
 ## Revisando — GitHub e GitLab
 
 ![Página do pull request com conversa e revisores](../../screenshots/pull-request-page.webp)
@@ -179,6 +197,9 @@ de CI externa nunca o recebe. Um servidor que só entrega logs a um navegador co
 login responde com a tela de login, e a linha avisa isso e oferece o navegador.
 Logs muito longos mostram as últimas milhares de linhas.
 
+
+![O log de um job do Forgejo Actions aberto embaixo da linha da check](../../screenshots/pr-check-log.webp)
+
 Como no GitLab, **um token do Forgejo só vai para o servidor que o emitiu**. Um
 perfil sem endereço do Forgejo não tem credencial do Forgejo, e não existe
 servidor padrão para onde cair.
@@ -211,6 +232,9 @@ revisor e ainda não respondeu — no GitHub, no GitLab e no Forgejo. Quem é
 "você" é perguntado ao host com a credencial do perfil e lembrado por dez
 minutos. Um token que não consegue ler o próprio usuário (sem `read:user` no
 Forgejo, por exemplo) não marca nada.
+
+
+![Pull requests aguardando a sua revisão, marcados com um olho](../../screenshots/pr-awaiting-review.webp)
 
 Com **Configurações → Notificações do sistema** ligado, um pull request do GitLab
 ou do Forgejo que *passa* a esperar por você dispara uma; clicar nela abre a
