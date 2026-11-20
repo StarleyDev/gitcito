@@ -49,6 +49,24 @@ el título conserve el ancho.
 Leer los checks cuesta una petición por pull request, y solo al refrescar la
 lista.
 
+## Tus pull requests en el repositorio original de un fork
+
+En un fork, los pull requests que importan suelen ser los que abriste en el
+repositorio del que hiciste el fork, y esos viven allí, no en tu fork. Por eso,
+cuando un repositorio tiene un remoto `upstream` que apunta a un repositorio de
+GitHub distinto de `origin`, la lista también le pide a `upstream` sus pull
+requests abiertos y conserva **solo aquellos cuya rama viene de tu fork**.
+Aparecen debajo de los de tu fork, bajo un título con el nombre del original,
+**En owner/repo**. Un clic abre la misma vista de detalle, con sus checks y su
+revisión, en el original.
+
+![El pull request propio del fork y, debajo, sus pull requests en el original, bajo On example/pr-ready-branch](../../screenshots/fork-upstream-prs.webp)
+
+*Límites:* solo GitHub, y solo un remoto llamado `upstream`. Los demás pull
+requests del original se omiten a propósito: esa es la cola del original, no tu
+trabajo. Las pilas y las búsquedas de ramas siguen usando solo la lista de
+`origin`. Consultar el original cuesta una petición más por actualización.
+
 ## Revisar — GitHub y GitLab
 
 | | |
@@ -73,6 +91,72 @@ Revisar/fusionar funciona para proyectos en **gitlab.com**; las instancias
 autoalojadas aún no están soportadas. Bitbucket y Azure DevOps se siguen
 abriendo en el navegador para revisar.
 
+## GitLab autogestionado
+
+Un GitLab de empresa vive en su propia dirección. Indícasela a un perfil en
+**Ajustes → Integraciones → GitLab → Dirección de GitLab**, por ejemplo
+`git.example.org` o `https://example.net/gitlab` si está servido bajo una ruta.
+Desde entonces, los remotos en ese host son GitLab: los merge requests se listan,
+abren, revisan y fusionan, el explorador de clonado y *crear repositorio* hablan
+con él, y push y fetch se autentican con el token de ese perfil.
+
+**Un token de GitLab pertenece a una sola instancia.** El token de un perfil solo
+se envía a la dirección que ese perfil indica. Si la dirección está vacía,
+significa gitlab.com. Un token de gitlab.com nunca llega al servidor de la
+empresa, y uno de la empresa nunca llega a gitlab.com. Si la cuenta del trabajo y
+la personal están en instancias distintas, dale a cada una su perfil. Un
+repositorio vinculado a un perfil usa la instancia de ese perfil.
+
+**Crear token** abre la página de tokens de tu instancia con `api` y
+`write_repository` preseleccionados. Un token de solo lectura conecta sin
+problema y luego falla en el primer push.
+
+Límites:
+
+- **Solo https.** Una dirección `http://` se rechaza, porque el token cruzaría la
+  red en claro.
+- **Una instancia de GitLab por perfil.** Añade un segundo perfil para una
+  segunda instancia.
+- Por ssh se compara el host, no la ruta, así que dos instancias en un mismo host
+  con rutas distintas no se distinguen en un remoto ssh.
+- Los avatares de remotos solo se dibujan para gitlab.com y github.com. Un remoto
+  autogestionado recibe el icono simple, para que los nombres de sus grupos nunca
+  se envíen a un host público.
+
+## Forgejo
+
+Configura la dirección de la instancia antes de introducir su token. Cambiar la dirección borra el inicio de sesión anterior.
+
+![Ajustes de la integración con Forgejo](../../screenshots/forgejo-integration.webp)
+
+Forgejo — y Gitea, que comparte su API — siempre corre en una dirección elegida
+por su dueño: tu propio servidor, o uno público como codeberg.org. Indícale esa
+dirección a un perfil en **Ajustes → Integraciones → Forgejo**, junto con un token
+de acceso. **Crear token** abre la página de tokens de ese servidor. Dale al
+token permiso de lectura y escritura en *repository*, y de lectura en *user* y
+*organization*.
+
+Desde entonces, los remotos en ese servidor son Forgejo:
+
+| Funciona | Cómo |
+|----------|------|
+| Push y fetch | Autenticados con el token del perfil |
+| Pull requests abiertos | Listados en la barra lateral, y se abren en la [página del pull request](#revisar--github-y-gitlab): conversación, diff de cada archivo, checks (estados del commit, incluido Forgejo Actions), comentar, aprobar, pedir cambios y merge / squash / rebase |
+| Crear un pull request | Desde la app; un borrador lleva el prefijo `WIP:` que usa Forgejo |
+| Explorador de clonado, crear repositorio | En ese servidor, bajo tu cuenta o una organización |
+
+Igual que con GitLab, **un token de Forgejo solo va al servidor que lo emitió**.
+Un perfil sin dirección de Forgejo no tiene ninguna credencial de Forgejo. No hay
+servidor por defecto al que recurrir.
+
+Límites:
+
+- Los hilos de comentarios en línea se muestran, pero no se pueden responder
+  desde la app: Forgejo no tiene API para responder dentro de un hilo existente.
+  Responde en el servidor.
+- Solo https, un servidor de Forgejo por perfil.
+- Las listas muestran los primeros 50 pull requests y repositorios.
+
 ## Incidencias, hitos y releases — GitHub
 
 Explora las incidencias y abre una pestaña completa por incidencia: cuerpo,
@@ -80,6 +164,14 @@ comentarios, etiquetas, asignados, hito, campos de Projects v2, cerrar/reabrir,
 y **crear una rama para esta incidencia** (con nombre generado por IA). Los
 hitos muestran su progreso y sus incidencias. Los releases se pueden explorar
 con su página de changelog.
+
+## Esperando tu revisión
+
+En la lista de pull requests de la barra lateral, un 👁 marca los PRs en los que
+**tú** eres revisor y aún no has respondido — en GitHub, GitLab y Forgejo por
+igual. Quién eres «tú» se le pregunta al host con la credencial del perfil y se
+recuerda diez minutos. Un token que no puede leer su propio usuario (sin
+`read:user` en Forgejo, por ejemplo) no marca nada.
 
 ## Notificaciones — GitHub
 

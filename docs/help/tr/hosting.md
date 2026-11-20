@@ -48,6 +48,23 @@ diye.
 Kontrolleri okumak pull request başına bir istek eder, o da yalnızca liste
 yenilenince.
 
+## Bir fork’un üst deposundaki pull request’leriniz
+
+Bir fork’ta önemli olan pull request’ler genellikle fork aldığınız depoda
+açtıklarınızdır ve onlar sizin fork’unuzda değil, orada durur. Bu yüzden bir
+deponun `origin`’den farklı bir GitHub deposunu gösteren bir `upstream` uzak
+deposu varsa, liste `upstream`’den de açık pull request’leri ister ve **yalnızca
+dalı sizin fork’unuzdan gelenleri** tutar. Bunlar fork’unuzunkilerin altında, üst
+deponun adını taşıyan bir başlık altında görünür: **owner/repo üzerinde**. Bir
+tıklama, aynı ayrıntı görünümünü kontrolleri ve incelemesiyle üst depoda açar.
+
+![Fork’un kendi pull request’i, altında üst depodaki pull request’leri, On example/pr-ready-branch altında](../../screenshots/fork-upstream-prs.webp)
+
+*Sınırlar:* yalnızca GitHub ve yalnızca `upstream` adlı bir uzak depo. Üst
+deponun diğer pull request’leri bilerek dışarıda bırakılır: o, onun kuyruğudur,
+sizin işiniz değil. Yığınlar ve dal aramaları hâlâ yalnızca `origin` listesiyle
+çalışır. Üst depoyu listelemek her yenilemede bir istek daha demektir.
+
 ## İnceleme — GitHub ve GitLab
 
 | | |
@@ -72,6 +89,70 @@ diff hunk'ını göstermez; GitLab'ın API'si bunu döndürmez. İnceleme/birle�
 örnekler henüz desteklenmiyor. Bitbucket ve Azure DevOps inceleme için hâlâ
 tarayıcıda açılır.
 
+## Kendi sunucunuzdaki GitLab
+
+Bir şirket GitLab’ı kendi adresinde yaşar. Bu adresi bir profile **Ayarlar →
+Entegrasyonlar → GitLab → GitLab adresi** altında verin; örneğin
+`git.example.org` ya da bir yol altında sunuluyorsa
+`https://example.net/gitlab`. Bundan sonra o sunucudaki uzak depolar GitLab’dır:
+merge request’ler listelenir, açılır, incelenir ve birleştirilir, klon tarayıcısı
+ve *Depo oluştur* onunla konuşur, push ve fetch o profilin token’ıyla oturum açar.
+
+**Bir GitLab token’ı tek bir örneğe aittir.** Bir profilin token’ı yalnızca o
+profilin belirttiği adrese gönderilir. Adres boşsa bu gitlab.com demektir. Bir
+gitlab.com token’ı şirket sunucusuna hiç ulaşmaz, bir şirket token’ı da
+gitlab.com’a. İş ve kişisel hesaplar farklı örneklerdeyse her birine kendi
+profilini verin. Bir profile bağlı depo o profilin örneğini kullanır.
+
+**Token oluştur**, örneğinizin token sayfasını `api` ve `write_repository` önceden
+seçili olarak açar. Salt okunur bir token sorunsuz bağlanır, sonra ilk push’ta
+başarısız olur.
+
+Sınırlar:
+
+- **Yalnızca https.** Düz bir `http://` adresi reddedilir; aksi halde token ağda
+  açık metin olarak dolaşırdı.
+- **Profil başına bir GitLab örneği.** İkinci bir örnek için ikinci bir profil
+  ekleyin.
+- ssh üzerinden yol değil sunucu karşılaştırılır; bu nedenle aynı sunucuda farklı
+  yollardaki iki örnek, bir ssh uzak deposu için ayırt edilemez.
+- Uzak depo avatarları yalnızca gitlab.com ve github.com için çizilir. Kendi
+  sunucunuzdaki bir uzak depo düz simgeyi alır; böylece grup adları hiçbir zaman
+  herkese açık bir sunucuya gönderilmez.
+
+## Forgejo
+
+Token’ı girmeden önce örneğin adresini ayarlayın. Adresi değiştirmek önceki oturumu siler.
+
+![Forgejo entegrasyon ayarları](../../screenshots/forgejo-integration.webp)
+
+Forgejo — ve aynı API’yi paylaşan Gitea — her zaman sahibinin seçtiği bir adreste
+çalışır: kendi sunucunuz ya da codeberg.org gibi herkese açık bir sunucu. Bu
+adresi bir profile **Ayarlar → Entegrasyonlar → Forgejo** altında, bir erişim
+token’ıyla birlikte verin. **Token oluştur**, o sunucunun token sayfasını açar.
+Token’a *repository* üzerinde okuma ve yazma, *user* ve *organization* üzerinde
+okuma izni verin.
+
+Bundan sonra o sunucudaki uzak depolar Forgejo’dur:
+
+| Çalışır | Nasıl |
+|---------|-------|
+| Push ve fetch | Profilin token’ıyla oturum açılarak |
+| Açık pull request’ler | Kenar çubuğunda listelenir ve [pull request sayfasında](#i̇nceleme--github-ve-gitlab) açılır: konuşma, her dosyanın diff’i, kontroller (Forgejo Actions dahil commit durumları), yorum, onay, değişiklik isteme ve merge / squash / rebase |
+| Pull request oluşturma | Uygulamadan; taslak, Forgejo’nun kullandığı `WIP:` önekini alır |
+| Klon tarayıcısı, depo oluşturma | O sunucuda, hesabınız ya da bir organizasyon altında |
+
+GitLab’da olduğu gibi, **bir Forgejo token’ı yalnızca onu veren sunucuya gider**.
+Forgejo adresi olmayan bir profilin hiçbir Forgejo kimlik bilgisi yoktur. Geri
+düşülecek varsayılan bir sunucu yoktur.
+
+Sınırlar:
+
+- Satır yorumu dizileri gösterilir ama uygulamadan yanıtlanamaz: Forgejo’nun var
+  olan bir dizinin içine yanıt için API’si yoktur. Sunucuda yanıtlayın.
+- Yalnızca https, profil başına bir Forgejo sunucusu.
+- Listeler ilk 50 pull request’i ve depoyu gösterir.
+
 ## Issue'lar, kilometre taşları, sürümler — GitHub
 
 Issue'lara göz atın ve tam bir issue sekmesi açın: gövde, yorumlar, etiketler,
@@ -79,6 +160,14 @@ atananlar, kilometre taşı, Projects v2 alanları, kapatma/yeniden açma ve **b
 issue için bir dal oluşturma** (yapay zekâ adlandırmasıyla). Kilometre taşları
 ilerlemelerini ve issue'larını gösterir. Sürümlere bir changelog sayfasıyla
 göz atılabilir.
+
+## İncelemenizi bekleyenler
+
+Kenar çubuğundaki pull request listesinde 👁, **sizin** inceleyici olduğunuz ve
+henüz yanıt vermediğiniz PR’ları işaretler — GitHub, GitLab ve Forgejo’da aynı
+şekilde. “Siz”in kim olduğu, profilin kimlik bilgisiyle sunucuya sorulur ve on
+dakika hatırlanır. Kendi kullanıcısını okuyamayan bir token (örneğin Forgejo’da
+`read:user` olmadan) hiçbir şeyi işaretlemez.
 
 ## Bildirimler — GitHub
 

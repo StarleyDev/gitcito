@@ -48,6 +48,25 @@ zodat de titel de breedte houdt.
 De checks lezen kost één verzoek per pull request, en alleen bij het verversen
 van de lijst.
 
+## Je pull requests op de bovenliggende repository van een fork
+
+In een fork zijn de pull requests die ertoe doen meestal die je opende op de
+repository waarvan je forkte, en die staan daar, niet op je fork. Heeft een
+repository dus een remote `upstream` die naar een andere GitHub-repository wijst
+dan `origin`, dan vraagt de lijst ook `upstream` om zijn open pull requests en
+houdt **alleen die waarvan de branch uit je fork komt**. Ze verschijnen onder die
+van je fork, onder een kop met de naam van de bovenliggende repository, **Op
+owner/repo**. Een klik opent dezelfde detailweergave, met checks en review, op de
+bovenliggende repository.
+
+![De eigen pull request van de fork, daaronder zijn pull requests op de bovenliggende repository onder On example/pr-ready-branch](../../screenshots/fork-upstream-prs.webp)
+
+*Grenzen:* alleen GitHub, en alleen een remote met de naam `upstream`. De andere
+pull requests van de bovenliggende repository blijven bewust weg: dat is diens
+wachtrij, niet jouw werk. Stapels en branch-zoekacties werken nog steeds alleen
+met de lijst van `origin`. De bovenliggende repository opvragen kost één verzoek
+meer per verversing.
+
 ## Reviewen — GitHub en GitLab
 
 | | |
@@ -72,12 +91,86 @@ Reviewen/mergen werkt voor projecten op **gitlab.com**; zelf gehoste instanties
 worden nog niet ondersteund. Bitbucket en Azure DevOps openen voor review nog
 steeds in de browser.
 
+## Zelf beheerde GitLab
+
+Een bedrijfs-GitLab heeft een eigen adres. Geef een profiel dat adres in
+**Instellingen → Integraties → GitLab → GitLab-adres**, bijvoorbeeld
+`git.example.org` of `https://example.net/gitlab` voor een instantie onder een
+pad. Vanaf dan zijn remotes op die host GitLab: merge requests worden getoond,
+geopend, gereviewd en gemerged, de kloonbrowser en *Repository aanmaken* praten
+ermee, en push en fetch melden zich aan met het token van dat profiel.
+
+**Een GitLab-token hoort bij één instantie.** Het token van een profiel wordt
+alleen naar het adres gestuurd dat dat profiel noemt. Een leeg adres betekent
+gitlab.com. Een gitlab.com-token bereikt nooit de bedrijfsserver, en een
+bedrijfstoken nooit gitlab.com. Staan je werk- en privéaccount op verschillende
+instanties, geef elk dan een eigen profiel. Een repository die aan een profiel
+gekoppeld is, gebruikt de instantie van dat profiel.
+
+**Token aanmaken** opent de tokenpagina van je instantie met `api` en
+`write_repository` vooraf geselecteerd. Een alleen-lezen-token verbindt zonder
+problemen en faalt dan bij de eerste push.
+
+Grenzen:
+
+- **Alleen https.** Een `http://`-adres wordt geweigerd, omdat het token anders
+  onversleuteld over het netwerk zou gaan.
+- **Eén GitLab-instantie per profiel.** Voeg een tweede profiel toe voor een
+  tweede instantie.
+- Via ssh wordt de host vergeleken, niet het pad, dus twee instanties op één host
+  onder verschillende paden zijn bij een ssh-remote niet uit elkaar te houden.
+- Remote-avatars worden alleen getekend voor gitlab.com en github.com. Een zelf
+  beheerde remote krijgt het eenvoudige pictogram, zodat zijn groepsnamen nooit
+  naar een publieke host gaan.
+
+## Forgejo
+
+Stel het adres van de instantie in voordat je het token invoert. Het adres wijzigen wist de vorige aanmelding.
+
+![Instellingen voor de Forgejo-integratie](../../screenshots/forgejo-integration.webp)
+
+Forgejo — en Gitea, dat dezelfde API deelt — draait altijd op een adres dat de
+eigenaar koos: je eigen server, of een publieke zoals codeberg.org. Geef een
+profiel dat adres in **Instellingen → Integraties → Forgejo**, samen met een
+toegangstoken. **Token aanmaken** opent de tokenpagina van die server. Geef het
+token lees- en schrijfrechten op *repository* en leesrechten op *user* en
+*organization*.
+
+Vanaf dan zijn remotes op die server Forgejo:
+
+| Werkt | Hoe |
+|-------|-----|
+| Push en fetch | Aangemeld met het token van het profiel |
+| Open pull requests | Getoond in de zijbalk en geopend in de [pull-requestpagina](#reviewen--github-en-gitlab): gesprek, diff van elk bestand, checks (commitstatussen, inclusief Forgejo Actions), reageren, goedkeuren, wijzigingen vragen, en merge / squash / rebase |
+| Een pull request aanmaken | Vanuit de app; een concept krijgt het voorvoegsel `WIP:` dat Forgejo gebruikt |
+| Kloonbrowser, repository aanmaken | Op die server, onder je account of een organisatie |
+
+Net als bij GitLab gaat **een Forgejo-token alleen naar de server die het
+uitgaf**. Een profiel zonder Forgejo-adres heeft helemaal geen
+Forgejo-aanmelding. Er is geen standaardserver om op terug te vallen.
+
+Grenzen:
+
+- Draden met regelopmerkingen worden getoond, maar je kunt er vanuit de app niet
+  op antwoorden: Forgejo heeft geen API voor een antwoord binnen een bestaande
+  draad. Antwoord op de server.
+- Alleen https, één Forgejo-server per profiel.
+- Lijsten tonen de eerste 50 pull requests en repositories.
+
 ## Issues, milestones, releases — GitHub
 
 Blader door issues en open een volledig issue-tabblad: body, opmerkingen, labels,
 toegewezen personen, milestone, Projects v2-velden, sluiten/heropenen, en **maak
 een branch voor dit issue** (met AI-naamgeving). Milestones tonen voortgang en
 hun issues. Releases zijn doorbladerbaar met een changelogpagina.
+
+## Wacht op jouw review
+
+In de pull-requestlijst van de zijbalk markeert een 👁 de PR's waarbij **jij**
+reviewer bent en nog niet hebt gereageerd — op GitHub, GitLab en Forgejo. Wie
+„jij” bent, wordt met de aanmelding van het profiel aan de host gevraagd en tien
+minuten onthouden. Een token dat zijn eigen gebruiker niet mag lezen (zonder
+`read:user` op Forgejo, bijvoorbeeld) markeert niets.
 
 ## Meldingen — GitHub
 
