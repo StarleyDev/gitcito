@@ -76,6 +76,8 @@ narrows to it.
 
 ## Tests
 
+![The Tests tab: a failed test unfolded, its file open at the assertion that failed](../screenshots/tests-panel.webp)
+
 The dock's third tab runs the project's test suite and shows the result as a
 tree: each test file, then its tests, failures first. **Run tests** in the
 command palette opens it and starts the run; the ▶ button in the tab does the

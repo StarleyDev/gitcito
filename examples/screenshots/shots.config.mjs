@@ -824,6 +824,48 @@ export const shots = [
     }
   },
   {
+    // The Tests tab of the Problems dock: a suite with one failure unfolded.
+    out: 'tests-panel',
+    repos: ['test-suite'],
+    themes: ['dark'],
+    drive: async (page, repos, app) => {
+      await app.evaluate(({ ipcMain }) => {
+        ipcMain.removeHandler('tests:detect')
+        ipcMain.removeHandler('tests:run')
+        ipcMain.handle('tests:detect', () => ({ runner: 'vitest', installed: true }))
+        const ok = (name, ms) => ({ name, status: 'passed', ms })
+        ipcMain.handle('tests:run', () => ({
+          runner: 'vitest', passed: 9, failed: 1, skipped: 1, ms: 2840,
+          files: [
+            { file: 'src/cache.test.ts', status: 'failed', tests: [
+              { name: 'cache › keeps the index between requests', status: 'failed', ms: 18, line: 27,
+                message: 'AssertionError: expected 2 to be 1 // Object.is equality\n\n- Expected\n+ Received\n\n- 1\n+ 2\n\n ❯ src/cache.test.ts:27:35' },
+              ok('cache › evicts the oldest entry', 4),
+              ok('cache › survives a restart', 9)
+            ] },
+            { file: 'src/search.test.ts', status: 'passed', tests: [
+              ok('search › matches a folder', 6), ok('search › ranks exact names first', 3), ok('search › ignores case', 2),
+              { name: 'search › fuzzy matching', status: 'skipped', ms: 0 }
+            ] },
+            { file: 'src/index.test.ts', status: 'passed', tests: [
+              ok('index › builds from scratch', 41), ok('index › updates one file', 12), ok('index › drops a deleted file', 8), ok('index › handles an empty folder', 1)
+            ] }
+          ]
+        }))
+      })
+      const repo = repos['test-suite']
+      await page.evaluate(async (p) => {
+        const problems = window.__shot.problems.getState()
+        problems.setMode('tests')
+        window.__shot.ui.getState().setProblemsOpen(p, true)
+        await problems.runTests(p)
+      }, repo)
+      await page.locator('.prob-row').first().click()
+      await page.locator('.test-message').waitFor()
+      await page.waitForTimeout(300)
+    }
+  },
+  {
     out: 'settings-environment',
     repos: ['octopus-merge'],
     themes: ['light'],
