@@ -20,7 +20,7 @@ permissions:
 jobs:
   watch:
     # A copy of this fork would otherwise watch on someone else's behalf.
-    if: github.repository == 'StarleyDev/gitcito'
+    if: github.repository == 'StarleyDev/githuttbr'
     runs-on: ubuntu-latest
     env:
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

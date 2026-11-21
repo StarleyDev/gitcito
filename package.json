@@ -65,7 +65,7 @@
     "publish": {
       "provider": "github",
       "owner": "StarleyDev",
-      "repo": "gitcito"
+      "repo": "githuttbr"
     },
     "mac": {
       "category": "public.app-category.developer-tools",

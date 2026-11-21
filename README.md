@@ -8,7 +8,7 @@
 
 _The whole of git — graph, staging by line, rebase, worktrees, submodules, LFS — with a UI that shows you git instead of hiding it._
 
-[![Release](https://img.shields.io/github/v/release/StarleyDev/gitcito?style=flat-square&color=6366f1)](https://github.com/StarleyDev/gitcito/releases)
+[![Release](https://img.shields.io/github/v/release/StarleyDev/githuttbr?style=flat-square&color=6366f1)](https://github.com/StarleyDev/githuttbr/releases)
 [![License](https://img.shields.io/badge/license-MIT-6366f1?style=flat-square)](LICENSE)
 ![Platforms](https://img.shields.io/badge/macOS%20·%20Windows%20·%20Linux-6366f1?style=flat-square)
 
@@ -30,7 +30,7 @@ _The whole of git — graph, staging by line, rebase, worktrees, submodules, LFS
 
 ## Install
 
-Grab the latest build from **[Releases](https://github.com/StarleyDev/gitcito/releases)**.
+Grab the latest build from **[Releases](https://github.com/StarleyDev/githuttbr/releases)**.
 On Linux and Windows the app then updates itself from those releases.
 
 The macOS build is **not signed**, so macOS blocks it the first time ("Apple could not
@@ -226,7 +226,7 @@ change has to update the handbook.
 
 **[ROADMAP.md](ROADMAP.md)** — what might come next, what it would cost, and what
 is deliberately out of scope. Ideas welcome as
-[issues](https://github.com/StarleyDev/gitcito/issues).
+[issues](https://github.com/StarleyDev/githuttbr/issues).
 
 ## Sponsor
 
