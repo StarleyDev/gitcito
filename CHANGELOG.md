@@ -1,5 +1,12 @@
 
 
+## [4.34.2](https://github.com/StarleyDev/githuttbr/compare/v4.34.1...v4.34.2) (2026-11-21)
+
+
+### Bug Fixes
+
+* save commit-signing settings as they change, like the rest of Settings ([4028e20](https://github.com/StarleyDev/githuttbr/commit/4028e20ab33ca814861687f82ac7837f85a7d892))
+
 ## [4.34.1](https://github.com/StarleyDev/githuttbr/compare/v4.34.0...v4.34.1) (2026-11-21)
 
 
