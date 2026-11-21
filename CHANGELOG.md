@@ -1,5 +1,18 @@
 
 
+## [4.34.0](https://github.com/StarleyDev/githuttbr/compare/v4.33.0...v4.34.0) (2026-11-21)
+
+
+### Features
+
+* fetch only the stale repos from mission control, and name the operation in the row's language ([76111a4](https://github.com/StarleyDev/githuttbr/commit/76111a46c0541f6fef339399ba0729d1260443c1))
+* show Azure build validation as checks, and read an Azure Pipelines build's log ([d9b47f0](https://github.com/StarleyDev/githuttbr/commit/d9b47f03475a25db1b6164c106a143dba5201c45))
+
+
+### Bug Fixes
+
+* define the colour variables the stylesheet uses but no theme sets ([c08f32a](https://github.com/StarleyDev/githuttbr/commit/c08f32a30afd6b34e0ff772cc871b6bf7f86ed08))
+
 ## [4.33.0](https://github.com/StarleyDev/gitcito/compare/v4.32.0...v4.33.0) (2026-11-20)
 
 
