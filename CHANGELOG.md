@@ -1,5 +1,13 @@
 
 
+## [4.34.1](https://github.com/StarleyDev/githuttbr/compare/v4.34.0...v4.34.1) (2026-11-21)
+
+
+### Bug Fixes
+
+* move to simple-git 4, past its command-execution advisories ([1594dc7](https://github.com/StarleyDev/githuttbr/commit/1594dc7a3f9cc144c0324040c272082e73d8a4a1))
+* update js-yaml, dompurify and xmldom past their security advisories ([8eb7d13](https://github.com/StarleyDev/githuttbr/commit/8eb7d138b056ba0c5ddd23749faaa2ca6744ec3d))
+
 ## [4.34.0](https://github.com/StarleyDev/githuttbr/compare/v4.33.0...v4.34.0) (2026-11-21)
 
 
