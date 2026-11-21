@@ -1,6 +1,7 @@
 {
   "name": "gitcito",
   "productName": "Gitcito",
+  "desktopName": "gitcito.desktop",
   "version": "4.34.2",
   "description": "A lightweight Git client built with Electron, React and clean architecture",
   "main": "out/main/index.js",
@@ -112,7 +113,10 @@
       "target": [
         "AppImage",
         "deb"
-      ]
+      ],
+      "desktop": {
+        "StartupWMClass": "gitcito"
+      }
     }
   },
   "dependencies": {
