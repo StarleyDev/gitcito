@@ -1,5 +1,12 @@
 
 
+## [4.34.3](https://github.com/StarleyDev/githuttbr/compare/v4.34.2...v4.34.3) (2026-11-21)
+
+
+### Bug Fixes
+
+* let Linux desktops tie the app's window to its menu entry ([29bb878](https://github.com/StarleyDev/githuttbr/commit/29bb878783680e4cb0034899c53859d86551c051))
+
 ## [4.34.2](https://github.com/StarleyDev/githuttbr/compare/v4.34.1...v4.34.2) (2026-11-21)
 
 
